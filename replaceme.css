@@ -1,0 +1,30 @@
+/*
+Replace this example stylesheet with your own.
+Please try to keep the code formatting nice.
+
+We want to see a sensible mobile-first, responsive design.
+This means the default styles are for the smallest mobile size.
+*/
+
+/* Multi-line rulesets must use whitespace for indentation consistently. */
+body {
+	/* note the indentation here */
+	background-color: #5bf;
+	color: #024;
+}
+
+/* One-liners are fine for very simple rulesets. */
+h1 { font-family: sans-serif;}
+
+/* 
+You will probably need at least two media queries to handle larger screens.
+Your queries should be configured to work with your content
+*/
+@media screen and (min-width: 457px) {
+	/* Code inside media queries should be indented one step further. */
+	body { font-size: 1.2em }
+}
+/*
+We don't want to see a min-width of 457px in your code
+This was chosen to match the template content.
+*/
