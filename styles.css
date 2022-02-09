@@ -1,0 +1,97 @@
+body {
+  background: Gainsboro;
+  font-family: sans-serif;
+}
+
+nav {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  opacity: 0;
+  transition: 0.5s;
+  margin-left: -0.5em;
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+nav.open {
+  display: flex;
+  opacity: 1;
+  height: 20em;
+  transition: 0.5s;
+}
+
+#menuToggler {
+  font-size: 3em;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 0.1em;
+  width: 1em;
+  height: 1em;
+  padding-top: 0em;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+nav a {
+  color: white;
+  font-size: large;
+  font-weight: bold;
+  background-color: SlateGray;
+  padding: 0.25em 0.5em;
+  margin: 0.25em 0.5em;
+  font-family: sans-serif;
+  transition: background-color 0.2s;
+  text-align: center;
+}
+
+nav a:hover {
+  background-color: DarkTurquoise;
+}
+
+p {
+  text-align: justify;
+  margin: 1em;
+}
+
+h1 {
+  text-align: center;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  background-color: gainsboro;
+}
+
+img {
+  width: 10em;
+  height: 10em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+@media screen and (min-width: 400px) {
+
+  #menuToggler {
+    display: none;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    opacity: 1;
+    position: static;
+  }
+
+  img {
+    width: 40%;
+    height: 40%;
+  }
+}
