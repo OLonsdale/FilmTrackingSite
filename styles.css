@@ -1,97 +1,90 @@
-body {
-  background: Gainsboro;
-  font-family: sans-serif;
+/* Table properties */
+
+table,th, td {
+  padding-left: 1em;
+  padding-right: 1em;
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
 }
+
+th, td {
+  border-top: 1px solid;
+}
+
+tbody tr:nth-child(odd) {
+  background: lightgray;
+}
+
+tbody tr:hover { /* th:hover also if you wish */
+  background: lightslategray;
+}
+
+/* Nav properties */
 
 nav {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  flex-direction: column;
-  opacity: 0;
-  transition: 0.5s;
-  margin-left: -0.5em;
+  flex-direction: row;
   position: fixed;
+  top: 0;
   width: 100%;
-  top: 0;
-}
-
-nav.open {
-  display: flex;
-  opacity: 1;
-  height: 20em;
-  transition: 0.5s;
-}
-
-#menuToggler {
-  font-size: 3em;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.1);
-  padding: 0.1em;
-  width: 1em;
-  height: 1em;
-  padding-top: 0em;
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 1;
+  z-index: 0;
 }
 
 nav a {
+  text-decoration: none;
+  width: 8em;
+  height: 1.6em;
   color: white;
-  font-size: large;
+  font-size: 2em;
   font-weight: bold;
   background-color: SlateGray;
-  padding: 0.25em 0.5em;
-  margin: 0.25em 0.5em;
   font-family: sans-serif;
   transition: background-color 0.2s;
   text-align: center;
+}
+
+nav a>b{
+  font-size: 0;
 }
 
 nav a:hover {
   background-color: DarkTurquoise;
 }
 
-p {
-  text-align: justify;
-  margin: 1em;
+/* Other */
+
+body {
+  background: Gainsboro;
+  font-family: sans-serif;
 }
 
 h1 {
   text-align: center;
+  margin-top: 2em /* To account for the sticky header */
 }
 
 footer {
   position: fixed;
   bottom: 0;
   background-color: gainsboro;
-}
-
-img {
-  width: 10em;
-  height: 10em;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
 }
 
 
-@media screen and (min-width: 400px) {
+/* Adjusting for a screen over 500px width */
 
-  #menuToggler {
-    display: none;
+@media screen and (min-width: 500px) {
+  nav a{
+    font-size: large;
+    height: 3em;
   }
 
-  nav {
-    display: flex;
-    flex-direction: row;
-    opacity: 1;
-    position: static;
+  nav a>b{
+    font-size: large;
   }
 
-  img {
-    width: 40%;
-    height: 40%;
-  }
+
 }
