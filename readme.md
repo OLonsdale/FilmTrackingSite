@@ -1,17 +1,22 @@
 # CTEC3905 ASSIGNMENT
 
-Hello. This has been updated, but leaving the below for reference at a later point.
-Currently the site is mostly empty, but all code is my own.
+# MY FILM TRACKING SERVICE
 
-Welcome. This is your assignment repository.
+The goal of this project is to create a service for tracking films you have watched and plan to watch.
+You can add a film, a give it a score and add some notes to help you remember what you thought about it.
+It will store the information as a JSON cookie, and allow for importing/exporting a JSON file.
+Metadata will be retrieved by an API.
+It will hopefully have a light and a dark theme.
+The menu bar will collapse down to icons when the screen size becomes too small.
 
-Try to keep it to a maximum of about 300 words.
+My four pages will be:
+*Watched list
+*Planning list
+*Add film page
+*Statistics
 
-The description should include a summary of your site content and the primary audience you are targeting.
-Also include a brief description of how you have organised the content (a few sentences is fine) for the audience.
-Make some specific reference to how you have adapted your site for different screen sizes.
-
-If there are any parts of your code or user interface that need further explanation, you can include that here.
-If anything is broken or doesn't quite work properly, you may explain what it SHOULD do.
-
-You must include references (including links) to any external resources/videos/code examples that you have used here.
+#SITES USED FOR INFORMATION
+css-tricks.com/ - specifically on dark modes and table styling
+w3 schools
+MDN Web Docs
+Example work from the GitHub repo.

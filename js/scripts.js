@@ -9,6 +9,3 @@
 // We like to see what you can do. Be creative.
 
 console.log("Script Loaded");
-
-menuToggler.addEventListener('click', (ev) => {menu.classList.toggle('open');});
-

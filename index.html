@@ -6,37 +6,134 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
-  <title>Home</title>
+  <title>Watched Films</title>
 </head>
 
 <body>
 
   <header>
-    <div id="menuToggler"> ≡ </div>
     <nav id="menu">
-      <a href="#">Home</a>
-      <a href="#">Page2</a>
-      <a href="#">Page3</a>
-      <a href="#">Page4</a>
+      <!--Title used for tooltip-->
+      <a href="index.html" title="Watched Films">
+        📕<br>
+        <b>Watched</b>
+      </a>
+    
+      <a href="planning-list.html" title="Planned Films">
+        📖
+        <b><br>Planning</b>
+      </a>
+      
+      <a href="#" title="Add Film">
+        📝
+        <b><br>Add</b>
+      </a>
+      
+      <a href="#" title="View Statistics">
+        📊
+        <b><br>Stats</b>
+      </a>
     </nav>
   </header>
 
   <main>
-    <h1>Lorum</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat dignissimos rem hic sequi consectetur velit
-      nobis cum odit corporis cupiditate perspiciatis optio, sapiente voluptatibus nostrum aliquid earum sit, pariatur
-      cumque.</p>
-    <img src="images/image1.jpg" alt="Cat sitting unusually">
-    <h1>Ipsum</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat dignissimos rem hic sequi consectetur velit
-      nobis cum odit corporis cupiditate perspiciatis optio, sapiente voluptatibus nostrum aliquid earum sit, pariatur
-      cumque.</p>
-    <img src="images/image2.png" alt="Cat with a 'stache">
-    <h1>Dolor</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat dignissimos rem hic sequi consectetur velit
-      nobis cum odit corporis cupiditate perspiciatis optio, sapiente voluptatibus nostrum aliquid earum sit, pariatur
-      cumque.</p>
-    <img src="images/image3.jpg" alt="Cat sitting in childs highchair">
+    <h1>Watched Films</h1>
+    <table id="watched">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Release Year</th>
+          <th>Date Watched</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>❤️</td>
+          <td>Lord of the Rings - The Fellowship of the Ring</td>
+          <td>2001</td>
+          <td>2018-03-14</td>
+          <td>★★★★☆</td>
+        </tr>
+
+        <tr>
+          <td>🖤</td>
+          <td>Harry Potter and the Prisoner of Askaban</td>
+          <td>2004</td>
+          <td>2016-02-24</td>
+          <td>★★★☆☆</td>
+        </tr>
+
+        <tr>
+          <td>❤️</td>
+          <td>Captain Phillips</td>
+          <td>2013</td>
+          <td>2017-12-24</td>
+          <td>★★★★☆</td>
+        </tr>
+
+        <tr>
+          <td>❤️</td>
+          <td>The Golden Compass</td>
+          <td>2007</td>
+          <td>2012-11-21</td>
+          <td>★☆☆☆☆</td>
+        </tr>
+
+        <tr>
+          <td>❤️</td>
+          <td>The Good the Bad and the Ugly</td>
+          <td>1966</td>
+          <td>2015-04-09</td>
+          <td>★★★★☆</td>
+        </tr>
+
+        <tr>
+          <td>❤️</td>
+          <td>Lord of the Rings - The Fellowship of the Ring</td>
+          <td>2001</td>
+          <td>2018-03-14</td>
+          <td>★★★★☆</td>
+        </tr>
+
+        <tr>
+          <td>🖤</td>
+          <td>Harry Potter and the Prisoner of Askaban</td>
+          <td>2004</td>
+          <td>2016-02-24</td>
+          <td>★★★☆☆</td>
+        </tr>
+
+        <tr>
+          <td>❤️</td>
+          <td>Captain Phillips</td>
+          <td>2013</td>
+          <td>2017-12-24</td>
+          <td>★★★★☆</td>
+        </tr>
+
+        <tr>
+          <td>❤️</td>
+          <td>The Golden Compass</td>
+          <td>2007</td>
+          <td>2012-11-21</td>
+          <td>★☆☆☆☆</td>
+        </tr>
+
+        <tr>
+          <td>❤️</td>
+          <td>The Good the Bad and the Ugly</td>
+          <td>1966</td>
+          <td>2015-04-09</td>
+          <td>★★★★☆</td>
+        </tr>
+
+      </tbody>
+
+    </table>
 
   </main>
 
