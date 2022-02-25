@@ -9,3 +9,48 @@
 // We like to see what you can do. Be creative.
 
 console.log("Script Loaded");
+
+"use strict";
+
+score.addEventListener('input', ev =>{
+  const score = document.getElementById("score").value;
+  const out = document.getElementById("scoreText");
+    
+  if(score == 0){
+    out.innerHTML = "☆☆☆☆☆";
+  } else if(score == 1){
+    out.innerHTML = "★☆☆☆☆";
+  } else if(score == 2){
+    out.innerHTML = "★★☆☆☆";
+  } else if(score == 3){
+    out.innerHTML = "★★★☆☆";
+  } else if(score == 4){
+    out.innerHTML = "★★★★☆";
+  } else {
+    out.innerHTML = "★★★★★";
+  }
+});
+
+favourite.addEventListener('click', ev =>{
+  const fav = document.getElementById("favourite").value;
+  const out = document.getElementById("favText");
+
+  if(out.innerHTML == "❤️") {
+    out.innerHTML = "🖤";
+  } else {
+      out.innerHTML = "❤️";
+    } 
+});
+
+statusA.addEventListener('input', ev =>{
+  const select = document.getElementById("statusA");
+  const value = select.options[select.selectedIndex].value;
+
+  if(value == "planning"){
+    document.documentElement.style.setProperty('--hiddenTF', "hidden");
+  } else {
+    document.documentElement.style.setProperty('--hiddenTF', "visible");
+  }
+
+});
+

@@ -1,3 +1,8 @@
+:root {
+  --hiddenTF: visible;
+}
+
+
 /* Table properties */
 
 table,th, td {
@@ -12,12 +17,29 @@ th, td {
   border-top: 1px solid;
 }
 
+th{
+  text-align: left;
+}
+
 tbody tr:nth-child(odd) {
   background: lightgray;
 }
 
 tbody tr:hover { /* th:hover also if you wish */
   background: lightslategray;
+}
+
+#watched tr > *:nth-child(1) {
+  width: 0px;
+}
+#watched tr > *:nth-child(3) {
+  display: none;
+}
+#watched tr > *:nth-child(4) {
+  display: none;
+}
+#watched tr > *:nth-child(5) {
+  display: none;
 }
 
 /* Nav properties */
@@ -73,6 +95,26 @@ footer {
   width: 100%;
 }
 
+p2{
+  white-space: nowrap;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+form {
+  border: 1px solid black;
+  padding: 1em;
+}
+
+watched-section{
+  visibility: var(--hiddenTF);
+}
+
 
 /* Adjusting for a screen over 500px width */
 
@@ -86,5 +128,14 @@ footer {
     font-size: large;
   }
 
+  #watched tr > *:nth-child(3) {
+    display: table-cell;
+  }
+  #watched tr > *:nth-child(4) {
+    display: table-cell;
+  }
+  #watched tr > *:nth-child(5) {
+    display: table-cell;
+  }
 
 }
