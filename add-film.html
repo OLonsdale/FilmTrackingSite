@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+  <title>Add Film</title>
+</head>
+
+<body>
+
+  <header>
+    <nav id="menu">
+      <!--Titles used for tooltips-->
+      <a href="index.html" title="Watched Films">
+        📕<br>
+        <b>Watched</b>
+      </a>
+    
+      <a href="planning-list.html" title="Planned Films">
+        📖
+        <b><br>Planning</b>
+      </a>
+      
+      <a href="add-film.html" title="Add Film">
+        📝
+        <b><br>Add</b>
+      </a>
+      
+      <a href="statistics.html" title="View Statistics">
+        📊
+        <b><br>Stats</b>
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Add a film</h1>
+
+    <form id="add-film" method="post">
+
+      <unwatched-section>
+        <h2>Title</h2>
+        <input id="title" type="text" aria-label="Film title" placeholder="The Golden Compass">
+        <button id="search" type="button" aria-label="Search for film">🔎</button>
+      </unwatched-section>
+
+      <unwatched-section>
+        <h2>Year of Release</h2>
+        <input id="year" type="number" min="1880" aria-label="Year of release" placeholder="2007">
+      </unwatched-section>
+
+      <unwatched-section>
+        <h2>Runtime</h2>
+        <input id="runtime" type="number" min="1880" aria-label="Runtime" placeholder="in mins">
+      </unwatched-section>
+
+      <unwatched-section>
+        <h2>Status</h2>
+        <select name="status" id="statusA" aria-label="Watched or planning to watch">
+          <option value="watched">Watched</option>
+          <option value="planning">Planning</option>
+        </select>
+      </unwatched-section>
+
+      <watched-section>
+        <h2>Favourite</h2>
+        <input id="favourite" type="checkbox" aria-label="Favourite">
+        <p2 id="favText">🖤</text>
+      </watched-section>
+
+      <watched-section>
+        <h2>Score</h2>
+        <input id="score" type="range" min="0" max="5" value="5" aria-label="score">
+        <p2 id="scoreText">★★★★★</p2>
+      </watched-section>
+
+      <watched-section>
+        <h2>First watched</h2>
+        <input id="watched-date" type="date" aria-label="date watched">
+      </watched-section>
+
+      <watched-section>
+        <h2>Times Watched</h2>
+        <input id="times-watched" type="number" min="1" aria-label="number of times watched">
+      </watched-section>
+
+      <unwatched-section>
+        <h2></h2>
+        <input type="submit" value="add-film">
+      </unwatched-section>
+      
+    </form>
+
+  </main>
+
+  <footer>
+
+    
+  </footer>
+
+  <script src="js/scripts.js"> </script>
+</body>
+
+</html>
