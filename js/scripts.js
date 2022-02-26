@@ -12,6 +12,7 @@ console.log("Script Loaded");
 
 "use strict";
 
+//updading the stars with the slider on add page
 score.addEventListener('input', ev =>{
   const score = document.getElementById("score").value;
   const out = document.getElementById("scoreText");
@@ -31,6 +32,7 @@ score.addEventListener('input', ev =>{
   }
 });
 
+//toggle the red/black heart when favs checkbox
 favourite.addEventListener('click', ev =>{
   const fav = document.getElementById("favourite").value;
   const out = document.getElementById("favText");
@@ -42,6 +44,8 @@ favourite.addEventListener('click', ev =>{
     } 
 });
 
+//hide and show elements based on the status selected.
+//"status" seems to be a reserved word, so had to use statusA
 statusA.addEventListener('input', ev =>{
   const select = document.getElementById("statusA");
   const value = select.options[select.selectedIndex].value;
