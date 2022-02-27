@@ -41,22 +41,23 @@
   <main>
     <h1>Add a film</h1>
 
-    <form id="add-film" method="post">
+    <form id="add-film">
 
       <unwatched-section>
         <h2>Title</h2>
-        <input id="title" type="text" aria-label="Film title" placeholder="The Golden Compass">
+        <input id="title" type="text" aria-label="Film title" placeholder="The Golden Compass" required>
         <button id="search" type="button" aria-label="Search for film">🔎</button>
       </unwatched-section>
 
+      <!-- When using type="number", can't match regex statment?-->
       <unwatched-section>
         <h2>Year of Release</h2>
-        <input id="year" type="number" min="1880" aria-label="Year of release" placeholder="2007">
+        <input id="year" aria-label="Year of release" placeholder="2007" required pattern="^(18|19|20)\d{2}" >
       </unwatched-section>
 
       <unwatched-section>
-        <h2>Runtime</h2>
-        <input id="runtime" type="number" min="1880" aria-label="Runtime" placeholder="in mins">
+        <h2>Runtime (mins)</h2>
+        <input id="runtime" type="number" min="1880" aria-label="Runtime" placeholder="190">
       </unwatched-section>
 
       <unwatched-section>
@@ -67,9 +68,10 @@
         </select>
       </unwatched-section>
 
+      <!--what should I use here instead of <b> to identify text-->
       <watched-section>
         <h2>Favourite</h2>
-        <input id="favourite" type="checkbox" aria-label="Favourite">
+        <input id="favourite" value="favourite" type="checkbox" aria-label="Favourite">
         <b id="favText">🖤</b>
       </watched-section>
 
@@ -91,7 +93,7 @@
 
       <unwatched-section>
         <br><br>
-        <input type="submit" value="Submit">
+        <button id="submit" aria-label="add film">Add Film</button>
       </unwatched-section>
       
     </form>

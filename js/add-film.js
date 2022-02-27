@@ -24,13 +24,13 @@ score.addEventListener('input', ev =>{
 
 //toggle the red/black heart when favs checkbox
 favourite.addEventListener('click', ev =>{
-  const fav = document.getElementById("favourite").value;
+  const fav = document.getElementById("favourite").checked;
   const out = document.getElementById("favText");
 
-  if(out.innerHTML == "❤️") {
-    out.innerHTML = "🖤";
+  if(fav) {
+    out.innerHTML = "❤️";
   } else {
-      out.innerHTML = "❤️";
+      out.innerHTML = "🖤";
     } 
 });
 
@@ -48,3 +48,24 @@ statusA.addEventListener('input', ev =>{
 
 });
 
+submit.addEventListener('click', ev =>{
+    saveFilm();
+  });
+
+//todo: add validation
+function saveFilm() {
+    const title = document.getElementById("title").value;
+    const year = document.getElementById("year").value;
+    const runtime = document.getElementById("runtime").value;
+    const dropdown = document.getElementById("statusA");
+    const status = dropdown.options[dropdown.selectedIndex].value;
+    const favourite = document.getElementById("favourite").checked;
+    const score = document.getElementById("score").value;
+    const date = document.getElementById("watched-date").value;
+    const watchedNum = document.getElementById("times-watched").value;
+
+    const data = [title,year,runtime,status,favourite,score,date,watchedNum];
+
+    localStorage.setItem(`${title},${year}`,data)
+
+};
