@@ -11,3 +11,18 @@
 console.log("stats Script Loaded");
 
 "use strict";
+
+const dataWatched = JSON.parse(localStorage.getItem("watchedFilms"));
+const dataPlanned = JSON.parse(localStorage.getItem("planningFilms"));
+
+document.getElementById("watched-films").innerHTML = dataWatched.length;
+document.getElementById("planned-films").innerHTML = dataPlanned.length;
+
+total = 0
+dataWatched.forEach(film => {
+    total += parseInt(film[2]);
+});
+total = total/60;
+
+document.getElementById("hours-watched").innerHTML = total.toFixed(2);
+document.getElementById("all-films").innerHTML = dataWatched.length + dataPlanned.length;

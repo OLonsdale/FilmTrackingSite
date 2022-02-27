@@ -1,5 +1,6 @@
 :root {
   --hiddenTF: visible;
+  --background-colour: gainsboro;
 }
 
 input:invalid {
@@ -10,6 +11,42 @@ input:valid {
   border: 2px solid green;
 }
 
+body {
+  background: var(--background-colour);
+  font-family: sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 2em /* To account for the sticky header */
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  background-color:var(--background-colour);
+  width: 100%;
+}
+
+p2{
+  white-space: nowrap;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+form {
+  border: 1px solid black;
+  padding: 1em;
+}
+
+watched-section{
+  visibility: var(--hiddenTF);
+}
 
 /* Table properties */
 
@@ -83,46 +120,6 @@ nav a>b{
 nav a:hover {
   background-color: DarkTurquoise;
 }
-
-/* Other */
-
-body {
-  background: Gainsboro;
-  font-family: sans-serif;
-}
-
-h1 {
-  text-align: center;
-  margin-top: 2em /* To account for the sticky header */
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  background-color: gainsboro;
-  width: 100%;
-}
-
-p2{
-  white-space: nowrap;
-}
-
-main{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
-form {
-  border: 1px solid black;
-  padding: 1em;
-}
-
-watched-section{
-  visibility: var(--hiddenTF);
-}
-
 
 /* Adjusting for a screen over 500px width */
 
