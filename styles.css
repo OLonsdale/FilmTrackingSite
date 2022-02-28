@@ -3,6 +3,17 @@
   --background-colour: gainsboro;
 }
 
+watched-section > label{
+  font-size: xx-large;
+  text-align: center; 
+  user-select: none;
+  color: Goldenrod;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
 input:invalid {
   border: 2px dashed red;
 }
@@ -42,6 +53,9 @@ main{
 form {
   border: 1px solid black;
   padding: 1em;
+  display: flexbox;
+  min-width: 20em;
+  text-align: center;
 }
 
 watched-section{

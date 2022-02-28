@@ -76,17 +76,33 @@ function saveFilm() {
   //save data in correct file
   //uses var at the moment.
   //also a bit redundent.
-  //also doesn't check for duplicate data
   if (status == "planning") {
     const newFilm = [title, year, runtime, status];
     var planningFilms = JSON.parse(localStorage.getItem("planningFilms"));
-    planningFilms.push(newFilm)
-    localStorage.setItem("planningFilms", JSON.stringify(planningFilms));
+    let dupe = false;
+    planningFilms.forEach(film => {
+      if(film[0]==newFilm[0] && film[1]==newFilm[1]){
+        dupe=true;
+      }
+    });
+    if(dupe == false){
+      planningFilms.push(newFilm)
+      localStorage.setItem("planningFilms", JSON.stringify(planningFilms));
+    }
+  //watched  
   } else{
     const newFilm = [title, year, runtime, status, favourite, score, date, watchedNum];
     var watchedFilms = JSON.parse(localStorage.getItem("watchedFilms"));
-    watchedFilms.push(newFilm)
-    localStorage.setItem("watchedFilms", JSON.stringify(watchedFilms));
+    let dupe = false;
+    watchedFilms.forEach(film => {
+      if(film[0]==newFilm[0] && film[1]==newFilm[1]){
+        dupe=true;
+      }
+    })
+    if(dupe == false){
+      watchedFilms.push(newFilm)
+      localStorage.setItem("watchedFilms", JSON.stringify(watchedFilms));
+    }
   }
 
 };

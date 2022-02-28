@@ -1,0 +1,7 @@
+mark as watched, fill in missing fields?
+remove vars from js
+add more stats
+imdb integration
+some way to view full data from list
+some way to delete from list
+maybe a way to edit
