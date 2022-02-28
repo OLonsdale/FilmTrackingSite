@@ -1,38 +1,30 @@
+"use strict";
 console.log("Add Film Script Loaded");
 
-"use strict";
-
 //updading the stars with the slider on add page
-//uses vars
-//TODO
 score.addEventListener('input', ev => {
-  const score = document.getElementById("score").value;
-  const out = document.getElementById("scoreText");
-
-  scoreString = ""
-  for (let i = 0; i < score; i++) {
+  let scoreString = ""
+  for (let i = 0; i < score.value; i++) {
     scoreString = scoreString.concat("★");
   }
   scoreString = scoreString.padEnd(5,"☆")
 
-  out.innerHTML=scoreString;
+  scoreText.innerHTML=scoreString;
 
 });
 
-//toggle the red/black heart when favs checkbox
+//toggle the red/black heart on click
 favourite.addEventListener('click', ev => {
-  const fav = document.getElementById("favourite").checked;
-  const out = document.getElementById("favText");
-
-  if (fav) {
-    out.innerHTML = "❤️";
+  if (document.getElementById("favourite").checked) {
+    favText.innerHTML = "❤️";
   } else {
-    out.innerHTML = "🖤";
+    favText.innerHTML = "🖤";
   }
 });
 
 //hide and show elements based on the status selected.
 //"status" seems to be a reserved word, so had to use statusA
+//inelegent method, doesn't move stuff below up the page
 statusA.addEventListener('input', ev => {
   const select = document.getElementById("statusA");
   const value = select.options[select.selectedIndex].value;
@@ -42,7 +34,6 @@ statusA.addEventListener('input', ev => {
   } else {
     document.documentElement.style.setProperty('--hiddenTF', "visible");
   }
-
 });
 
 submit.addEventListener('click', ev => {
@@ -66,19 +57,18 @@ function saveFilm() {
   const title = document.getElementById("title").value;
   const year = document.getElementById("year").value;
   const runtime = document.getElementById("runtime").value;
-  const dropdown = document.getElementById("statusA");
-  const status = dropdown.options[dropdown.selectedIndex].value;
+  const status = statusA.options[statusA.selectedIndex].value;
   const favourite = document.getElementById("favourite").checked;
   const score = document.getElementById("score").value;
   const date = document.getElementById("watched-date").value;
   const watchedNum = document.getElementById("times-watched").value;
 
   //save data in correct file
-  //uses var at the moment.
-  //also a bit redundent.
+  //Lots of redunancy. TODO.
+  //saves as array. Object would be better, for dot notation, eg. get film.title rather than film[0]
   if (status == "planning") {
     const newFilm = [title, year, runtime, status];
-    var planningFilms = JSON.parse(localStorage.getItem("planningFilms"));
+    let planningFilms = JSON.parse(localStorage.getItem("planningFilms"));
     let dupe = false;
     planningFilms.forEach(film => {
       if(film[0]==newFilm[0] && film[1]==newFilm[1]){
@@ -92,7 +82,7 @@ function saveFilm() {
   //watched  
   } else{
     const newFilm = [title, year, runtime, status, favourite, score, date, watchedNum];
-    var watchedFilms = JSON.parse(localStorage.getItem("watchedFilms"));
+    let watchedFilms = JSON.parse(localStorage.getItem("watchedFilms"));
     let dupe = false;
     watchedFilms.forEach(film => {
       if(film[0]==newFilm[0] && film[1]==newFilm[1]){
@@ -106,5 +96,3 @@ function saveFilm() {
   }
 
 };
-
-

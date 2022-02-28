@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 :root {
   --hiddenTF: visible;
   --background-colour: gainsboro;
+  --font: "Montserrat";
 }
 
 watched-section > label{
@@ -24,7 +27,7 @@ input:valid {
 
 body {
   background: var(--background-colour);
-  font-family: sans-serif;
+  font-family: var(--font)
 }
 
 h1 {
