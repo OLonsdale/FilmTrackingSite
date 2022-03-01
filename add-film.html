@@ -46,7 +46,7 @@
       <unwatched-section>
         <h2>Title</h2>
         <input id="title" type="text" aria-label="Film title" placeholder="The Golden Compass" required>
-        <button id="search" type="button" aria-label="Search for film">🔎</button>
+        <button tabindex="-1" id="search" type="button" aria-label="Search for film">🔎</button>
       </unwatched-section>
 
       <!-- When using type="number", can't match regex statment?-->
@@ -60,24 +60,26 @@
         <input id="runtime" type="number" aria-label="Runtime" placeholder="190">
       </unwatched-section>
 
+      <!--Can't tab to radio buttons-->
       <unwatched-section>
         <h2>Status</h2>
-        <select name="status" id="statusA" aria-label="Watched or planning to watch">
-          <option value="watched">Watched</option>
-          <option value="planning">Planning</option>
-        </select>
+        <div class="radios">
+          <input type="radio" id="watched" name="statusSelect" value="watched" checked>
+          <label for="watched">📕 Watched</label>
+          <input type="radio" id="planning" name="statusSelect" value="planning">
+          <label for="planning">📖 Planning</label>
+        </div>
       </unwatched-section>
 
-      <!--what should I use here instead of <b> to identify text-->
       <watched-section>
         <h2>Favourite</h2>
-        <input id="favourite" value="favourite" type="checkbox" aria-label="Favourite">
+        <input id="favourite" value="favourite" type="checkbox" aria-label="Favourite"> <br>
         <label for="favourite" id="favText">🖤</label>
       </watched-section>
 
       <watched-section>
         <h2>Score</h2>
-        <input id="score" type="range" min="0" max="5" value="5" aria-label="score">
+        <input id="score" type="range" min="0" max="5" value="5" aria-label="score"> <br>
         <label for="score" id="scoreText">★★★★★</label>
       </watched-section>
 
@@ -88,7 +90,7 @@
 
       <watched-section>
         <h2>Times Watched</h2>
-        <input id="timesWatched" type="number" min="1" aria-label="number of times watched">
+        <input id="timesWatched" type="number" min="1" value="1" aria-label="number of times watched">
       </watched-section>
 
       <unwatched-section>
