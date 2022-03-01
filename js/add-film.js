@@ -7,9 +7,9 @@ score.addEventListener('input', ev => {
   for (let i = 0; i < score.value; i++) {
     scoreString = scoreString.concat("★");
   }
-  scoreString = scoreString.padEnd(5,"☆")
+  scoreString = scoreString.padEnd(5, "☆")
 
-  scoreText.innerHTML=scoreString;
+  scoreText.innerHTML = scoreString;
 
 });
 
@@ -28,7 +28,7 @@ search.addEventListener('click', ev => {
 
 //hide and show elements based on the status selected.
 watched.addEventListener('change', ev => {
-    document.documentElement.style.setProperty('--hiddenTF', "default");  
+  document.documentElement.style.setProperty('--hiddenTF', "default");
 });
 
 planning.addEventListener('change', ev => {
@@ -53,10 +53,15 @@ function saveFilm() {
   //save data in correct file
   if (status == "planning") {
     //add data to new object
-    newFilm = {title:title,year:year,runtime:runtime,status:status};
+    newFilm = {
+      title: title,
+      year: year,
+      runtime: runtime,
+      status: status
+    };
     //select correct localStorage stored array
-    arrayName = "planningFilms"
-  //watched  
+    arrayName = "planningFilms";
+    //watched  
   } else {
     //collect the rest of the data
     const favourite = document.getElementById("favourite").checked;
@@ -64,17 +69,34 @@ function saveFilm() {
     const date = document.getElementById("watchedDate").value;
     const watchedNum = document.getElementById("timesWatched").value;
     //add to new object
-    newFilm = {title:title,year:year,runtime:runtime,status:status,
-      favourite:favourite,score:score,date:date,timesWatched:watchedNum};
+    newFilm = {
+      title: title,
+      year: year,
+      runtime: runtime,
+      status: status,
+      favourite: favourite,
+      score: score,
+      date: date,
+      timesWatched: watchedNum
+    };
     //select correct localStorage stored array
-    arrayName = "watchedFilms"
+    arrayName = "watchedFilms";
   }
   //get correct array from localStorage
   let array = JSON.parse(localStorage.getItem(arrayName));
   //if not dupe, push. Broken.
-  if(array.includes(newFilm) == false){
+  let dupe = false;
+  array.forEach(film => {
+    if (newFilm.title == film.title && newFilm.year == film.year) {
+      dupe = true;
+
+    }
+  });
+  if (dupe == false) {
     array.push(newFilm);
     localStorage.setItem(arrayName, JSON.stringify(array));
+  } else {
+    alert("This film is already on your list");
   }
 };
 

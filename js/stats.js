@@ -7,8 +7,8 @@ const dataPlanned = JSON.parse(localStorage.getItem("planningFilms"));
 let total = 0;
 let aveScore = 0;
 dataWatched.forEach(film => {
-    total += parseInt(film[2]);
-    aveScore += parseInt(film[5]);
+    total += parseInt(film.runtime);
+    aveScore += parseInt(film.score);
 })
 total = total/60;
 aveScore = aveScore/dataWatched.length;
