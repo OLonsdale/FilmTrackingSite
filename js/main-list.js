@@ -12,25 +12,27 @@ function loadFilms(tableID){
     const yearCell = row.insertCell(2);
     const dateWatchedCell = row.insertCell(3);
     const scoreCell = row.insertCell(4);
+    const removeButtonCell = row.insertCell(5);
 
     let score = ""
-    for (let i = 0; i < film[7]; i++) {
+    for (let i = 0; i < film.score; i++) {
       score = score.concat("★");
     }
     score = score.padEnd(5,"☆")
 
     let fav;
-    if(film[4] == true){
+    if(film.favourite == true){
       fav = "❤️" ;
     } else {
       fav = "🖤";
     }
 
     favCell.innerHTML = fav
-    titleCell.innerHTML = film[0];
-    yearCell.innerHTML = film[1];
-    dateWatchedCell.innerHTML = film[6];
+    titleCell.innerHTML = film.title;
+    yearCell.innerHTML = film.year;
+    dateWatchedCell.innerHTML = film.date;
     scoreCell.innerHTML = score;
+    removeButtonCell.innerHTML = "❌"
   });
 }
 

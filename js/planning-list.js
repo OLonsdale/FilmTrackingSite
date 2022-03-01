@@ -11,8 +11,8 @@ function loadFilms(tableID){
     const titleCell = row.insertCell(0);
     const yearCell = row.insertCell(1);
 
-    titleCell.innerHTML = film[0];
-    yearCell.innerHTML = film[1];
+    titleCell.innerHTML = film.title;
+    yearCell.innerHTML = film.year;
 
   });
 }

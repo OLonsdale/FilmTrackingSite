@@ -4,3 +4,9 @@ imdb integration
 some way to view full data from list
 some way to delete from list
 maybe a way to edit
+heart not centered add movie
+sort based on table columns
+import/export
+tab to radio buttons, show tab to fave button
+when selecting planning in "add film", the scroll bar moves stuff over on the screen
+prevent dupes properly

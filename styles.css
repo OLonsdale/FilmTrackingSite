@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
+/* stops the scrollbar causing elements to shift*/
+html {
+  width: 100vw;
+}
+
 :root {
-  --hiddenTF: visible;
+  --hiddenTF: normal; /* hidden true false */
   --background-colour: gainsboro;
   --font: "Montserrat";
 }
@@ -13,8 +18,19 @@ watched-section > label{
   color: Goldenrod;
 }
 
-input[type="checkbox"] {
+
+.radios input[type="radio"]:checked+label { 
+  border: 0.15em solid green;
+  user-select: none;
+  font-weight: bold;
+}
+
+input[type="radio"]{
   display: none;
+}
+
+input[type="checkbox"] {
+  opacity: 0;
 }
 
 input:invalid {
@@ -30,9 +46,8 @@ body {
   font-family: var(--font)
 }
 
-h1 {
-  text-align: center;
-  margin-top: 2em /* To account for the sticky header */
+head{
+  font-family: var(--font);
 }
 
 footer {
@@ -40,6 +55,11 @@ footer {
   bottom: 0;
   background-color:var(--background-colour);
   width: 100%;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 2em /* To account for the sticky header */
 }
 
 p2{
@@ -56,13 +76,13 @@ main{
 form {
   border: 1px solid black;
   padding: 1em;
-  display: flexbox;
+  display: grid;
   min-width: 20em;
   text-align: center;
 }
 
 watched-section{
-  visibility: var(--hiddenTF);
+  display: var(--hiddenTF);
 }
 
 /* Table properties */
@@ -91,17 +111,31 @@ tbody tr:hover { /* th:hover also if you wish */
   background: lightslategray;
 }
 
+table{
+  overflow-wrap: break-word;
+}
 #watched tr > *:nth-child(1) {
-  width: 0px;
+  width: 0.5em;
+  background-color: brown;
+}
+#watched tr > *:nth-child(2) {
+  background-color: blueviolet;
 }
 #watched tr > *:nth-child(3) {
   display: none;
+  background-color: indianred;
 }
 #watched tr > *:nth-child(4) {
   display: none;
+  background-color: coral;
 }
 #watched tr > *:nth-child(5) {
   display: none;
+  background-color: cornflowerblue;
+}
+#watched tr > *:nth-child(6) {
+  width: 0.5em;
+  background-color: cadetblue;
 }
 
 /* Nav properties */
@@ -113,7 +147,7 @@ nav {
   flex-direction: row;
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 100vw;
   z-index: 0;
 }
 
