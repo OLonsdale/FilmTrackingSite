@@ -26,6 +26,7 @@ search.addEventListener('click', ev => {
   alert("not yet implemented")
 });
 
+
 //hide and show elements based on the status selected.
 watched.addEventListener('change', ev => {
   document.documentElement.style.setProperty('--hiddenTF', "default");
@@ -84,19 +85,19 @@ function saveFilm() {
   }
   //get correct array from localStorage
   let array = JSON.parse(localStorage.getItem(arrayName));
-  //if not dupe, push. Broken.
+  //Check for duplicate
   let dupe = false;
   array.forEach(film => {
     if (newFilm.title == film.title && newFilm.year == film.year) {
       dupe = true;
-
     }
   });
-  if (dupe == false) {
+  //if not dupe, push. If dupe, give error. I wish could do if(!dupe)
+  if (dupe) {
+    alert("This film is already on your list");
+  } else {
     array.push(newFilm);
     localStorage.setItem(arrayName, JSON.stringify(array));
-  } else {
-    alert("This film is already on your list");
   }
 };
 
