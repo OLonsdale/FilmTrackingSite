@@ -34,3 +34,5 @@ w3 schools
 MDN Web Docs
 
 Example work from the GitHub repo.
+
+Some tutorials from "Web Dev Simplified" on YouTube

@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-  <title>Watched Films</title>
+  <script src="js/main.js" defer> </script>
+  <title>Film Tracker</title>
 </head>
 
 <body>
@@ -15,56 +16,149 @@
   <header>
     <nav id="menu">
       <!--Titles used for tooltips-->
-      <a href="index.html" title="Watched Films">
-        📕<br>
-        <b>Watched</b>
+      <a href="#watchedFilms" title="Watched Films">
+        📕
+        <label><br>Watched</label> 
       </a>
-    
-      <a href="planning-list.html" title="Planned Films">
+
+      <a href="#planningFilms" title="Planned Films">
         📖
-        <b><br>Planning</b>
+        <label><br>Planning</label>
       </a>
-      
-      <a href="add-film.html" title="Add Film">
+
+      <a href="#add" title="Add Film">
         📝
-        <b><br>Add</b>
+        <label><br>Add</label>
       </a>
-      
-      <a href="statistics.html" title="View Statistics">
+
+      <a href="#stats" title="View Statistics">
         📊
-        <b><br>Stats</b>
+        <label><br>Stats</label>
       </a>
     </nav>
   </header>
 
   <main>
-    <h1>Watched Films</h1>
-    <table id="watched">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Title</th>
-          <th>Release Year</th>
-          <th>Date Watched</th>
-          <th>Score</th>
-          <th></th>
-        </tr>
-      </thead>
 
-      <tbody>
+    <!-- Watched Films Table-->
+    <div id="watchedFilms">
+      <h1>Watched Films</h1>
+      <table id="watched">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Release Year</th>
+            <th>Date Watched</th>
+            <th>Score</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
 
-      </tbody>
+    <!-- Planned Films Table -->
+    <div id="planningFilms">
+      <h1>Planning Films</h1>
+      <table id="planning">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Release Year</th>
+            <th id="planning-remove"></th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
 
-    </table>
+    <!-- Add Film Form -->
+    <div id="add">
+      <h1>Add Film</h1>
+      <form id="addFilm">
+        <unwatched-section>
+          <h2>Title</h2>
+          <input id="title" type="text" aria-label="Film title" placeholder="The Golden Compass" required>
+          <button tabindex="-1" id="search" type="button" aria-label="Search for film">🔎</button>
+        </unwatched-section>
 
+        <!-- When using type="number", can't match regex statment?-->
+        <unwatched-section>
+          <h2>Year of Release</h2>
+          <input id="year" aria-label="Year of release" placeholder="2007" required pattern="^(18|19|20)\d{2}">
+        </unwatched-section>
+
+        <unwatched-section>
+          <h2>Runtime (mins)</h2>
+          <input id="runtime" type="number" aria-label="Runtime" placeholder="190">
+        </unwatched-section>
+
+        <!--Can't tab to radio buttons-->
+        <unwatched-section>
+          <h2>Status</h2>
+          <div class="radios">
+            <input type="radio" id="watchedRadio" name="statusSelect" value="watched" checked>
+            <label for="watchedRadio">📕 Watched</label>
+            <input type="radio" id="planningRadio" name="statusSelect" value="planning">
+            <label for="planningRadio">📖 Planning</label>
+          </div>
+        </unwatched-section>
+
+        <watched-section>
+          <h2>Favourite</h2>
+          <label for="favourite" id="favText">🖤</label> <br>
+          <input id="favourite" value="favourite" type="checkbox" aria-label="Favourite">
+        </watched-section>
+
+        <watched-section>
+          <h2>Score</h2>
+          <input id="score" type="range" min="0" max="5" value="5" aria-label="score"> <br>
+          <label for="score" id="scoreText">★★★★★</label>
+        </watched-section>
+
+        <watched-section>
+          <h2>First watched</h2>
+          <input id="watchedDate" type="date" aria-label="date watched">
+        </watched-section>
+
+        <watched-section>
+          <h2>Times Watched</h2>
+          <input id="timesWatched" type="number" min="1" value="1" aria-label="number of times watched">
+        </watched-section>
+
+        <unwatched-section>
+          <!--zero width space below-->
+          <h2>​</h2>
+          <button id="submit" aria-label="add film">Add Film</button> <br><br>
+        </unwatched-section>
+      </form>
+    </div>
+
+    <!-- Stats screen -->
+    <div id="stats">
+      <h1>Statistics</h1>
+      <h2>Total Hours Watched</h2>
+      <span id="hoursWatched"></span>
+      <h2>Number of Films on Planning</h2>
+      <span id="plannedFilmsCount"></span>
+      <h2>Total Watched Films</h2>
+      <span id="watchedFilmsCount"></span>
+      <h2>All Films</h2>
+      <span id="allFilms"></span>
+      <h2>Average rating</h2>
+      <span id="averageRating"></span>
+    </div>
   </main>
 
   <footer>
-   
-    
+
+
   </footer>
 
-  <script src="js/main-list.js"> </script>
+
 </body>
 
 </html>

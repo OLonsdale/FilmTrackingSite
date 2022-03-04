@@ -8,5 +8,20 @@ heart not centered add movie
 sort based on table columns
 import/export
 tab to radio buttons, show tab to fave button
-when selecting planning in "add film", the scroll bar moves stuff over on the screen
-prevent dupes properly
+
+
+[{"title":"watched-01","year":"2001","runtime":"201","status":"watched","favourite":true,"score":"4","date":"2022-03-02","timesWatched":"1"},
+ {"title":"watched-02","year":"2001","runtime":"201","status":"watched","favourite":false,"score":"5","date":"2022-03-02","timesWatched":"1"},
+ {"title":"watched-03","year":"2001","runtime":"201","status":"watched","favourite":true,"score":"3","date":"2022-03-02","timesWatched":"1"},
+ {"title":"watched-04","year":"2001","runtime":"201","status":"watched","favourite":false,"score":"4","date":"2022-03-02","timesWatched":"1"},
+ {"title":"watched-05","year":"2001","runtime":"201","status":"watched","favourite":false,"score":"3","date":"2022-03-02","timesWatched":"1"},
+ {"title":"watched-06","year":"2001","runtime":"201","status":"watched","favourite":false,"score":"4","date":"2022-03-02","timesWatched":"1"},
+ {"title":"watched-07","year":"2001","runtime":"201","status":"watched","favourite":true,"score":"5","date":"2022-03-02","timesWatched":"1"},
+ {"title":"planned-01","year":"2001","runtime":"201","status":"planned"},
+ {"title":"planned-02","year":"2001","runtime":"201","status":"planned"},
+ {"title":"planned-03","year":"2001","runtime":"201","status":"planned"},
+ {"title":"planned-04","year":"2001","runtime":"201","status":"planned"},
+ {"title":"planned-05","year":"2001","runtime":"201","status":"planned"},
+ {"title":"planned-06","year":"2001","runtime":"201","status":"planned"},
+ {"title":"planned-07","year":"2001","runtime":"201","status":"planned"}
+]
