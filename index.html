@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-  <script src="js/main.js" defer> </script>
   <title>Film Tracker</title>
 </head>
 
@@ -21,7 +20,6 @@
         <span><br>Watched</span>
       </a>
       
-
       <a id="showPlanning" title="Planned Films">
         📖
         <span><br>Planning</span>
@@ -162,7 +160,8 @@
 
   </footer>
 
-
+  <!-- against advice, I tried to have this in the head element with the defer keyword in it. Didn't work properly, hard to debug. Annoying. Should have listened.-->
+  <script src="js/main.js"></script>
 </body>
 
 </html>

@@ -271,17 +271,52 @@ function saveFilm() {
   loadFilms();
 };
 
-//create the files if they don't exist, just stores empty array
-if (localStorage.getItem("films") === undefined || localStorage.getItem("films") === null) {
-  localStorage.setItem("films", JSON.stringify([]));
-  console.log("Created films file");
-}
 
 function showAdd(){
   modal.style.display = "block";
 }
 
-loadFilms();
+function showWatched(){
+  console.log("showing watched films");
+  watchedFilms.style.display = "block";
+  planningFilms.style.display = "none";
+  stats.style.display="none";
+}
+
+function showPlanning(){
+  console.log("showing planning films");
+  watchedFilms.style.display = "none";
+  planningFilms.style.display = "block";
+  stats.style.display="none";
+}
+
+function showStats(){
+  console.log("showing stats");
+  stats.style.display="block";
+  watchedFilms.style.display = "none";
+  planningFilms.style.display = "none";
+}
+
+const watchedMenu = document.getElementById("showWatched");
+const planningMenu = document.getElementById("showPlanning");
+const statsMenu = document.getElementById("showStats");
+const addMenu = document.getElementById("showAdd");
+
+watchedMenu.addEventListener('click', ev => {
+  showWatched();
+});
+
+planningMenu.addEventListener('click', ev => {
+  showPlanning();
+});
+
+statsMenu.addEventListener('click', ev => {
+  showStats();
+});
+
+addMenu.addEventListener('click', ev => {
+  showAdd();
+});
 
 // Get the modal
 const modal = document.getElementById("addPopup");
@@ -293,15 +328,21 @@ addButton.addEventListener('click', ev => {
 });
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
+span.addEventListener('click', ev => {
   modal.style.display = "none";
-}
+});
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
+window.addEventListener('click', ev => {
+  if (ev.target == modal) {
     modal.style.display = "none";
   }
+});
+
+//create the files if they don't exist, just stores empty array
+if (localStorage.getItem("films") === undefined || localStorage.getItem("films") === null) {
+  localStorage.setItem("films", JSON.stringify([]));
+  console.log("Created films file");
 }
 
 loadFilms();
