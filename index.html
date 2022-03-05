@@ -16,30 +16,30 @@
   <header>
     <nav id="menu">
       <!--Titles used for tooltips-->
-      <a href="#watchedFilms" title="Watched Films">
+      <a id="showWatched" title="Watched Films">
         📕
-        <label><br>Watched</label> 
+        <span><br>Watched</span>
       </a>
+      
 
-      <a href="#planningFilms" title="Planned Films">
+      <a id="showPlanning" title="Planned Films">
         📖
-        <label><br>Planning</label>
+        <span><br>Planning</span>
       </a>
 
-      <a href="#add" title="Add Film">
+      <a id="showAdd" title="Add Film">
         📝
-        <label><br>Add</label>
+        <span><br>Add</span>
       </a>
 
-      <a href="#stats" title="View Statistics">
+      <a id="showStats" title="View Statistics">
         📊
-        <label><br>Stats</label>
+        <span><br>Stats</span>
       </a>
     </nav>
   </header>
 
   <main>
-
     <!-- Watched Films Table-->
     <div id="watchedFilms">
       <h1>Watched Films</h1>
@@ -74,67 +74,71 @@
         </tbody>
       </table>
     </div>
+    <button id="addButton">Add Film</button>
 
     <!-- Add Film Form -->
-    <div id="add">
-      <h1>Add Film</h1>
-      <form id="addFilm">
-        <unwatched-section>
-          <h2>Title</h2>
-          <input id="title" type="text" aria-label="Film title" placeholder="The Golden Compass" required>
-          <button tabindex="-1" id="search" type="button" aria-label="Search for film">🔎</button>
-        </unwatched-section>
+    <div id="addPopup" class="modal">
+      <div class="modal-content">
+        <span class="close" title="Cancel" >❌</span>
+        <h3>Add Film</h3>
+        <form id="addFilm">
+          <unwatched-section>
+            <h2>Title</h2>
+            <input id="title" type="text" aria-label="Film title" placeholder="The Golden Compass" required>
+            <button tabindex="-1" id="search" type="button" aria-label="Search for film">🔎</button>
+          </unwatched-section>
 
-        <!-- When using type="number", can't match regex statment?-->
-        <unwatched-section>
-          <h2>Year of Release</h2>
-          <input id="year" aria-label="Year of release" placeholder="2007" required pattern="^(18|19|20)\d{2}">
-        </unwatched-section>
+          <!-- When using type="number", can't match regex statment?-->
+          <unwatched-section>
+            <h2>Year of Release</h2>
+            <input id="year" aria-label="Year of release" placeholder="2007" required pattern="^(18|19|20)\d{2}">
+          </unwatched-section>
 
-        <unwatched-section>
-          <h2>Runtime (mins)</h2>
-          <input id="runtime" type="number" aria-label="Runtime" placeholder="190">
-        </unwatched-section>
+          <unwatched-section>
+            <h2>Runtime (mins)</h2>
+            <input id="runtime" type="number" aria-label="Runtime" placeholder="190">
+          </unwatched-section>
 
-        <!--Can't tab to radio buttons-->
-        <unwatched-section>
-          <h2>Status</h2>
-          <div class="radios">
-            <input type="radio" id="watchedRadio" name="statusSelect" value="watched" checked>
-            <label for="watchedRadio">📕 Watched</label>
-            <input type="radio" id="planningRadio" name="statusSelect" value="planning">
-            <label for="planningRadio">📖 Planning</label>
-          </div>
-        </unwatched-section>
+          <!--Can't tab to radio buttons-->
+          <unwatched-section>
+            <h2>Status</h2>
+            <div class="radios">
+              <input type="radio" id="watchedRadio" name="statusSelect" value="watched" checked>
+              <label for="watchedRadio">📕 Watched</label>
+              <input type="radio" id="planningRadio" name="statusSelect" value="planning">
+              <label for="planningRadio">📖 Planning</label>
+            </div>
+          </unwatched-section>
 
-        <watched-section>
-          <h2>Favourite</h2>
-          <label for="favourite" id="favText">🖤</label> <br>
-          <input id="favourite" value="favourite" type="checkbox" aria-label="Favourite">
-        </watched-section>
+          <watched-section>
+            <h2>Favourite</h2>
+            <label for="favourite" id="favText">🖤</label> <br>
+            <input id="favourite" value="favourite" type="checkbox" aria-label="Favourite">
+          </watched-section>
 
-        <watched-section>
-          <h2>Score</h2>
-          <input id="score" type="range" min="0" max="5" value="5" aria-label="score"> <br>
-          <label for="score" id="scoreText">★★★★★</label>
-        </watched-section>
+          <watched-section>
+            <h2>Score</h2>
+            <input id="score" type="range" min="0" max="5" value="5" aria-label="score"> <br>
+            <label for="score" id="scoreText">★★★★★</label>
+          </watched-section>
 
-        <watched-section>
-          <h2>First watched</h2>
-          <input id="watchedDate" type="date" aria-label="date watched">
-        </watched-section>
+          <watched-section>
+            <h2>First watched</h2>
+            <input id="watchedDate" type="date" aria-label="date watched">
+          </watched-section>
 
-        <watched-section>
-          <h2>Times Watched</h2>
-          <input id="timesWatched" type="number" min="1" value="1" aria-label="number of times watched">
-        </watched-section>
+          <watched-section>
+            <h2>Times Watched</h2>
+            <input id="timesWatched" type="number" min="1" value="1" aria-label="number of times watched">
+          </watched-section>
 
-        <unwatched-section>
-          <!--zero width space below-->
-          <h2>​</h2>
-          <button id="submit" aria-label="add film">Add Film</button> <br><br>
-        </unwatched-section>
-      </form>
+          <unwatched-section>
+            <!--zero width space below-->
+            <h2>​</h2>
+            <button id="submit" aria-label="add film">Add Film</button> <br><br>
+          </unwatched-section>
+        </form>
+    </div>
     </div>
 
     <!-- Stats screen -->

@@ -144,7 +144,7 @@ function editFilm(film){
   document.getElementById("timesWatched").value = film.timesWatched;
   submit.innerHTML="Edit Film";
   loadFilms();
-  add.scrollIntoView();
+  showAdd();
 }
 ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -184,7 +184,7 @@ watchedDate.valueAsDate = new Date();
 
 //updading the stars with the slider on add page
 score.addEventListener('input', ev => {
-  let scoreString = ""
+  let scoreString = "";
   for (let i = 0; i < score.value; i++) {
     scoreString = scoreString.concat("★");
   }
@@ -275,6 +275,33 @@ function saveFilm() {
 if (localStorage.getItem("films") === undefined || localStorage.getItem("films") === null) {
   localStorage.setItem("films", JSON.stringify([]));
   console.log("Created films file");
+}
+
+function showAdd(){
+  modal.style.display = "block";
+}
+
+loadFilms();
+
+// Get the modal
+const modal = document.getElementById("addPopup");
+// Get the <span> element that closes the modal
+const span = document.getElementsByClassName("close")[0];
+
+addButton.addEventListener('click', ev => {
+  showAdd();
+});
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }
 
 loadFilms();

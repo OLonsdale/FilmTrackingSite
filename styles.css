@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-html{
+html {
   scroll-behavior: smooth;
 }
 
 :root {
-  --hiddenTF: normal; /* hidden true false */
+  --hiddenTF: normal;
+  /* hidden true false */
   --background-colour: gainsboro;
   --font: "Montserrat";
 }
@@ -15,27 +16,33 @@ body {
   font-family: var(--font)
 }
 
-head{
+head {
   font-family: var(--font);
 }
 
 footer {
   position: fixed;
   bottom: 0;
-  background-color:var(--background-colour);
+  background-color: var(--background-colour);
   width: 100%;
 }
 
 h1 {
   text-align: center;
-  margin-top: 2em /* To account for the sticky header */
+  margin-top: 2em
+    /* To account for the sticky header */
 }
 
 h2 {
   border-top: 1px black solid;
 }
 
-main{
+h3 {
+  text-align: center;
+  font-size: xx-large;
+}
+
+main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,34 +58,34 @@ form {
   text-align: center;
 }
 
-watched-section > label{
+watched-section>label {
   font-size: xx-large;
-  text-align: center; 
+  text-align: center;
   user-select: none;
   color: Goldenrod;
 }
 
-watched-section{
+watched-section {
   display: var(--hiddenTF);
 }
 
-.radios input[type="radio"]:checked+label { 
+.radios input[type="radio"]:checked+label {
   border: 0.15em solid green;
   user-select: none;
   font-weight: bold;
 }
 
-input[type="radio"]{
+input[type="radio"] {
   opacity: 0;
   position: absolute;
 }
 
 input[type="checkbox"] {
-  opacity: 0;   
+  opacity: 0;
   position: absolute;
 }
 
-input[type="checkbox"].toggle:focus + label{
+input[type="checkbox"].toggle:focus+label {
   outline: 1px solid black;
 }
 
@@ -92,7 +99,9 @@ input:valid {
 
 /* Table properties */
 
-table,th, td {
+table,
+th,
+td {
   padding-left: 1em;
   padding-right: 1em;
   table-layout: fixed;
@@ -100,11 +109,12 @@ table,th, td {
   border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
   border: 1px solid;
 }
 
-th{
+th {
   text-align: left;
 }
 
@@ -116,25 +126,29 @@ tbody tr:hover {
   background: lightslategray;
 }
 
-table{
+table {
   overflow-wrap: break-word;
 }
-#watched tr > *:nth-child(1) {
+
+#watched tr>*:nth-child(1) {
   width: 0.5em;
   padding-left: 0.2em;
 
 }
-#watched tr > *:nth-child(4) {
+
+#watched tr>*:nth-child(4) {
   display: none;
 }
-#watched tr > *:nth-child(5) {
+
+#watched tr>*:nth-child(5) {
   display: none;
 }
-#watched tr > *:nth-child(6) {
+
+#watched tr>*:nth-child(6) {
   width: 2em;
 }
 
-#planning-remove{
+#planning-remove {
   width: 2em;
 }
 
@@ -164,7 +178,7 @@ nav a {
   text-align: center;
 }
 
-nav a > label{
+nav a>span {
   font-size: 0;
 }
 
@@ -172,25 +186,76 @@ nav a:hover {
   background-color: DarkTurquoise;
 }
 
+body{
+  margin: 0;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: var(--background-colour);
+  margin: 5% auto; /* 15% from the top and centered */
+  padding: 1em;
+  border: 1px solid #888;
+  width: 40em; /* Could be more or less, depending on screen size */
+  height: 50em;
+  overflow: auto;
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  font-size: 2em;
+}
+
+.close:hover {
+  cursor: pointer;
+}
+
+div {
+  padding: 1em;
+}
+
+#stats{
+  display: none;
+}
+
+#planningFilms{
+  display: none;
+}
+
 /* Adjusting for a screen over 500px width */
 
 @media screen and (min-width: 500px) {
-  
-  nav a{
+
+  nav a {
     font-size: large;
     height: 3em;
   }
-  nav a > label{
+
+  nav a>span {
     font-size: large;
   }
 
-  #watched tr > *:nth-child(3) {
+  #watched tr>*:nth-child(3) {
     display: table-cell;
   }
-  #watched tr > *:nth-child(4) {
+
+  #watched tr>*:nth-child(4) {
     display: table-cell;
   }
-  #watched tr > *:nth-child(5) {
+
+  #watched tr>*:nth-child(5) {
     display: table-cell;
   }
 
