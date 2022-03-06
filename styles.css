@@ -2,6 +2,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-family: var(--font);
 }
 
 :root {
@@ -13,11 +14,13 @@ html {
 
 body {
   background: var(--background-colour);
-  font-family: var(--font)
+  margin: 0;
 }
 
-head {
-  font-family: var(--font);
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 footer {
@@ -29,8 +32,8 @@ footer {
 
 h1 {
   text-align: center;
-  margin-top: 2em
-    /* To account for the sticky header */
+  /* To account for the sticky header */
+  margin-top: 2em;
 }
 
 h2 {
@@ -42,20 +45,14 @@ h3 {
   font-size: xx-large;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 /* Form properties */
 
 form {
   border: 1px solid black;
   display: flex;
   flex-direction: column;
-  min-width: 20em;
   text-align: center;
+  width: 100%;
 }
 
 watched-section>label {
@@ -98,7 +95,6 @@ input:valid {
 }
 
 /* Table properties */
-
 table,
 th,
 td {
@@ -186,8 +182,12 @@ nav a:hover {
   background-color: DarkTurquoise;
 }
 
-body{
-  margin: 0;
+#stats{
+  display: none;
+}
+
+#planningFilms{
+  display: none;
 }
 
 /* The Modal (background) */
@@ -201,14 +201,12 @@ body{
   background-color: rgba(0,0,0,0.4);
 }
 
-/* Modal Content/Box */
 .modal-content {
   background-color: var(--background-colour);
   margin: 5% auto; /* 15% from the top and centered */
   padding: 1em;
-  border: 1px solid #888;
-  width: 40em; /* Could be more or less, depending on screen size */
-  height: 50em;
+  border: 1px solid black;
+  height: 85%;
   overflow: auto;
 }
 
@@ -224,14 +222,6 @@ body{
 
 div {
   padding: 1em;
-}
-
-#stats{
-  display: none;
-}
-
-#planningFilms{
-  display: none;
 }
 
 /* Adjusting for a screen over 500px width */
@@ -257,6 +247,13 @@ div {
 
   #watched tr>*:nth-child(5) {
     display: table-cell;
+  }
+
+  .modal-content {
+    background-color: var(--background-colour);
+    width: 75%;
+    height:75%;
+    overflow: auto;
   }
 
 }

@@ -323,10 +323,6 @@ const modal = document.getElementById("addPopup");
 // Get the <span> element that closes the modal
 const span = document.getElementsByClassName("close")[0];
 
-addButton.addEventListener('click', ev => {
-  showAdd();
-});
-
 // When the user clicks on <span> (x), close the modal
 span.addEventListener('click', ev => {
   modal.style.display = "none";
