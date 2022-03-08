@@ -3,8 +3,21 @@
 :root {
   --hiddenTF: normal;
   /* hidden true false */
-  --background-colour: gainsboro;
+  --background-colour: #121212;
+  --background-accent: #1F1B24;
+  --highlight-colour: darkslategray;
+  --contrast-colour: white;
+  --font-colour: white;
   --font: "Montserrat";
+}
+
+#toggleThemeButton{
+  width: 2em;
+  height: 2em;
+  background-color: var(--highlight-colour);
+  border: 0;
+  font-size: large;
+  position: right;
 }
 
 html {
@@ -14,6 +27,7 @@ html {
 
 body {
   background: var(--background-colour);
+  color: var(--font-colour);
   margin: 0;
 }
 
@@ -37,7 +51,7 @@ h1 {
 }
 
 h2 {
-  border-top: 1px black solid;
+  border-top: 1px solid var(--contrast-colour);
 }
 
 h3 {
@@ -114,11 +128,11 @@ th {
 }
 
 tbody tr:nth-child(odd) {
-  background: lightgray;
+  background: var(--background-accent);
 }
 
 tbody tr:hover {
-  background: lightslategray;
+  background: var(--highlight-colour);
 }
 
 table {
@@ -150,7 +164,7 @@ table {
 /* Nav properties */
 
 nav {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--background-accent);
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -167,7 +181,7 @@ nav a {
   color: white;
   font-size: 2em;
   font-weight: bold;
-  background-color: SlateGray;
+  background-color: var(--highlight-colour);
   font-family: sans-serif;
   transition: background-color 0.2s;
   text-align: center;

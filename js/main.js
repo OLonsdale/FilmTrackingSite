@@ -55,7 +55,7 @@ function loadFilms() {
       scoreCell.innerHTML = score;
       removeButtonCell.append(removeButton);
       removeButtonCell.append(editButton);
-      
+
     } else {
       const row = planningTable.insertRow();
       const titleCell = row.insertCell(0);
@@ -116,7 +116,7 @@ function deleteFilm(toDelete) {
 
 //takes film object, mostly temporary, just fills missing data, changes planning to watched, and reloads the tables
 function markWatched(film) {
-  
+
   let array = JSON.parse(localStorage.getItem("films"));
   film.status = "watched";
   const d = new Date();
@@ -130,18 +130,18 @@ function markWatched(film) {
 }
 
 //takes film object, and loads the data into the "create film" form.
-function editFilm(film){
+function editFilm(film) {
   document.getElementById("title").value = film.title;
   document.getElementById("year").value = film.year;
   document.getElementById("runtime").value = film.runtime;
-  if(film.status == "watched"){
+  if (film.status == "watched") {
     document.getElementById("watchedRadio").checked = true;
   } else document.getElementById("planningRadio").checked = true;
   document.getElementById("favourite").value = film.favourite;
   document.getElementById("score").value = film.score;
   document.getElementById("watchedDate").value = film.date;
   document.getElementById("timesWatched").value = film.timesWatched;
-  submit.innerHTML="Edit Film";
+  submit.innerHTML = "Edit Film";
   setScoreString();
   loadFilms();
   showAdd();
@@ -149,13 +149,13 @@ function editFilm(film){
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 //loads the stats
-function loadStats(){
+function loadStats() {
   const data = JSON.parse(localStorage.getItem("films"));
   let totalWatched = 0;
   let totalPlanning = 0;
   let totalWatchedTime = 0;
   let aveScore = 0;
-  
+
   data.forEach(film => {
     if (film.status == "watched") {
       totalWatched++;
@@ -168,7 +168,7 @@ function loadStats(){
   //mins to hours
   totalWatchedTime = totalWatchedTime / 60;
   aveScore = aveScore / totalWatched;
-  
+
   watchedFilmsCount.innerHTML = totalWatched;
   plannedFilmsCount.innerHTML = totalPlanning;
   hoursWatched.innerHTML = totalWatchedTime.toFixed(2);
@@ -276,27 +276,27 @@ function saveFilm() {
 };
 
 
-function showAdd(){
+function showAdd() {
   modal.style.display = "block";
 }
 
-function showWatched(){
+function showWatched() {
   console.log("showing watched films");
   watchedFilms.style.display = "block";
   planningFilms.style.display = "none";
-  stats.style.display="none";
+  stats.style.display = "none";
 }
 
-function showPlanning(){
+function showPlanning() {
   console.log("showing planning films");
   watchedFilms.style.display = "none";
   planningFilms.style.display = "block";
-  stats.style.display="none";
+  stats.style.display = "none";
 }
 
-function showStats(){
+function showStats() {
   console.log("showing stats");
-  stats.style.display="block";
+  stats.style.display = "block";
   watchedFilms.style.display = "none";
   planningFilms.style.display = "none";
 }
@@ -339,10 +339,161 @@ window.addEventListener('click', ev => {
   }
 });
 
-//create the files if they don't exist, just stores empty array
+toggleThemeButton.addEventListener("click", ev =>{
+  toggleTheme();
+});
+
+if (localStorage.getItem("darkTheme") === undefined || localStorage.getItem("darkTheme") === null) {
+  localStorage.setItem("darkTheme", "false");
+  console.log("set light theme as default")
+}
+
+function toggleTheme() {
+  if (JSON.parse(localStorage.getItem("darkTheme"))) {
+    localStorage.setItem("darkTheme","false");
+    console.log("switching to light theme");
+    loadTheme();
+  } else {
+    localStorage.setItem("darkTheme","true");
+    console.log("switching to dark theme");
+    loadTheme();
+  }
+}
+
+function loadTheme(){
+  let r = document.querySelector(":root");
+  if(!JSON.parse(localStorage.getItem("darkTheme"))){
+    r.style.setProperty("--background-colour","gainsboro");
+    r.style.setProperty("--background-accent","lightgray");
+    r.style.setProperty("--highlight-colour","lightslategray");
+    r.style.setProperty("--contrast-colour","black");
+    r.style.setProperty("--font-colour","black");
+  } else {
+    r.style.setProperty("--background-colour","#121212");
+    r.style.setProperty("--background-accent","#1F1B24");
+    r.style.setProperty("--highlight-colour","darkslategray");
+    r.style.setProperty("--contrast-colour","white");
+    r.style.setProperty("--font-colour","white");
+  }
+}
+
+//create the file if it doesn't exist, and fills it with example data
 if (localStorage.getItem("films") === undefined || localStorage.getItem("films") === null) {
-  localStorage.setItem("films", JSON.stringify([]));
+  localStorage.setItem("films", JSON.stringify([{
+      "title": "watched-01",
+      "year": "2001",
+      "runtime": "201",
+      "status": "watched",
+      "favourite": true,
+      "score": "4",
+      "date": "2022-03-02",
+      "timesWatched": "1"
+    },
+    {
+      "title": "watched-02",
+      "year": "2001",
+      "runtime": "201",
+      "status": "watched",
+      "favourite": false,
+      "score": "5",
+      "date": "2022-03-02",
+      "timesWatched": "1"
+    },
+    {
+      "title": "watched-03",
+      "year": "2001",
+      "runtime": "201",
+      "status": "watched",
+      "favourite": true,
+      "score": "3",
+      "date": "2022-03-02",
+      "timesWatched": "1"
+    },
+    {
+      "title": "watched-04",
+      "year": "2001",
+      "runtime": "201",
+      "status": "watched",
+      "favourite": false,
+      "score": "4",
+      "date": "2022-03-02",
+      "timesWatched": "1"
+    },
+    {
+      "title": "watched-05",
+      "year": "2001",
+      "runtime": "201",
+      "status": "watched",
+      "favourite": false,
+      "score": "3",
+      "date": "2022-03-02",
+      "timesWatched": "1"
+    },
+    {
+      "title": "watched-06",
+      "year": "2001",
+      "runtime": "201",
+      "status": "watched",
+      "favourite": false,
+      "score": "4",
+      "date": "2022-03-02",
+      "timesWatched": "1"
+    },
+    {
+      "title": "watched-07",
+      "year": "2001",
+      "runtime": "201",
+      "status": "watched",
+      "favourite": true,
+      "score": "5",
+      "date": "2022-03-02",
+      "timesWatched": "1"
+    },
+    {
+      "title": "planned-01",
+      "year": "2001",
+      "runtime": "201",
+      "status": "planned"
+    },
+    {
+      "title": "planned-02",
+      "year": "2001",
+      "runtime": "201",
+      "status": "planned"
+    },
+    {
+      "title": "planned-03",
+      "year": "2001",
+      "runtime": "201",
+      "status": "planned"
+    },
+    {
+      "title": "planned-04",
+      "year": "2001",
+      "runtime": "201",
+      "status": "planned"
+    },
+    {
+      "title": "planned-05",
+      "year": "2001",
+      "runtime": "201",
+      "status": "planned"
+    },
+    {
+      "title": "planned-06",
+      "year": "2001",
+      "runtime": "201",
+      "status": "planned"
+    },
+    {
+      "title": "planned-07",
+      "year": "2001",
+      "runtime": "201",
+      "status": "planned"
+    }
+  ]));
   console.log("Created films file");
 }
 
+loadTheme();
 loadFilms();

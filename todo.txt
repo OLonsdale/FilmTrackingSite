@@ -1,12 +1,14 @@
 add more stats
-imdb integration
+imdb/tmdb integration
 some way to view full data from list
-sort based on table columns
+filter and sort based on table columns
 import/export
 tab to radio buttons, show tab to fave button
 scrolling in popup scuffed
 back from edit deletes.
+dark theme
 
+Example data:
 [{"title":"watched-01","year":"2001","runtime":"201","status":"watched","favourite":true,"score":"4","date":"2022-03-02","timesWatched":"1"},
  {"title":"watched-02","year":"2001","runtime":"201","status":"watched","favourite":false,"score":"5","date":"2022-03-02","timesWatched":"1"},
  {"title":"watched-03","year":"2001","runtime":"201","status":"watched","favourite":true,"score":"3","date":"2022-03-02","timesWatched":"1"},
