@@ -2,26 +2,24 @@
 
 # MY FILM TRACKING SERVICE
 
-The goal of this project is to create a service for tracking films you have watched and plan to watch.
+This Single Page web application allows you to create a list of films you have watched, and a list of films you are planning to watch.
 
-You can add a film, a give it a score and add some notes to help you remember what you thought about it.
+It stores the name and metadata of the film as a JSON object, and sorts them into two tables for watching and planning.
 
-It will store the information as a JSON cookie, and allow for importing/exporting a JSON file.
+A stats page shows some interesting information.
 
-Metadata will be retrieved by an API.
+It will get metadata from an API, it will have a light theme and a dark theme, it will allow for importing and exporting of the JSON object.
 
-It will hopefully have a light and a dark theme.
-
-The menu bar will collapse down to icons when the screen size becomes too small.
+It is fully functional down to 320px width, and will have better styling
 
 
-# MY FOUR PAGES WILL BE:
+# MY FOUR (virtual) PAGES ARE:
 
 - Watched list
 
 - Planning list
 
-- Add film page
+- Add Film Popup
 
 - Statistics
 
@@ -36,3 +34,5 @@ MDN Web Docs
 Example work from the GitHub repo.
 
 Some tutorials from "Web Dev Simplified" on YouTube
+
+API: https://www.themoviedb.org/documentation/api
