@@ -124,7 +124,6 @@ function markWatched(film) {
   film.score = 0;
   film.favourite = false;
   film.timesWatched = 1;
-  console.log(film)
   array.push(film);
   localStorage.setItem("films", JSON.stringify(array));
   loadFilms();
@@ -143,6 +142,7 @@ function editFilm(film){
   document.getElementById("watchedDate").value = film.date;
   document.getElementById("timesWatched").value = film.timesWatched;
   submit.innerHTML="Edit Film";
+  setScoreString();
   loadFilms();
   showAdd();
 }
@@ -182,14 +182,18 @@ function loadStats(){
 //set default value of first watched to today. No idea why that needs JS.
 watchedDate.valueAsDate = new Date();
 
-//updading the stars with the slider on add page
-score.addEventListener('input', ev => {
+function setScoreString() {
   let scoreString = "";
   for (let i = 0; i < score.value; i++) {
     scoreString = scoreString.concat("★");
   }
-  scoreString = scoreString.padEnd(5, "☆")
+  scoreString = scoreString.padEnd(5, "☆");
   scoreText.innerHTML = scoreString;
+}
+
+//updading the stars with the slider on add page
+score.addEventListener('input', ev => {
+  setScoreString();
 });
 
 //toggle the red/black heart on click

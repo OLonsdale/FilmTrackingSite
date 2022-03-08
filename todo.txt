@@ -1,4 +1,3 @@
-mark as watched, fill in missing fields?
 add more stats
 imdb integration
 some way to view full data from list
