@@ -125,7 +125,7 @@ function editFilm(film) {
   document.getElementById("score").value = film.score;
   document.getElementById("watchedDate").value = film.date;
   document.getElementById("timesWatched").value = film.timesWatched;
-  submit.innerHTML = "Edit Film";
+  submit.innerHTML = "Save Edit to Film";
   setScoreString();
   loadFilms();
   showAdd();
@@ -158,6 +158,25 @@ function loadStats() {
   allFilms.innerHTML = data.length
   averageRating.innerHTML = aveScore.toFixed(1);
 }
+
+//sort table by clicking headers
+//obviously stolen code
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+
+const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+
+// do the work...
+document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+  const table = th.closest('table');
+  const tbody = table.querySelector('tbody');
+  Array.from(tbody.querySelectorAll('tr'))
+    .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+    .forEach(tr => tbody.appendChild(tr) );
+})));
+
+
 
 // Add Film Form //
 
@@ -401,18 +420,10 @@ function toggleTheme() {
 // set the colours depending on the value of "dark theme" in local storage
 function loadTheme() {
   let r = document.querySelector(":root");
-  if (!JSON.parse(localStorage.getItem("darkTheme"))) {
-    r.style.setProperty("--background-colour", "gainsboro");
-    r.style.setProperty("--background-accent", "lightgray");
-    r.style.setProperty("--highlight-colour", "lightslategray");
-    r.style.setProperty("--contrast-colour", "black");
-    r.style.setProperty("--font-colour", "black");
+  if (JSON.parse(localStorage.getItem("darkTheme"))) {
+    document.body.classList.add("dark-theme");
   } else {
-    r.style.setProperty("--background-colour", "#121212");
-    r.style.setProperty("--background-accent", "#1F1B24");
-    r.style.setProperty("--highlight-colour", "darkslategray");
-    r.style.setProperty("--contrast-colour", "white");
-    r.style.setProperty("--font-colour", "white");
+    document.body.classList.remove("dark-theme");
   }
 }
 

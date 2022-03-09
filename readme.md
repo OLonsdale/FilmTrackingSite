@@ -8,9 +8,15 @@ It stores the name and metadata of the film as a JSON object, and sorts them int
 
 A stats page shows some interesting information.
 
-It will get metadata from an API, it will have a light theme and a dark theme, it will allow for importing and exporting of the JSON object.
+It has a light theme and a dark theme, toggleable with the button on the bottom right, and persistant.
 
-It is fully functional down to 320px width, and will have better styling
+A splash screen shows help the first time the site is loaded.
+
+The films can be copied to the clipboard as a JSON document, and can be imported as the same.
+
+It is fully functional down to 320px width, and will have better styling.
+
+It will get metadata from an API.
 
 
 # MY FOUR (virtual) PAGES ARE:
@@ -36,3 +42,5 @@ Example work from the GitHub repo.
 Some tutorials from "Web Dev Simplified" on YouTube
 
 API: https://www.themoviedb.org/documentation/api
+
+StackOverflow, naturally

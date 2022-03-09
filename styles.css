@@ -1,16 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-:root {
+:root{
+  --font: "Montserrat";
   --hiddenTF: normal;
   /* hidden true false */
+
+}
+
+/* Light Theme */
+body {
   --background-colour: gainsboro;
-  --background-accent: #lightgray;
+  --background-accent: lightgray;
   --highlight-colour: lightslategray;
   --contrast-colour: black;
   --active-colour: olive;
   --hover-colour: DarkSlateBlue;
-  --font-colour: black;
-  --font: "Montserrat";
+  transition: background-color 300ms;
+}
+
+/* Dark Theme */
+body.dark-theme{
+  --background-colour: #121212;
+  --background-accent: #1F1B24;
+  --highlight-colour: darkslategray;
+  --contrast-colour: white;
+  --font-colour: white;
+  --active-colour: olive;
+  --hover-colour: DarkSlateBlue;
 }
 
 html {
@@ -35,6 +51,7 @@ footer {
   bottom: 0;
   background-color: var(--background-colour);
   width: 100%;
+  transition: background-color 300ms;
 }
 
 div {
@@ -57,6 +74,16 @@ h3 {
 }
 
 /* Bottom Button Bar */
+
+#buttonBarSpan{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.buttonBar:hover{
+  background-color: var(--hover-colour);
+}
 
 .buttonBar{
   width: 2em;
@@ -132,9 +159,11 @@ td {
 
 th {
   text-align: left;
+  cursor: pointer;
 }
 
 tbody tr:nth-child(odd) {
+  transition: background-color 300ms;
   background: var(--background-accent);
 }
 
@@ -178,6 +207,7 @@ nav {
   top: 0;
   width: 100vw;
   z-index: 0;
+  transition: background-color 300ms;
 }
 
 nav a {
@@ -189,10 +219,9 @@ nav a {
   font-weight: bold;
   background-color: var(--highlight-colour);
   font-family: sans-serif;
-  transition: background-color 0.2s;
   text-align: center;
   user-select: none;
-  transition: 200ms;
+  transition: background-color 300ms;
 }
 
 nav a>span {
