@@ -7,6 +7,8 @@ tab to radio buttons, show tab to fave button
 scrolling in popup scuffed
 back from edit deletes.
 dark theme
+welcome screen
+redo add menu
 
 Example data:
 [{"title":"watched-01","year":"2001","runtime":"201","status":"watched","favourite":true,"score":"4","date":"2022-03-02","timesWatched":"1"},

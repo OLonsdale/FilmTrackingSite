@@ -3,21 +3,14 @@
 :root {
   --hiddenTF: normal;
   /* hidden true false */
-  --background-colour: #121212;
-  --background-accent: #1F1B24;
-  --highlight-colour: darkslategray;
-  --contrast-colour: white;
-  --font-colour: white;
+  --background-colour: gainsboro;
+  --background-accent: #lightgray;
+  --highlight-colour: lightslategray;
+  --contrast-colour: black;
+  --active-colour: olive;
+  --hover-colour: DarkSlateBlue;
+  --font-colour: black;
   --font: "Montserrat";
-}
-
-#toggleThemeButton{
-  width: 2em;
-  height: 2em;
-  background-color: var(--highlight-colour);
-  border: 0;
-  font-size: large;
-  position: right;
 }
 
 html {
@@ -44,6 +37,10 @@ footer {
   width: 100%;
 }
 
+div {
+  padding: 1em;
+}
+
 h1 {
   text-align: center;
   /* To account for the sticky header */
@@ -57,6 +54,16 @@ h2 {
 h3 {
   text-align: center;
   font-size: xx-large;
+}
+
+/* Bottom Button Bar */
+
+.buttonBar{
+  width: 2em;
+  height: 2em;
+  background-color: var(--highlight-colour);
+  border: 0;
+  font-size: large;
 }
 
 /* Form properties */
@@ -161,8 +168,7 @@ table {
   width: 2em;
 }
 
-/* Nav properties */
-
+/* Nav bar properties */
 nav {
   background-color: var(--background-accent);
   display: flex;
@@ -194,14 +200,12 @@ nav a>span {
 }
 
 nav a:hover {
-  background-color: DarkTurquoise;
+  background-color: var(--hover-colour);
 }
 
 nav a:active{
-  background:olive;
+  background:var(--active-colour);
 }
-
-
 
 #stats{
   display: none;
@@ -226,7 +230,7 @@ nav a:active{
   background-color: var(--background-colour);
   margin: 5% auto; /* 15% from the top and centered */
   padding: 1em;
-  border: 1px solid black;
+  border: 1px solid var(--contrast-colour);
   height: 85%;
   overflow: auto;
 }
@@ -241,9 +245,38 @@ nav a:active{
   cursor: pointer;
 }
 
-div {
-  padding: 1em;
+
+/* Splash Screen */
+.splashModal {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0,0,0,0.4);
+  padding: 0;
 }
+
+.splashContent {
+  background-color: var(--background-colour);
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 1em;
+  border: 1px solid var(--contrast-colour);
+  
+}
+
+/* The Close Button */
+.closeSplash {
+  position: absolute;
+  font-size: 2em;
+}
+
+.closeSplash:hover {
+  cursor: pointer;
+}
+
 
 /* Adjusting for a screen over 500px width */
 
@@ -277,6 +310,11 @@ div {
     width: 75%;
     height:75%;
     overflow: auto;
+  }
+
+  .splashContent {
+    background-color: var(--background-colour);
+    width: 50%;
   }
 
 }

@@ -275,11 +275,6 @@ function saveFilm() {
   loadFilms();
 };
 
-
-function showAdd() {
-  modal.style.display = "block";
-}
-
 function showWatched() {
   console.log("showing watched films");
   watchedFilms.style.display = "block";
@@ -322,6 +317,7 @@ addMenu.addEventListener('click', ev => {
   showAdd();
 });
 
+
 // Get the modal
 const modal = document.getElementById("addPopup");
 // Get the <span> element that closes the modal
@@ -339,42 +335,88 @@ window.addEventListener('click', ev => {
   }
 });
 
-toggleThemeButton.addEventListener("click", ev =>{
-  toggleTheme();
+function showAdd() {
+  modal.style.display = "block";
+}
+
+//Splash screen
+
+// Get the modal
+const splash = document.getElementById("splashPopup");
+// Get the <span> element that closes the modal
+const splashSpan = document.getElementsByClassName("closeSplash")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.addEventListener('click', ev => {
+  splashSpan.style.display = "none";
 });
 
-if (localStorage.getItem("darkTheme") === undefined || localStorage.getItem("darkTheme") === null) {
-  localStorage.setItem("darkTheme", "false");
-  console.log("set light theme as default")
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener('click', ev => {
+  if (ev.target == splashSpan) {
+    splash.style.display = "none";
+  }
+});
+
+showHelpButton.addEventListener('click', ev => {
+  showSplash();
+});
+
+function showSplash() {
+  splash.style.display = "block";
 }
+
+
+//Theming
 
 function toggleTheme() {
   if (JSON.parse(localStorage.getItem("darkTheme"))) {
-    localStorage.setItem("darkTheme","false");
+    localStorage.setItem("darkTheme", "false");
     console.log("switching to light theme");
     loadTheme();
   } else {
-    localStorage.setItem("darkTheme","true");
+    localStorage.setItem("darkTheme", "true");
     console.log("switching to dark theme");
     loadTheme();
   }
 }
 
-function loadTheme(){
+function loadTheme() {
   let r = document.querySelector(":root");
-  if(!JSON.parse(localStorage.getItem("darkTheme"))){
-    r.style.setProperty("--background-colour","gainsboro");
-    r.style.setProperty("--background-accent","lightgray");
-    r.style.setProperty("--highlight-colour","lightslategray");
-    r.style.setProperty("--contrast-colour","black");
-    r.style.setProperty("--font-colour","black");
+  if (!JSON.parse(localStorage.getItem("darkTheme"))) {
+    r.style.setProperty("--background-colour", "gainsboro");
+    r.style.setProperty("--background-accent", "lightgray");
+    r.style.setProperty("--highlight-colour", "lightslategray");
+    r.style.setProperty("--contrast-colour", "black");
+    r.style.setProperty("--font-colour", "black");
   } else {
-    r.style.setProperty("--background-colour","#121212");
-    r.style.setProperty("--background-accent","#1F1B24");
-    r.style.setProperty("--highlight-colour","darkslategray");
-    r.style.setProperty("--contrast-colour","white");
-    r.style.setProperty("--font-colour","white");
+    r.style.setProperty("--background-colour", "#121212");
+    r.style.setProperty("--background-accent", "#1F1B24");
+    r.style.setProperty("--highlight-colour", "darkslategray");
+    r.style.setProperty("--contrast-colour", "white");
+    r.style.setProperty("--font-colour", "white");
   }
+}
+
+toggleThemeButton.addEventListener("click", ev => {
+  toggleTheme();
+});
+
+//create dark theme local storage file, default to light theme
+if (localStorage.getItem("darkTheme") === undefined || localStorage.getItem("darkTheme") === null) {
+  localStorage.setItem("darkTheme", "false");
+  console.log("set light theme as default")
+}
+
+//create splash read local storage file, default to no
+if (localStorage.getItem("splashRead") === undefined || localStorage.getItem("splashRead") === null) {
+  localStorage.setItem("splashRead", "false");
+  console.log("splash not read")
+}
+
+if (!JSON.parse(localStorage.getItem("splashRead"))) {
+  showSplash()
+  localStorage.setItem("splashRead", "true");
 }
 
 //create the file if it doesn't exist, and fills it with example data
