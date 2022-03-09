@@ -19,7 +19,7 @@
         📕
         <span><br>Watched</span>
       </a>
-      
+
       <a id="showPlanning" title="Planned Films">
         📖
         <span><br>Planning</span>
@@ -42,13 +42,17 @@
     <div id="splash">
       <div id="splashPopup" class="splashModal">
         <div class="splashContent">
-          <span class="closeSplash" title="Close" >❌</span>
-            <h3>Welcome</h3>
-            <p>Welcome to the film tracking service.</p>
-            <p>This message will only appear once, to view it again click the question-mark in the bottom left of the screen.</p>
-            <p>Also in the bottom left is the icon to toggle the dark theme, buttons to allow you to save and load the films from the clipboard, to clear all data, and to load example data.</p>
-            <p>Along the top of the screen are the menu icons to switch to the different screens. The Watched List shows the films you have actually watched, and the planning list shows the films you plan on watching.</p>
-            <p>The add icon allows you to add a film to one of the lists, and the stats icon displays some info about the films you have on your list</p>
+          <span class="closeSplash" title="Close">❌</span>
+          <h3>Welcome</h3>
+          <p>Welcome to the film tracking service.</p>
+          <p>This message will only appear once, to view it again click the question-mark in the bottom left of the
+            screen.</p>
+          <p>Also in the bottom left is the icon to toggle the dark theme, buttons to allow you to save and load the
+            films from the clipboard, to clear all data, and to load example data.</p>
+          <p>Along the top of the screen are the menu icons to switch to the different screens. The Watched List shows
+            the films you have actually watched, and the planning list shows the films you plan on watching.</p>
+          <p>The add icon allows you to add a film to one of the lists, and the stats icon displays some info about the
+            films you have on your list</p>
         </div>
       </div>
     </div>
@@ -91,65 +95,70 @@
     <!-- Add Film Form -->
     <div id="addPopup" class="modal">
       <div class="modal-content">
-        <span class="close" title="Cancel" >❌</span>
-        <h3>Add Film</h3>
-        <form id="addFilm">
-          <unwatched-section>
-            <h2>Title</h2>
-            <input id="title" type="text" aria-label="Film title" placeholder="The Golden Compass" required>
-            <button tabindex="-1" id="search" type="button" aria-label="Search for film">🔎</button>
-          </unwatched-section>
+        <span class="close" title="Cancel">❌</span>
+        <div class="form-container">
 
-          <!-- When using type="number", can't match regex statment?-->
-          <unwatched-section>
-            <h2>Year of Release</h2>
-            <input id="year" aria-label="Year of release" placeholder="2007" required pattern="^(18|19|20)\d{2}">
-          </unwatched-section>
+          <h3>Add Film</h3>
+          <form id="addFilm">
 
-          <unwatched-section>
-            <h2>Runtime (mins)</h2>
-            <input id="runtime" type="number" aria-label="Runtime" placeholder="190">
-          </unwatched-section>
-
-          <!--Can't tab to radio buttons-->
-          <unwatched-section>
-            <h2>Status</h2>
-            <div class="radios">
-              <input type="radio" id="watchedRadio" name="statusSelect" value="watched" checked>
-              <label for="watchedRadio">📕 Watched</label>
-              <input type="radio" id="planningRadio" name="statusSelect" value="planning">
-              <label for="planningRadio">📖 Planning</label>
+            <div class="unwatched-section">
+              <h2>Title</h2>
+              <input id="title" type="text" aria-label="Film title" placeholder="The Golden Compass" required>
+              <button tabindex="-1" id="search" type="button" aria-label="Search for film">🔎</button>
             </div>
-          </unwatched-section>
 
-          <watched-section>
-            <h2>Favourite</h2>
-            <label for="favourite" id="favText">🖤</label> <br>
-            <input id="favourite" value="favourite" type="checkbox" aria-label="Favourite">
-          </watched-section>
+            <!-- When using type="number", can't match regex statment?-->
+            <div class="unwatched-section">
+              <h2>Year of Release</h2>
+              <input id="year" aria-label="Year of release" placeholder="2007" required pattern="^(18|19|20)\d{2}">
+            </div>
 
-          <watched-section>
-            <h2>Score</h2>
-            <input id="score" type="range" min="0" max="5" value="5" aria-label="score"> <br>
-            <label for="score" id="scoreText">★★★★★</label>
-          </watched-section>
+            <div class="unwatched-section">
+              <h2>Runtime (mins)</h2>
+              <input id="runtime" type="number" aria-label="Runtime" placeholder="190">
+            </div>
 
-          <watched-section>
-            <h2>First watched</h2>
-            <input id="watchedDate" type="date" aria-label="date watched">
-          </watched-section>
+            <!--Can't tab to radio buttons-->
+            <div class="unwatched-section">
+              <h2>Status</h2>
+              <div class="radios">
+                <input type="radio" id="watchedRadio" name="statusSelect" value="watched" checked>
+                <label for="watchedRadio">📕 Watched</label>
+                <br>
+                <input type="radio" id="planningRadio" name="statusSelect" value="planning">
+                <label for="planningRadio">📖 Planning</label>
+              </div>
+            </div>
 
-          <watched-section>
-            <h2>Times Watched</h2>
-            <input id="timesWatched" type="number" min="1" value="1" aria-label="number of times watched">
-          </watched-section>
+            <div class="watched-section">
+              <h2>Favourite</h2>
+              <label for="favourite" id="favText">🖤</label> <br>
+              <input id="favourite" value="favourite" type="checkbox" aria-label="Favourite">
+            </div>
 
-          <unwatched-section>
-            <!--zero width space below-->
-            <h2>​</h2>
-            <button id="submit" aria-label="add film">Add Film</button> <br><br>
-          </unwatched-section>
-        </form>
+            <div class="watched-section">
+              <h2>Score</h2>
+              <input id="score" type="range" min="0" max="5" value="5" aria-label="score"> <br>
+              <label for="score" id="scoreText">★★★★★</label>
+            </div>
+
+            <div class="watched-section">
+              <h2>First watched</h2>
+              <input id="watchedDate" type="date" aria-label="date watched">
+            </div>
+
+            <div class="watched-section">
+              <h2>Times Watched</h2>
+              <input id="timesWatched" type="number" min="1" value="1" aria-label="number of times watched">
+            </div>
+
+            <div class="unwatched-section">
+              <!--zero width space below-->
+              <h2>​</h2>
+              <button id="submit" aria-label="add film">Add Film</button> <br><br>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
 
@@ -171,16 +180,22 @@
 
   <footer>
     <span id="buttonBarSpan">
-      <button class="buttonBar" type="button" id="toggleThemeButton" title="toggle theme" aria-label="toggle dark theme button">🌗</button>
+      <button class="buttonBar" type="button" id="toggleThemeButton" title="toggle theme"
+        aria-label="toggle dark theme button">🌗</button>
       <button class="buttonBar" type="button" id="showHelpButton" title="help" aria-label="open help popup">❓</button>
-      <button class="buttonBar" type="button" id="downloadButton" title="save json to clipboard" aria-label="save json to clipboard">📥</button>
-      <button class="buttonBar" type="button" id="uploadButton" title="read json from clipboard" aria-label="read json from clipboard">📤</button>
-      <button class="buttonBar" type="button" id="clearButton" title="clear localstorage" aria-label="delete the local storage">🗑️</button>
-      <button class="buttonBar" type="button" id="resetButton" title="reset localstorage" aria-label="reset the local storage">🔃</button>
+      <button class="buttonBar" type="button" id="downloadButton" title="save json to clipboard"
+        aria-label="save json to clipboard">📥</button>
+      <button class="buttonBar" type="button" id="uploadButton" title="read json from clipboard"
+        aria-label="read json from clipboard">📤</button>
+      <button class="buttonBar" type="button" id="clearButton" title="clear localstorage"
+        aria-label="delete the local storage">🗑️</button>
+      <button class="buttonBar" type="button" id="resetButton" title="reset localstorage"
+        aria-label="reset the local storage">🔃</button>
     </span>
   </footer>
 
   <!-- against advice, I tried to have this in the head element with the defer keyword in it. Didn't work properly, hard to debug. Annoying. Should have listened.-->
   <script src="js/main.js"></script>
 </body>
+
 </html>

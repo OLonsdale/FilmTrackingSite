@@ -120,7 +120,9 @@ function editFilm(film) {
   document.getElementById("runtime").value = film.runtime;
   if (film.status == "watched") {
     document.getElementById("watchedRadio").checked = true;
-  } else document.getElementById("planningRadio").checked = true;
+  } else {
+    document.getElementById("planningRadio").checked = true;
+  }
   document.getElementById("favourite").value = film.favourite;
   document.getElementById("score").value = film.score;
   document.getElementById("watchedDate").value = film.date;
@@ -160,7 +162,7 @@ function loadStats() {
 }
 
 //sort table by clicking headers
-//obviously stolen code
+//obviously stolen code from https://stackoverflow.com/a/53880407
 const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
 
 const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
