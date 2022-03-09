@@ -46,7 +46,7 @@
             <h3>Welcome</h3>
             <p>Welcome to the film tracking service.</p>
             <p>This message will only appear once, to view it again click the question-mark in the bottom left of the screen.</p>
-            <p>Also in the bottom left is the icon to toggle the dark theme.</p>
+            <p>Also in the bottom left is the icon to toggle the dark theme, buttons to allow you to save and load the films from the clipboard, to clear all data, and to load example data.</p>
             <p>Along the top of the screen are the menu icons to switch to the different screens. The Watched List shows the films you have actually watched, and the planning list shows the films you plan on watching.</p>
             <p>The add icon allows you to add a film to one of the lists, and the stats icon displays some info about the films you have on your list</p>
         </div>
@@ -172,6 +172,10 @@
   <footer>
     <button class="buttonBar" type="button" id="toggleThemeButton" title="toggle theme" aria-label="toggle dark theme button">🌗</button>
     <button class="buttonBar" type="button" id="showHelpButton" title="help" aria-label="open help popup">❓</button>
+    <button class="buttonBar" type="button" id="downloadButton" title="save json to clipboard" aria-label="save json to clipboard">📥</button>
+    <button class="buttonBar" type="button" id="uploadButton" title="read json from clipboard" aria-label="read json from clipboard">📤</button>
+    <button class="buttonBar" type="button" id="clearButton" title="clear localstorage" aria-label="delete the local storage">🗑️</button>
+    <button class="buttonBar" type="button" id="resetButton" title="reset localstorage" aria-label="reset the local storage">🔃</button>
   </footer>
 
   <!-- against advice, I tried to have this in the head element with the defer keyword in it. Didn't work properly, hard to debug. Annoying. Should have listened.-->

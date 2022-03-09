@@ -2,12 +2,9 @@ add more stats
 imdb/tmdb integration
 some way to view full data from list
 filter and sort based on table columns
-import/export
 tab to radio buttons, show tab to fave button
 scrolling in popup scuffed
 back from edit deletes.
-dark theme
-welcome screen
 redo add menu
 
 Example data:

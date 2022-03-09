@@ -5,10 +5,51 @@ function loadFilms() {
   const watchedTable = document.getElementById("watched").getElementsByTagName('tbody')[0];
   const planningTable = document.getElementById("planning").getElementsByTagName('tbody')[0];
   const data = JSON.parse(localStorage.getItem("films"));
+  //clears tables
   watchedTable.innerHTML = "";
   planningTable.innerHTML = "";
 
   data.forEach(film => {
+
+    const removeButton = document.createElement('button');
+    removeButton.textContent = "❌";
+    removeButton.title = "Remove"
+    removeButton.ariaLabel = "Remove button";
+    removeButton.addEventListener('click', ev => {
+      deleteFilm(film);
+    });
+
+    const editButton = document.createElement('button');
+    editButton.textContent = "✏️";
+    editButton.title = "Edit Film";
+    editButton.ariaLabel = "Edit Film Button";
+    editButton.addEventListener('click', ev => {
+      deleteFilm(film);
+      editFilm(film);
+    });
+
+    let score = "";
+    for (let i = 0; i < film.score; i++) {
+      score = score.concat("★");
+    }
+    score = score.padEnd(5, "☆");
+
+    let fav;
+    if (film.favourite == true) {
+      fav = "❤️";
+    } else {
+      fav = "🖤";
+    }
+
+    const watchedButton = document.createElement('button');
+    watchedButton.textContent = "🔭";
+    watchedButton.ariaLabel = "Mark film as watched";
+    watchedButton.title = "Mark as Watched"
+    watchedButton.addEventListener('click', ev => {
+      deleteFilm(film);
+      markWatched(film);
+    })
+
     if (film.status == "watched") {
       const row = watchedTable.insertRow();
       const favCell = row.insertCell(0)
@@ -16,78 +57,21 @@ function loadFilms() {
       const yearCell = row.insertCell(2);
       const dateWatchedCell = row.insertCell(3);
       const scoreCell = row.insertCell(4);
-      const removeButtonCell = row.insertCell(5);
-
-      const removeButton = document.createElement('button');
-      removeButton.textContent = "❌";
-      removeButton.title = "Remove"
-      removeButton.ariaLabel = "Remove button";
-      removeButton.addEventListener('click', ev => {
-        deleteFilm(film);
-      });
-
-      const editButton = document.createElement('button');
-      editButton.textContent = "✏️";
-      editButton.title = "Edit Film";
-      editButton.ariaLabel = "Edit Film Button";
-      editButton.addEventListener('click', ev => {
-        deleteFilm(film);
-        editFilm(film);
-      });
-
-      let score = "";
-      for (let i = 0; i < film.score; i++) {
-        score = score.concat("★");
-      }
-      score = score.padEnd(5, "☆");
-
-      let fav;
-      if (film.favourite == true) {
-        fav = "❤️";
-      } else {
-        fav = "🖤";
-      }
+      const buttonCell = row.insertCell(5);
 
       favCell.innerHTML = fav;
       titleCell.innerHTML = film.title;
       yearCell.innerHTML = film.year;
       dateWatchedCell.innerHTML = film.date;
       scoreCell.innerHTML = score;
-      removeButtonCell.append(removeButton);
-      removeButtonCell.append(editButton);
+      buttonCell.append(removeButton);
+      buttonCell.append(editButton);
 
     } else {
       const row = planningTable.insertRow();
       const titleCell = row.insertCell(0);
       const yearCell = row.insertCell(1);
       const buttonCell = row.insertCell(2);
-
-      const removeButton = document.createElement('button');
-      removeButton.textContent = "❌";
-      removeButton.title = "Remove"
-      removeButton.ariaLabel = "Remove Button";
-      removeButton.addEventListener('click', ev => {
-        deleteFilm(film);
-      });
-
-      const watchedButton = document.createElement('button');
-      watchedButton.textContent = "🔭";
-      watchedButton.ariaLabel = "Mark film as watched";
-      watchedButton.title = "Mark as Watched"
-      watchedButton.addEventListener('click', ev => {
-        deleteFilm(film);
-        markWatched(film);
-      })
-
-      const editButton = document.createElement('button');
-      editButton.textContent = "✏️";
-      editButton.title = "Edit Film";
-      editButton.ariaLabel = "Edit Film Button";
-      editButton.addEventListener('click', ev => {
-        deleteFilm(film);
-        editFilm(film);
-      });
-
 
       titleCell.innerHTML = film.title;
       yearCell.innerHTML = film.year;
@@ -146,7 +130,6 @@ function editFilm(film) {
   loadFilms();
   showAdd();
 }
-////////////////////////////////////////////////////////////////////////////////////////////
 
 //loads the stats
 function loadStats() {
@@ -176,7 +159,6 @@ function loadStats() {
   averageRating.innerHTML = aveScore.toFixed(1);
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////
 // Add Film Form //
 
 //set default value of first watched to today. No idea why that needs JS.
@@ -206,7 +188,7 @@ favourite.addEventListener('click', ev => {
 });
 
 search.addEventListener('click', ev => {
-  alert("not yet implemented")
+  alert("not yet implemented. will pull data from API")
 });
 
 //hide and show elements based on the status selected.
@@ -221,6 +203,7 @@ addFilm.addEventListener('submit', ev => {
   saveFilm();
 });
 
+//save the data from the form into the local storage array
 function saveFilm() {
   //get data from form
   const title = document.getElementById("title").value;
@@ -275,6 +258,7 @@ function saveFilm() {
   loadFilms();
 };
 
+//show the watched table and hide other elements
 function showWatched() {
   console.log("showing watched films");
   watchedFilms.style.display = "block";
@@ -282,6 +266,7 @@ function showWatched() {
   stats.style.display = "none";
 }
 
+//show the watched table and hide other elements
 function showPlanning() {
   console.log("showing planning films");
   watchedFilms.style.display = "none";
@@ -289,6 +274,7 @@ function showPlanning() {
   stats.style.display = "none";
 }
 
+//show the stats screen and hide other elements
 function showStats() {
   console.log("showing stats");
   stats.style.display = "block";
@@ -318,25 +304,27 @@ addMenu.addEventListener('click', ev => {
 });
 
 
-// Get the modal
-const modal = document.getElementById("addPopup");
-// Get the <span> element that closes the modal
-const span = document.getElementsByClassName("close")[0];
+// Add film popup
 
-// When the user clicks on <span> (x), close the modal
-span.addEventListener('click', ev => {
-  modal.style.display = "none";
+// Get the modal
+const addPopup = document.getElementById("addPopup");
+// Get the <span> element that closes the addPopup
+const addPopupClose = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <addPopupClose> (x), close the addPopup
+addPopupClose.addEventListener('click', ev => {
+  addPopup.style.display = "none";
 });
 
-// When the user clicks anywhere outside of the modal, close it
+// When the user clicks anywhere outside of the addPopup, close it
 window.addEventListener('click', ev => {
-  if (ev.target == modal) {
-    modal.style.display = "none";
+  if (ev.target == addPopup) {
+    addPopup.style.display = "none";
   }
 });
 
 function showAdd() {
-  modal.style.display = "block";
+  addPopup.style.display = "block";
 }
 
 //Splash screen
@@ -347,17 +335,18 @@ const splash = document.getElementById("splashPopup");
 const splashSpan = document.getElementsByClassName("closeSplash")[0];
 
 // When the user clicks on <span> (x), close the modal
-span.addEventListener('click', ev => {
+splash.addEventListener('click', ev => {
   splashSpan.style.display = "none";
 });
 
 // When the user clicks anywhere outside of the modal, close it
 window.addEventListener('click', ev => {
-  if (ev.target == splashSpan) {
+  if (ev.target == splashPopup) {
     splash.style.display = "none";
   }
 });
 
+//Show the help splash when question mark button is clicked
 showHelpButton.addEventListener('click', ev => {
   showSplash();
 });
@@ -366,9 +355,37 @@ function showSplash() {
   splash.style.display = "block";
 }
 
+//Button Bar event handlers
+clearButton.addEventListener('click', ev => {
+  localStorage.setItem("films", JSON.stringify([]));
+  loadFilms();
+});
+
+downloadButton.addEventListener('click', ev => {
+  navigator.clipboard.writeText(localStorage.getItem("films"));
+  alert("films json copied to clipboard")
+});
+
+uploadButton.addEventListener('click', ev => {
+  readClipboard();
+});
+
+async function readClipboard(){
+  const text = await navigator.clipboard.readText();
+  try {
+    JSON.parse(text);
+  } catch (error) {
+    alert("JSON invalid");
+    return;
+  }
+  localStorage.setItem("films",text);
+  loadFilms();
+}
+
 
 //Theming
 
+//flip the value of "dark theme" in local storage, and reload theme
 function toggleTheme() {
   if (JSON.parse(localStorage.getItem("darkTheme"))) {
     localStorage.setItem("darkTheme", "false");
@@ -381,6 +398,7 @@ function toggleTheme() {
   }
 }
 
+// set the colours depending on the value of "dark theme" in local storage
 function loadTheme() {
   let r = document.querySelector(":root");
   if (!JSON.parse(localStorage.getItem("darkTheme"))) {
@@ -398,142 +416,261 @@ function loadTheme() {
   }
 }
 
+//on click, change the theme
 toggleThemeButton.addEventListener("click", ev => {
   toggleTheme();
 });
 
+//Creating the files in local storage
+
 //create dark theme local storage file, default to light theme
 if (localStorage.getItem("darkTheme") === undefined || localStorage.getItem("darkTheme") === null) {
   localStorage.setItem("darkTheme", "false");
-  console.log("set light theme as default")
+  console.log("set light theme as default");
 }
 
 //create splash read local storage file, default to no
 if (localStorage.getItem("splashRead") === undefined || localStorage.getItem("splashRead") === null) {
   localStorage.setItem("splashRead", "false");
-  console.log("splash not read")
+  console.log("splash not read");
 }
 
+//create file to show the splash screen has been read, and show the splash
 if (!JSON.parse(localStorage.getItem("splashRead"))) {
-  showSplash()
+  showSplash();
   localStorage.setItem("splashRead", "true");
 }
+
+resetButton.addEventListener('click', ev => {
+  localStorage.setItem("films", JSON.stringify([{
+    "title": "watched-01",
+    "year": "2001",
+    "runtime": "201",
+    "status": "watched",
+    "favourite": true,
+    "score": "4",
+    "date": "2022-03-02",
+    "timesWatched": "1"
+  },
+  {
+    "title": "watched-02",
+    "year": "2001",
+    "runtime": "201",
+    "status": "watched",
+    "favourite": false,
+    "score": "5",
+    "date": "2022-03-02",
+    "timesWatched": "1"
+  },
+  {
+    "title": "watched-03",
+    "year": "2001",
+    "runtime": "201",
+    "status": "watched",
+    "favourite": true,
+    "score": "3",
+    "date": "2022-03-02",
+    "timesWatched": "1"
+  },
+  {
+    "title": "watched-04",
+    "year": "2001",
+    "runtime": "201",
+    "status": "watched",
+    "favourite": false,
+    "score": "4",
+    "date": "2022-03-02",
+    "timesWatched": "1"
+  },
+  {
+    "title": "watched-05",
+    "year": "2001",
+    "runtime": "201",
+    "status": "watched",
+    "favourite": false,
+    "score": "3",
+    "date": "2022-03-02",
+    "timesWatched": "1"
+  },
+  {
+    "title": "watched-06",
+    "year": "2001",
+    "runtime": "201",
+    "status": "watched",
+    "favourite": false,
+    "score": "4",
+    "date": "2022-03-02",
+    "timesWatched": "1"
+  },
+  {
+    "title": "watched-07",
+    "year": "2001",
+    "runtime": "201",
+    "status": "watched",
+    "favourite": true,
+    "score": "5",
+    "date": "2022-03-02",
+    "timesWatched": "1"
+  },
+  {
+    "title": "planned-01",
+    "year": "2001",
+    "runtime": "201",
+    "status": "planned"
+  },
+  {
+    "title": "planned-02",
+    "year": "2001",
+    "runtime": "201",
+    "status": "planned"
+  },
+  {
+    "title": "planned-03",
+    "year": "2001",
+    "runtime": "201",
+    "status": "planned"
+  },
+  {
+    "title": "planned-04",
+    "year": "2001",
+    "runtime": "201",
+    "status": "planned"
+  },
+  {
+    "title": "planned-05",
+    "year": "2001",
+    "runtime": "201",
+    "status": "planned"
+  },
+  {
+    "title": "planned-06",
+    "year": "2001",
+    "runtime": "201",
+    "status": "planned"
+  },
+  {
+    "title": "planned-07",
+    "year": "2001",
+    "runtime": "201",
+    "status": "planned"
+  }]));
+  loadFilms();
+});
 
 //create the file if it doesn't exist, and fills it with example data
 if (localStorage.getItem("films") === undefined || localStorage.getItem("films") === null) {
   localStorage.setItem("films", JSON.stringify([{
-      "title": "watched-01",
-      "year": "2001",
-      "runtime": "201",
-      "status": "watched",
-      "favourite": true,
-      "score": "4",
-      "date": "2022-03-02",
-      "timesWatched": "1"
-    },
-    {
-      "title": "watched-02",
-      "year": "2001",
-      "runtime": "201",
-      "status": "watched",
-      "favourite": false,
-      "score": "5",
-      "date": "2022-03-02",
-      "timesWatched": "1"
-    },
-    {
-      "title": "watched-03",
-      "year": "2001",
-      "runtime": "201",
-      "status": "watched",
-      "favourite": true,
-      "score": "3",
-      "date": "2022-03-02",
-      "timesWatched": "1"
-    },
-    {
-      "title": "watched-04",
-      "year": "2001",
-      "runtime": "201",
-      "status": "watched",
-      "favourite": false,
-      "score": "4",
-      "date": "2022-03-02",
-      "timesWatched": "1"
-    },
-    {
-      "title": "watched-05",
-      "year": "2001",
-      "runtime": "201",
-      "status": "watched",
-      "favourite": false,
-      "score": "3",
-      "date": "2022-03-02",
-      "timesWatched": "1"
-    },
-    {
-      "title": "watched-06",
-      "year": "2001",
-      "runtime": "201",
-      "status": "watched",
-      "favourite": false,
-      "score": "4",
-      "date": "2022-03-02",
-      "timesWatched": "1"
-    },
-    {
-      "title": "watched-07",
-      "year": "2001",
-      "runtime": "201",
-      "status": "watched",
-      "favourite": true,
-      "score": "5",
-      "date": "2022-03-02",
-      "timesWatched": "1"
-    },
-    {
-      "title": "planned-01",
-      "year": "2001",
-      "runtime": "201",
-      "status": "planned"
-    },
-    {
-      "title": "planned-02",
-      "year": "2001",
-      "runtime": "201",
-      "status": "planned"
-    },
-    {
-      "title": "planned-03",
-      "year": "2001",
-      "runtime": "201",
-      "status": "planned"
-    },
-    {
-      "title": "planned-04",
-      "year": "2001",
-      "runtime": "201",
-      "status": "planned"
-    },
-    {
-      "title": "planned-05",
-      "year": "2001",
-      "runtime": "201",
-      "status": "planned"
-    },
-    {
-      "title": "planned-06",
-      "year": "2001",
-      "runtime": "201",
-      "status": "planned"
-    },
-    {
-      "title": "planned-07",
-      "year": "2001",
-      "runtime": "201",
-      "status": "planned"
-    }
-  ]));
+    "title": "watched-01",
+    "year": "2001",
+    "runtime": "201",
+    "status": "watched",
+    "favourite": true,
+    "score": "4",
+    "date": "2022-03-02",
+    "timesWatched": "1"
+  },
+  {
+    "title": "watched-02",
+    "year": "2001",
+    "runtime": "201",
+    "status": "watched",
+    "favourite": false,
+    "score": "5",
+    "date": "2022-03-02",
+    "timesWatched": "1"
+  },
+  {
+    "title": "watched-03",
+    "year": "2001",
+    "runtime": "201",
+    "status": "watched",
+    "favourite": true,
+    "score": "3",
+    "date": "2022-03-02",
+    "timesWatched": "1"
+  },
+  {
+    "title": "watched-04",
+    "year": "2001",
+    "runtime": "201",
+    "status": "watched",
+    "favourite": false,
+    "score": "4",
+    "date": "2022-03-02",
+    "timesWatched": "1"
+  },
+  {
+    "title": "watched-05",
+    "year": "2001",
+    "runtime": "201",
+    "status": "watched",
+    "favourite": false,
+    "score": "3",
+    "date": "2022-03-02",
+    "timesWatched": "1"
+  },
+  {
+    "title": "watched-06",
+    "year": "2001",
+    "runtime": "201",
+    "status": "watched",
+    "favourite": false,
+    "score": "4",
+    "date": "2022-03-02",
+    "timesWatched": "1"
+  },
+  {
+    "title": "watched-07",
+    "year": "2001",
+    "runtime": "201",
+    "status": "watched",
+    "favourite": true,
+    "score": "5",
+    "date": "2022-03-02",
+    "timesWatched": "1"
+  },
+  {
+    "title": "planned-01",
+    "year": "2001",
+    "runtime": "201",
+    "status": "planned"
+  },
+  {
+    "title": "planned-02",
+    "year": "2001",
+    "runtime": "201",
+    "status": "planned"
+  },
+  {
+    "title": "planned-03",
+    "year": "2001",
+    "runtime": "201",
+    "status": "planned"
+  },
+  {
+    "title": "planned-04",
+    "year": "2001",
+    "runtime": "201",
+    "status": "planned"
+  },
+  {
+    "title": "planned-05",
+    "year": "2001",
+    "runtime": "201",
+    "status": "planned"
+  },
+  {
+    "title": "planned-06",
+    "year": "2001",
+    "runtime": "201",
+    "status": "planned"
+  },
+  {
+    "title": "planned-07",
+    "year": "2001",
+    "runtime": "201",
+    "status": "planned"
+  }]));
   console.log("Created films file");
 }
 
