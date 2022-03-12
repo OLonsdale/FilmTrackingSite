@@ -7,6 +7,9 @@ scrolling in popup scuffed
 back from edit deletes.
 redo add menu
 
+buttons
+
+
 Example data:
 [{"title":"Harry Potter and the Goblet of Fire","year":"2005","runtime":"210","status":"watched","favourite":true,"score":"4","date":"2022-03-02","timesWatched":"1"},
  {"title":"The Lord of the Rings: The Fellowship of the Ring","year":"2001","runtime":"222","status":"watched","favourite":false,"score":"5","date":"2020-02-03","timesWatched":"2"},
