@@ -38,20 +38,19 @@
   </header>
 
   <main>
-
     <div id="splash">
       <div id="splashPopup" class="splashModal">
         <div class="splashContent">
           <span class="closeSplash" title="Close">❌</span>
           <h3>Welcome</h3>
           <p>Welcome to the film tracking service.</p>
-          <p>This message will only appear once, to view it again click the question-mark in the bottom left of the
+          <p>This message will only appear once, to view it again click the question-mark ❓at the bottom of the
             screen.</p>
-          <p>Also in the bottom left is the icon to toggle the dark theme, buttons to allow you to save and load the
-            films from the clipboard, to clear all data, and to load example data.</p>
-          <p>Along the top of the screen are the menu icons to switch to the different screens. The Watched List shows
-            the films you have actually watched, and the planning list shows the films you plan on watching.</p>
-          <p>The add icon allows you to add a film to one of the lists, and the stats icon displays some info about the
+          <p>Also at the bottom left is the icon to toggle the dark theme🌗, buttons to allow you to save📤 and load📥 the
+            films from the clipboard, to clear all data🗑️, and to load example data🔃.</p>
+          <p>Along the top of the screen are the menu icons to switch to the different screens. The Watched List📕shows
+            the films you have actually watched, and the planning list📖shows the films you plan on watching.</p>
+          <p>The add icon📝allows you to add a film to one of the lists, and the stats icon📊displays some info about the
             films you have on your list</p>
         </div>
       </div>
@@ -59,6 +58,7 @@
 
     <!-- Watched Films Table-->
     <div id="watchedFilms">
+      <div></div>
       <h1>Watched Films</h1>
       <table id="watched">
         <thead>
@@ -74,7 +74,10 @@
         <tbody>
         </tbody>
       </table>
+      <div class="cards" id="watchedCards"> </div>
     </div>
+
+    
 
     <!-- Planned Films Table -->
     <div id="planningFilms">
@@ -90,7 +93,10 @@
         <tbody>
         </tbody>
       </table>
+      <div class="cards" id="planningCards"> </div>
     </div>
+
+
 
     <!-- Add Film Form -->
     <div id="addPopup" class="modal">
@@ -184,9 +190,9 @@
         aria-label="toggle dark theme button">🌗</button>
       <button class="buttonBar" type="button" id="showHelpButton" title="help" aria-label="open help popup">❓</button>
       <button class="buttonBar" type="button" id="downloadButton" title="save json to clipboard"
-        aria-label="save json to clipboard">📥</button>
+        aria-label="save json to clipboard">📤</button>
       <button class="buttonBar" type="button" id="uploadButton" title="read json from clipboard"
-        aria-label="read json from clipboard">📤</button>
+        aria-label="read json from clipboard">📥</button>
       <button class="buttonBar" type="button" id="clearButton" title="clear localstorage"
         aria-label="delete the local storage">🗑️</button>
       <button class="buttonBar" type="button" id="resetButton" title="reset localstorage"
@@ -195,7 +201,7 @@
   </footer>
 
   <!-- against advice, I tried to have this in the head element with the defer keyword in it. Didn't work properly, hard to debug. Annoying. Should have listened.-->
-  <script src="js/main.js"></script>
+  <script src="js/scripts.js"></script>
 </body>
 
 </html>
