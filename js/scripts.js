@@ -15,7 +15,6 @@ function loadFilms() {
   planningGrid.innerHTML = "";
 
   data.forEach(film => {
-
     //add to table
     const removeButton = document.createElement('button');
     removeButton.textContent = "❌";
