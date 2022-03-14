@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-:root{
+:root {
   --font: "Montserrat";
   --hiddenTF: normal;
 }
@@ -17,7 +17,7 @@ body {
 }
 
 /* Dark Theme */
-body.dark-theme{
+body.dark-theme {
   --background-colour: #121212;
   --background-accent: #1F1B24;
   --highlight-colour: darkslategray;
@@ -25,6 +25,11 @@ body.dark-theme{
   --font-colour: white;
   --active-colour: olive;
   --hover-colour: DarkSlateBlue;
+}
+
+/* Added to elements via JS to hide them */
+.hidden {
+  display: none;
 }
 
 html {
@@ -45,18 +50,16 @@ body {
   margin: 0;
 }
 
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  transition: background-color 300ms;
-}
-
 div {
   padding: 0.5em;
 }
 
 h1 {
+  text-align: center;
+  padding-top: 1em;
+}
+
+h2 {
   text-align: center;
 }
 
@@ -65,28 +68,59 @@ h3 {
   font-size: xx-large;
 }
 
-/* Bottom Button Bar */
+h4 {
+  text-align: center;
+  font-size: xx-large;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
 
-#buttonBarSpan{
+.stats {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 
-.buttonBar:hover{
+.statistic {
+  text-align: center;
+  font-size: xx-large;
+  
+}
+
+/* Bottom Button Bar */
+
+#buttonBarSpan {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+.buttonBar:hover {
   background-color: var(--hover-colour);
 }
 
-.buttonBar:active{
+.buttonBar:active {
   background-color: var(--active-colour);
 }
 
-.buttonBar{
+.buttonBar {
   width: 2em;
   height: 2em;
   background-color: var(--highlight-colour);
   border: 0;
   font-size: large;
+}
+
+footer {
+  position: fixed;
+  transition: background-color 300ms;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  margin-top: 1em;
 }
 
 /* Film cards */
@@ -95,18 +129,37 @@ h3 {
   padding: 0;
 }
 
+.fav {
+  display: contents;
+  font-size: xx-large;
+  outline: 1px solid var(--contrast-colour);
+}
+
+#splash {
+  padding: 0;
+}
+
+#watchedFilms, #planningFilms{
+  padding: 0;
+  width: 100%;
+}
+
+
 .cards {
   display: grid;
   flex-direction: row;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
   background-color: var(--background-colour);
-  width: 95%;
+  width: 100%;
   justify-content: center;
   gap: 1rem;
   transition: background-color 300ms;
+  padding: 0;
+  padding-bottom: 3em;
 }
 
 .card {
+  width: clamp(200px, 45% 500px);
   background-color: var(--background-accent);
   border: 1px solid var(--contrast-colour);
   padding: 0;
@@ -115,34 +168,42 @@ h3 {
   transition: background-color 300ms;
 }
 
-.card:hover{
+.card:hover {
   background-color: var(--highlight-colour);
 }
 
-.card-head{
-  margin:0em;
+.card-head {
+  margin: 0em;
+  display: flex;
+  flex-direction: row;
   border-bottom: 1px solid var(--contrast-colour);
+  gap: 1rem;
+  font-weight: bold;
+  font-size: large;
 }
 
-.card-body{
+.title-card.inline {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.fav {
+  float: left;
+}
+
+.card-body {
   margin: 0em;
   flex-grow: 2;
-  
 }
 
-.card-foot{
+.card-foot {
+  display: flex;
   border-top: 1px solid var(--contrast-colour);
+  justify-content: center;
 }
 
-h4{
-  text-align: center;
-  font-weight: bold;
-  font-size: x-large;
-  padding: 0;
-  margin: 0;
-}
-
-.score-text{
+.score-text {
   color: goldenrod;
   padding: 0;
   display: inline-block;
@@ -152,12 +213,15 @@ h4{
 ::-webkit-scrollbar {
   width: 10px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--background-accent);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--highlight-colour);
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--hover-colour);
 }
@@ -169,13 +233,16 @@ h4{
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   text-align: center;
   justify-content: space-evenly;
-  background-color: var(--background-accent);
-  gap: 0.5em;
+  gap: 0.1em;
 }
 
-.watched-section, .unwatched-section {
+.watched-section,
+.unwatched-section {
   border: 1px solid var(--contrast-colour);
-  background-color: var(--background-colour);
+  background-color: var(--background-accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .watched-section {
@@ -189,24 +256,29 @@ h4{
   color: Goldenrod;
 }
 
+input[type="radio"]{
+  opacity: 0;
+}
+
 .radios input[type="radio"]:checked+label {
   border: 0.15em solid green;
   user-select: none;
   font-weight: bold;
 }
 
-input[type="radio"] {
+input[type="radio"]:focus+label {
+  background-color: rgba(121, 185, 102, 0.418);
+}
+
+input[type="checkbox"]{
   opacity: 0;
   position: absolute;
 }
 
-input[type="checkbox"] {
-  opacity: 0;
-  position: absolute;
-}
-
-input[type="checkbox"].toggle:focus+label {
-  outline: 1px solid black;
+/* should show when the heart in the add menu has been selected via tab, and can be toggled via space */
+input[type="checkbox"]:focus+label {
+  background-color: rgba(121, 185, 102, 0.418);
+  opacity: 1;
 }
 
 input:invalid {
@@ -225,9 +297,7 @@ input:valid {
 table,
 th,
 td {
-  padding-left: 1em;
-  padding-right: 1em;
-  table-layout: fixed;
+  padding: 1em;
   width: 100%;
   border-collapse: collapse;
 }
@@ -239,7 +309,6 @@ td {
 
 th {
   text-align: left;
-  cursor: pointer;
 }
 
 tbody tr:nth-child(odd) {
@@ -252,29 +321,13 @@ tbody tr:hover {
 }
 
 table {
-  overflow-wrap: break-word;
+  display: none;
 }
 
 #watched tr>*:nth-child(1) {
   width: 0.5em;
   padding-left: 0.2em;
-
-}
-
-#watched tr>*:nth-child(4) {
-  display: none;
-}
-
-#watched tr>*:nth-child(5) {
-  display: none;
-}
-
-#watched tr>*:nth-child(6) {
-  width: 2em;
-}
-
-#planning-remove {
-  width: 2em;
+  text-align: center;
 }
 
 /* Nav bar properties */
@@ -311,15 +364,15 @@ nav a:hover {
   background-color: var(--hover-colour);
 }
 
-nav a:active{
-  background:var(--active-colour);
+nav a:active {
+  background: var(--active-colour);
 }
 
-#stats{
+#stats {
   display: none;
 }
 
-#planningFilms{
+#planningFilms {
   display: none;
 }
 
@@ -331,16 +384,18 @@ nav a:active{
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
   background-color: var(--background-colour);
-  margin: 5% auto; /* 15% from the top and centered */
+  margin: 5% auto;
+  /* 15% from the top and centered */
   padding: 1em;
   border: 1px solid var(--contrast-colour);
   height: 85%;
   overflow: auto;
+  max-width: 30em;
 }
 
 /* The Close Button */
@@ -353,7 +408,6 @@ nav a:active{
   cursor: pointer;
 }
 
-
 /* Splash Screen */
 .splashModal {
   display: none;
@@ -363,13 +417,14 @@ nav a:active{
   height: 100%;
   left: 0;
   top: 0;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   padding: 0;
 }
 
 .splashContent {
   background-color: var(--background-colour);
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 15% auto;
+  /* 15% from the top and centered */
   padding: 1em;
   border: 1px solid var(--contrast-colour);
 }
@@ -384,9 +439,9 @@ nav a:active{
   cursor: pointer;
 }
 
-/* Adjusting for a screen over 500px width */
+/* Adjusting for a screen over 550px width */
 
-@media screen and (min-width: 630px) {
+@media screen and (min-width: 700px) {
 
   nav a {
     font-size: large;
@@ -397,30 +452,31 @@ nav a:active{
     font-size: large;
   }
 
-  #watched tr>*:nth-child(3) {
-    display: table-cell;
-  }
-
-  #watched tr>*:nth-child(4) {
-    display: table-cell;
-  }
-
-  #watched tr>*:nth-child(5) {
-    display: table-cell;
-    /* padding to keep the stars on one line longer*/
-    padding-right: 0.5em;
-  }
-
   .modal-content {
     background-color: var(--background-colour);
-    width: 75%;
-    height:75%;
     overflow: auto;
   }
 
   .splashContent {
     background-color: var(--background-colour);
     width: 50%;
+  }
+
+  .cards {
+    display: none;
+  }
+
+  table {
+    display: block;
+  }
+
+}
+
+@media screen and (min-width: 1000px) {
+  
+  #watchedFilms,#planningFilms{
+    width: 63em;
+    margin: auto;
   }
 
 }

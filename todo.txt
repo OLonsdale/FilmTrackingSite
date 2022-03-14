@@ -1,28 +1,4 @@
-add more stats
 imdb/tmdb integration
-some way to view full data from list
-filter and sort based on table columns
-tab to radio buttons, show tab to fave button
-scrolling in popup scuffed
-back from edit deletes.
-redo add menu
-
-buttons
-
-
-Example data:
-[{"title":"Harry Potter and the Goblet of Fire","year":"2005","runtime":"210","status":"watched","favourite":true,"score":"4","date":"2022-03-02","timesWatched":"1"},
- {"title":"The Lord of the Rings: The Fellowship of the Ring","year":"2001","runtime":"222","status":"watched","favourite":false,"score":"5","date":"2020-02-03","timesWatched":"2"},
- {"title":"Die Hard","year":"1988","runtime":"132","status":"watched","favourite":true,"score":"3","date":"2012-03-02","timesWatched":"1"},
- {"title":"Dirty Harry","year":"1971","runtime":"102","status":"watched","favourite":false,"score":"4","date":"2022-03-02","timesWatched":"1"},
- {"title":"James Bond: No Time to Die","year":"2021","runtime":"163","status":"watched","favourite":false,"score":"5","date":"2022-03-02","timesWatched":"1"},
- {"title":"John Wick","year":"2014","runtime":"111","status":"watched","favourite":false,"score":"4","date":"2022-03-02","timesWatched":"1"},
- {"title":"Kill Bill vol 1","year":"2003","runtime":"201","status":"watched","favourite":true,"score":"5","date":"2022-03-02","timesWatched":"1"},
- {"title":"Mad Max","year":"1979","runtime":"201","status":"planned"},
- {"title":"Pirates of the Caribbean At World's End ","year":"2007","runtime":"110","status":"planned"},
- {"title":"Star Trek - The Motion Picture","year":"1979","runtime":"221","status":"planned"},
- {"title":"The Terminator","year":"1984","runtime":"201","status":"planned"},
- {"title":"Batman Begins","year":"2005","runtime":"118","status":"planned"},
- {"title":"The Dark Knight","year":"2008","runtime":"101","status":"planned"},
- {"title":"The Dark Knight Rises","year":"2012","runtime":"201","status":"planned"}
-]
+show when the fav button in the add menu is selected via tab and is able to be toggled with space.
+maybe have a "view" button
+title column on table taking up too much room, date linebreaks

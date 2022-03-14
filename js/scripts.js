@@ -30,7 +30,6 @@ function loadFilms() {
     editButton.title = "Edit Film";
     editButton.ariaLabel = "Edit Film Button";
     editButton.addEventListener('click', ev => {
-      deleteFilm(film);
       editFilm(film);
     });
 
@@ -66,8 +65,6 @@ function loadFilms() {
     body.className = "card-body";
     foot.className = "card-foot";
 
-    head.innerHTML = `<h4>${film.title}</h4>`;
-
     if (film.status == "watched") {
       const row = watchedTable.insertRow();
       const favCell = row.insertCell(0)
@@ -86,9 +83,12 @@ function loadFilms() {
       buttonCell.append(editButton);
 
       //add to grid
+      head.innerHTML = `<div class="fav inline">${fav}</div><div class="title-card inline">${film.title}</div>`;
       body.innerHTML = `
         <div class="inline">Year: ${film.year}<br></div>
         <div class="inline">Date Watched: ${film.date}<br></div>
+        <div class="inline">Runtime: ${film.runtime} min<br></div>
+        <div class="inline">Times watched: ${film.timesWatched}<br></div>
         <div class="inline">Score: <div class="score-text">${score}<br></div>
         `;
 
@@ -100,7 +100,6 @@ function loadFilms() {
       });
 
       gridEditButton.addEventListener('click', ev => {
-        deleteFilm(film);
         editFilm(film);
       });
 
@@ -127,10 +126,11 @@ function loadFilms() {
       buttonCell.append(watchedButton);
       buttonCell.append(editButton);
 
-
       //add to grid
+      head.innerHTML = `<div class="title-card inline">${film.title}</div>`;
       body.innerHTML = `
         <div class="inline">Year: ${film.year}<br></div>
+        <div class="inline">Runtime: ${film.runtime} min<br></div>
         `;
 
 
@@ -139,7 +139,6 @@ function loadFilms() {
       });
 
       gridEditButton.addEventListener('click', ev => {
-        deleteFilm(film);
         editFilm(film);
       });
 
@@ -193,6 +192,9 @@ function markWatched(film) {
 
 //takes film object, and loads the data into the "create film" form.
 function editFilm(film) {
+
+  localStorage.setItem("editing",JSON.stringify(film));
+
   document.getElementById("title").value = film.title;
   document.getElementById("year").value = film.year;
   document.getElementById("runtime").value = film.runtime;
@@ -203,9 +205,17 @@ function editFilm(film) {
   }
   document.getElementById("favourite").value = film.favourite;
   document.getElementById("score").value = film.score;
-  document.getElementById("watchedDate").value = film.date;
-  document.getElementById("timesWatched").value = film.timesWatched;
-  submit.innerHTML = "Save Edit to Film";
+  if(film.date){
+    document.getElementById("watchedDate").value = film.date;
+  }
+  if(film.timesWatched){
+    document.getElementById("timesWatched").value = film.timesWatched;
+  }
+
+  //changing button and heading to say edit instead of save
+  submit.innerHTML = "Save Edit";
+  document.getElementById("addFilmHeading").innerHTML="<h4>Edit Film</h4>"
+
   setScoreString();
   loadFilms();
   showAdd();
@@ -239,26 +249,7 @@ function loadStats() {
   averageRating.innerHTML = aveScore.toFixed(1);
 }
 
-//sort table by clicking headers
-//obviously stolen code from https://stackoverflow.com/a/53880407
-const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
-
-const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
-  v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
-)(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
-
-document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
-  const table = th.closest('table');
-  const tbody = table.querySelector('tbody');
-  Array.from(tbody.querySelectorAll('tr'))
-    .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
-    .forEach(tr => tbody.appendChild(tr));
-})));
-
 // Add Film Form //
-
-//set default value of first watched to today. No idea why that needs JS.
-watchedDate.valueAsDate = new Date();
 
 function setScoreString() {
   let scoreString = "";
@@ -296,14 +287,26 @@ planningRadio.addEventListener('change', ev => {
   document.documentElement.style.setProperty('--hiddenTF', "none");
 });
 
+//on save, checks for old editing items in local storage and removes them
 addFilm.addEventListener('submit', ev => {
+  if(!document.getElementById("addFilmHeading").innerHTML==="<h4>Edit Film</h4>"){
+    if(localStorage.getItem("editing") != undefined || localStorage.getItem("editing") != null){
+      localStorage.removeItem("editing");
+    }
+  }
   saveFilm();
 });
 
 //save the data from the form into the local storage array
 function saveFilm() {
+
+  if(localStorage.getItem("editing") != undefined || localStorage.getItem("editing") != null){
+    console.log("editing film");
+    deleteFilm(JSON.parse(localStorage.getItem("editing")));
+    localStorage.removeItem("editing");
+  }
   //get data from form
-  const title = document.getElementById("title").value;
+  let title = document.getElementById("title").value;
   const year = document.getElementById("year").value;
   const runtime = document.getElementById("runtime").value;
   const status = document.querySelector('input[name="statusSelect"]:checked').value
@@ -311,6 +314,10 @@ function saveFilm() {
   const score = document.getElementById("score").value;
   const date = document.getElementById("watchedDate").value;
   const watchedNum = document.getElementById("timesWatched").value;
+
+  //crudely cleans input against xss.
+  title = title.replaceAll("<"," ");
+  title = title.replaceAll(">"," ");
 
   let arrayName = "films";
   let newFilm;
@@ -353,6 +360,7 @@ function saveFilm() {
   }
 
   loadFilms();
+
 };
 
 //show the watched table and hide other elements
@@ -397,6 +405,15 @@ statsMenu.addEventListener('click', ev => {
 });
 
 addMenu.addEventListener('click', ev => {
+  //clear add form if opened via menu instead of edit button
+  document.getElementById("addFilm").reset();
+  //set default value of first watched to today. No idea why that needs JS.
+  watchedDate.valueAsDate = new Date();
+
+  if(localStorage.getItem("editing") != undefined || localStorage.getItem("editing") != null){
+    localStorage.removeItem("editing");
+  }
+
   showAdd();
 });
 
@@ -429,11 +446,11 @@ function showAdd() {
 // Get the modal
 const splash = document.getElementById("splashPopup");
 // Get the <span> element that closes the modal
-const splashSpan = document.getElementsByClassName("closeSplash")[0];
+const splashSpan = document.getElementById("closeSplash");
 
 // When the user clicks on <span> (x), close the modal
-splash.addEventListener('click', ev => {
-  splashSpan.style.display = "none";
+closeSplash.addEventListener('click', ev => {
+  splash.style.display = "none";
 });
 
 // When the user clicks anywhere outside of the modal, close it
