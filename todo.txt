@@ -2,3 +2,5 @@ imdb/tmdb integration
 show when the fav button in the add menu is selected via tab and is able to be toggled with space.
 maybe have a "view" button
 title column on table taking up too much room, date linebreaks
+card view titles not center aligned virtically
+scrolling still scuffed inside the add film popup

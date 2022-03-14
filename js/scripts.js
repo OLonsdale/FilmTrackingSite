@@ -30,6 +30,7 @@ function loadFilms() {
     editButton.title = "Edit Film";
     editButton.ariaLabel = "Edit Film Button";
     editButton.addEventListener('click', ev => {
+      resetAddForm();
       editFilm(film);
     });
 
@@ -100,6 +101,7 @@ function loadFilms() {
       });
 
       gridEditButton.addEventListener('click', ev => {
+        resetAddForm();
         editFilm(film);
       });
 
@@ -139,6 +141,7 @@ function loadFilms() {
       });
 
       gridEditButton.addEventListener('click', ev => {
+        resetAddForm();
         editFilm(film);
       });
 
@@ -216,9 +219,16 @@ function editFilm(film) {
   submit.innerHTML = "Save Edit";
   document.getElementById("addFilmHeading").innerHTML="<h4>Edit Film</h4>"
 
+  if(document.getElementById("watchedRadio").checked == true){
+    document.documentElement.style.setProperty('--hiddenTF', "default");
+  } else {
+    document.documentElement.style.setProperty('--hiddenTF', "none");
+  }
+
   setScoreString();
   loadFilms();
   showAdd();
+
 }
 
 //loads the stats
@@ -251,6 +261,7 @@ function loadStats() {
 
 // Add Film Form //
 
+//Sets the stars based on the slider
 function setScoreString() {
   let scoreString = "";
   for (let i = 0; i < score.value; i++) {
@@ -267,19 +278,23 @@ score.addEventListener('input', ev => {
 
 //toggle the red/black heart on click
 favourite.addEventListener('click', ev => {
+  setFav();
+});
+//sets the heart to match the state of the invisible checkbox
+function setFav() {
   if (document.getElementById("favourite").checked) {
     favText.innerHTML = "❤️";
   } else {
     favText.innerHTML = "🖤";
   }
-});
+}
 
+//does nothing
 search.addEventListener('click', ev => {
   alert("not yet implemented. will pull data from API")
 });
 
 //hide and show elements based on the status selected.
-//TODO
 watchedRadio.addEventListener('change', ev => {
   document.documentElement.style.setProperty('--hiddenTF', "default");
 });
@@ -289,6 +304,9 @@ planningRadio.addEventListener('change', ev => {
 
 //on save, checks for old editing items in local storage and removes them
 addFilm.addEventListener('submit', ev => {
+
+  ev.preventDefault();
+
   if(!document.getElementById("addFilmHeading").innerHTML==="<h4>Edit Film</h4>"){
     if(localStorage.getItem("editing") != undefined || localStorage.getItem("editing") != null){
       localStorage.removeItem("editing");
@@ -296,6 +314,15 @@ addFilm.addEventListener('submit', ev => {
   }
   saveFilm();
 });
+
+//resets the add form to default state
+function resetAddForm(){
+  document.getElementById("addFilm").reset();
+  setFav();
+  setScoreString();
+  //set default value of first watched to today. No idea why that needs JS.
+  watchedDate.valueAsDate = new Date();
+}
 
 //save the data from the form into the local storage array
 function saveFilm() {
@@ -342,16 +369,16 @@ function saveFilm() {
     };
   }
 
-  //get correct array from localStorage
+  //get array from localStorage
   let array = JSON.parse(localStorage.getItem(arrayName));
-  //Check for duplicate
+  //Check for duplicate based on matching title and year
   let dupe = false;
   array.forEach(film => {
     if (newFilm.title == film.title && newFilm.year == film.year) {
       dupe = true;
     }
   });
-  //if not dupe, push. If dupe, give error. I wish could do if(!dupe)
+  //if not dupe, push. If dupe, give error.
   if (dupe) {
     alert("This film is already on your list");
   } else {
@@ -360,6 +387,14 @@ function saveFilm() {
   }
 
   loadFilms();
+
+  if(status == "watched"){
+    showWatched();
+  } else {
+    showPlanning();
+  }
+  
+  addPopup.style.display = "none";
 
 };
 
@@ -387,28 +422,30 @@ function showStats() {
   planningFilms.style.display = "none";
 }
 
-const watchedMenu = document.getElementById("showWatched");
-const planningMenu = document.getElementById("showPlanning");
-const statsMenu = document.getElementById("showStats");
-const addMenu = document.getElementById("showAdd");
+//shows the add popup on top of other elements
+function showAdd() {
+  addPopup.style.display = "block";
+}
 
-watchedMenu.addEventListener('click', ev => {
+const watchedMenuIcon = document.getElementById("showWatched");
+const planningMenuIcon = document.getElementById("showPlanning");
+const statsMenuIcon = document.getElementById("showStats");
+const addMenuIcon = document.getElementById("showAdd");
+
+watchedMenuIcon.addEventListener('click', ev => {
   showWatched();
 });
 
-planningMenu.addEventListener('click', ev => {
+planningMenuIcon.addEventListener('click', ev => {
   showPlanning();
 });
 
-statsMenu.addEventListener('click', ev => {
+statsMenuIcon.addEventListener('click', ev => {
   showStats();
 });
 
-addMenu.addEventListener('click', ev => {
-  //clear add form if opened via menu instead of edit button
-  document.getElementById("addFilm").reset();
-  //set default value of first watched to today. No idea why that needs JS.
-  watchedDate.valueAsDate = new Date();
+addMenuIcon.addEventListener('click', ev => {
+  resetAddForm();
 
   if(localStorage.getItem("editing") != undefined || localStorage.getItem("editing") != null){
     localStorage.removeItem("editing");
@@ -417,10 +454,9 @@ addMenu.addEventListener('click', ev => {
   showAdd();
 });
 
-
 // Add film popup
 
-// Get the modal
+// Get the backdrop (model)
 const addPopup = document.getElementById("addPopup");
 // Get the <span> element that closes the addPopup
 const addPopupClose = document.getElementsByClassName("close")[0];
@@ -436,10 +472,6 @@ window.addEventListener('click', ev => {
     addPopup.style.display = "none";
   }
 });
-
-function showAdd() {
-  addPopup.style.display = "block";
-}
 
 //Splash screen
 
@@ -465,6 +497,7 @@ showHelpButton.addEventListener('click', ev => {
   showSplash();
 });
 
+//show the help popup
 function showSplash() {
   splash.style.display = "block";
 }
@@ -475,15 +508,18 @@ clearButton.addEventListener('click', ev => {
   loadFilms();
 });
 
+//copies the films local storage item to the clipboard
 downloadButton.addEventListener('click', ev => {
   navigator.clipboard.writeText(localStorage.getItem("films"));
   alert("films json copied to clipboard")
 });
 
+//reads the clipboard and parses valid json to films local storage
 uploadButton.addEventListener('click', ev => {
   readClipboard();
 });
 
+//actually does the reading of the clipboard
 async function readClipboard() {
   const text = await navigator.clipboard.readText();
   try {
