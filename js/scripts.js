@@ -195,7 +195,7 @@ function markWatched(film) {
 //takes film object, and loads the data into the "create film" form.
 function editFilm(film) {
 
-  localStorage.setItem("editing",JSON.stringify(film));
+  localStorage.setItem("editing", JSON.stringify(film));
 
   document.getElementById("title").value = film.title;
   document.getElementById("year").value = film.year;
@@ -207,18 +207,18 @@ function editFilm(film) {
   }
   document.getElementById("favourite").value = film.favourite;
   document.getElementById("score").value = film.score;
-  if(film.date){
+  if (film.date) {
     document.getElementById("watchedDate").value = film.date;
   }
-  if(film.timesWatched){
+  if (film.timesWatched) {
     document.getElementById("timesWatched").value = film.timesWatched;
   }
 
   //changing button and heading to say edit instead of save
   submit.innerHTML = "Save Edit";
-  document.getElementById("addFilmHeading").innerHTML="<h4>Edit Film</h4>"
+  document.getElementById("addFilmHeading").innerHTML = "<h4>Edit Film</h4>"
 
-  if(document.getElementById("watchedRadio").checked == true){
+  if (document.getElementById("watchedRadio").checked == true) {
     document.documentElement.style.setProperty('--hiddenTF', "default");
   } else {
     document.documentElement.style.setProperty('--hiddenTF', "none");
@@ -306,8 +306,8 @@ addFilm.addEventListener('submit', ev => {
 
   ev.preventDefault();
 
-  if(!document.getElementById("addFilmHeading").innerHTML==="<h4>Edit Film</h4>"){
-    if(localStorage.getItem("editing") != undefined || localStorage.getItem("editing") != null){
+  if (!document.getElementById("addFilmHeading").innerHTML === "<h4>Edit Film</h4>") {
+    if (localStorage.getItem("editing") != undefined || localStorage.getItem("editing") != null) {
       localStorage.removeItem("editing");
     }
   }
@@ -315,7 +315,7 @@ addFilm.addEventListener('submit', ev => {
 });
 
 //resets the add form to default state
-function resetAddForm(){
+function resetAddForm() {
   document.getElementById("addFilm").reset();
   setFav();
   setScoreString();
@@ -326,7 +326,7 @@ function resetAddForm(){
 //save the data from the form into the local storage array
 function saveFilm() {
 
-  if(localStorage.getItem("editing") != undefined || localStorage.getItem("editing") != null){
+  if (localStorage.getItem("editing") != undefined || localStorage.getItem("editing") != null) {
     console.log("editing film");
     deleteFilm(JSON.parse(localStorage.getItem("editing")));
     localStorage.removeItem("editing");
@@ -342,8 +342,8 @@ function saveFilm() {
   const watchedNum = document.getElementById("timesWatched").value;
 
   //crudely cleans input against xss.
-  title = title.replaceAll("<"," ");
-  title = title.replaceAll(">"," ");
+  title = title.replaceAll("<", " ");
+  title = title.replaceAll(">", " ");
 
   let arrayName = "films";
   let newFilm;
@@ -387,12 +387,12 @@ function saveFilm() {
 
   loadFilms();
 
-  if(status == "watched"){
+  if (status == "watched") {
     showWatched();
   } else {
     showPlanning();
   }
-  
+
   addPopup.style.display = "none";
 
 };
@@ -446,7 +446,7 @@ statsMenuIcon.addEventListener('click', ev => {
 addMenuIcon.addEventListener('click', ev => {
   resetAddForm();
 
-  if(localStorage.getItem("editing") != undefined || localStorage.getItem("editing") != null){
+  if (localStorage.getItem("editing") != undefined || localStorage.getItem("editing") != null) {
     localStorage.removeItem("editing");
   }
 
@@ -564,10 +564,16 @@ toggleThemeButton.addEventListener("click", ev => {
 
 //Creating the files in local storage
 
-//create dark theme local storage file, default to light theme
+//create dark theme local storage file, checks the default theme as defined by the system
 if (localStorage.getItem("darkTheme") === undefined || localStorage.getItem("darkTheme") === null) {
-  localStorage.setItem("darkTheme", "false");
-  console.log("set light theme as default");
+  const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
+  if (darkThemeMq.matches) {
+    localStorage.setItem("darkTheme", "true");
+    console.log("set dark theme as default");
+  } else {
+    localStorage.setItem("darkTheme", "false");
+    console.log("set light theme as default");
+  }
 }
 
 //create splash read local storage file, default to no

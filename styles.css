@@ -11,9 +11,9 @@ body {
   --background-accent: lightgray;
   --highlight-colour: lightslategray;
   --contrast-colour: black;
+  --font-colour: black;
   --active-colour: olive;
   --hover-colour: DarkSlateBlue;
-  transition: background-color 300ms;
 }
 
 /* Dark Theme */
@@ -38,6 +38,7 @@ main {
 }
 
 body {
+  transition: background-color 300ms;
   background: var(--background-colour);
   color: var(--font-colour);
   margin: 0;
@@ -196,7 +197,7 @@ footer {
   display: inline-block;
 }
 
-/* Scroll Bar (more would be required if firefox was required*/
+/* Scroll Bar (more would be required if firefox was required)*/
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -213,7 +214,7 @@ footer {
   background: var(--hover-colour);
 }
 
-/* Form properties */
+/* Add Form properties */
 #addFilm {
   display: grid;
   flex-direction: column;
@@ -244,7 +245,7 @@ footer {
 }
 
 input[type="radio"]{
-  opacity: 0;
+  display: none;
 }
 
 .radios input[type="radio"]:checked+label {
@@ -258,7 +259,7 @@ input[type="radio"]:focus+label {
 }
 
 input[type="checkbox"]{
-  opacity: 0;
+  display: none;
   position: absolute;
 }
 
@@ -309,6 +310,8 @@ tbody tr:hover {
 
 table {
   display: none;
+  max-width: 63em;
+  margin: auto;
 }
 
 #watched tr>*:nth-child(1) {
@@ -336,7 +339,7 @@ nav {
   justify-content: center;
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 100vw;
   z-index: 0;
   transition: background-color 300ms;
 }
@@ -470,11 +473,3 @@ nav a:active {
 
 }
 
-@media screen and (min-width: 1000px) {
-  
-  #watchedFilms,#planningFilms{
-    width: 63em;
-    margin: auto;
-  }
-
-}

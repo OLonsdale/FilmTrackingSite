@@ -8,7 +8,7 @@ It stores the name and metadata of the film as a JSON object, and sorts them int
 
 A stats page shows some interesting information.
 
-It has a light theme and a dark theme, toggleable with the button on the bottom right, and persistant.
+It has a light theme and a dark theme, toggleable with the button at the bottom, and persistant. The default theme is based on your systems prefered theme, and can be persistantly overwritten with the button.
 
 A splash screen shows help the first time the site is loaded.
 
