@@ -4,3 +4,6 @@ title column on table taking up too much room, date linebreaks
 card view titles not center aligned virtically
 scrolling still scuffed inside the add film popup
 accessability check
+sort array
+animations
+mark watched opens edit with watched selected

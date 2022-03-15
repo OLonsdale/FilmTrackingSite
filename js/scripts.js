@@ -205,8 +205,13 @@ function editFilm(film) {
   } else {
     document.getElementById("planningRadio").checked = true;
   }
-  document.getElementById("favourite").value = film.favourite;
+
+
+  document.getElementById("favourite").checked = film.favourite;
+  setFav();
+
   document.getElementById("score").value = film.score;
+  setScoreString();
   if (film.date) {
     document.getElementById("watchedDate").value = film.date;
   }
@@ -224,7 +229,9 @@ function editFilm(film) {
     document.documentElement.style.setProperty('--hiddenTF', "none");
   }
 
-  setScoreString();
+  
+
+
   loadFilms();
   showAdd();
 
@@ -319,6 +326,8 @@ function resetAddForm() {
   document.getElementById("addFilm").reset();
   setFav();
   setScoreString();
+  submit.innerHTML = "Add Film";
+  document.getElementById("addFilmHeading").innerHTML = "<h4>Add Film</h4>"
   //set default value of first watched to today. No idea why that needs JS.
   watchedDate.valueAsDate = new Date();
 }
@@ -579,7 +588,7 @@ if (localStorage.getItem("darkTheme") === undefined || localStorage.getItem("dar
 //create splash read local storage file, default to no
 if (localStorage.getItem("splashRead") === undefined || localStorage.getItem("splashRead") === null) {
   localStorage.setItem("splashRead", "false");
-  console.log("splash not read");
+  console.log("first visit");
 }
 
 //create file to show the splash screen has been read, and show the splash
