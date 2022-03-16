@@ -18,6 +18,8 @@ It is fully functional down to 320px width, and will have better styling.
 
 It will get metadata from an API.
 
+Lists can be sorted, and that sorting order will be maintained after adding a new film.
+
 
 # MY FOUR PAGES/FUNCTIONS ARE:
 
@@ -44,3 +46,5 @@ Some tutorials from "Web Dev Simplified" on YouTube
 API: https://www.themoviedb.org/documentation/api
 
 StackOverflow, naturally
+
+Icons are Windows 11 Emoji

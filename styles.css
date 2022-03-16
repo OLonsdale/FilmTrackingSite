@@ -18,15 +18,14 @@ body {
 
 /* Dark Theme */
 body.dark-theme {
-  --background-colour: #121212;
-  --background-accent: #1F1B24;
-  --highlight-colour: rgb(47, 55, 79);
-  --contrast-colour: white;
-  --font-colour: white;
-  --active-colour: olive;
-  --hover-colour: DarkSlateBlue;
+  --background-colour: #1c1f26;
+  --background-accent: #262a32;
+  --highlight-colour: #4d586e;
+  --active-colour: #29303b;
+  --hover-colour: #4d586e;
+  --contrast-colour: lightgray;
+  --font-colour: lightgray;
 }
-
 
 /* Hidden. Added to elements via JS */
 .hidden {
@@ -327,7 +326,7 @@ nav {
 nav a {
   width: 8em;
   height: 1.6em;
-  color: white;
+  color: lightgray;
   font-size: 2rem;
   font-weight: bold;
   background-color: var(--highlight-colour);
@@ -497,22 +496,47 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-/* Sort Buttons */
-#sortFilms {
+/* Sort Buttons / Dropdown */
+.openDropdownButton {
+  margin: 0;
+  width: 6.5em;
+  height: 2em;
+  font-size: large;
+  gap: 0.5em;
+  color: var(--font-colour);
+  background-color: var(--background-accent);
+  outline: solid 1px var(--contrast-colour);
+}
+
+.openDropdownButton:hover {
+  background-color: var(--highlight-colour);
+}
+
+.dropdown {
+  position: relative;
+  display: block;
+  width: 8em;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  background-color: var(--background-accent);
+  outline: solid 1px var(--contrast-colour);
+}
+
+.dropdown:hover .dropdown-content {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  max-width: 50em;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.2em;
 }
 
 .sortButton {
   background-color: var(--background-accent);
   color: var(--font-colour);
-  width: 8em;
-  height: 3em;
+  width: 100%;
   display: inline-block;
   font-size: large;
 }

@@ -417,7 +417,7 @@ function saveFilm() {
   }
 
   addPopup.style.display = "none";
-
+  sortFilms(lastSort);
 };
 
 //show the watched table and hide other elements
@@ -591,32 +591,48 @@ function sortFilms(arg) {
 
   lastSort = arg;
   localStorage.setItem("films", JSON.stringify(array));
-  loadFilms();
 }
 
 sortTitle.addEventListener('click', ev => {
   console.log("sorting on title");
   sortFilms("title");
+  loadFilms();
 });
 
-sortFavourited.addEventListener('click', ev => {
-  console.log("sorting on favourite");
-  sortFilms("favourite");
+sortTitle2.addEventListener('click', ev => {
+  console.log("sorting on title");
+  sortFilms("title");
+  loadFilms();
 });
 
 sortYear.addEventListener('click', ev => {
   console.log("sorting on year");
   sortFilms("year");
+  loadFilms();
+});
+
+sortYear2.addEventListener('click', ev => {
+  console.log("sorting on year");
+  sortFilms("year");
+  loadFilms();
+});
+
+sortFavourited.addEventListener('click', ev => {
+  console.log("sorting on favourite");
+  sortFilms("favourite");
+  loadFilms();
 });
 
 sortDate.addEventListener('click', ev => {
   console.log("sorting on date");
   sortFilms("date");
+  loadFilms();
 });
 
 sortScore.addEventListener('click', ev => {
   console.log("sorting on score");
   sortFilms("score");
+  loadFilms();
 });
 
 
