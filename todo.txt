@@ -4,6 +4,27 @@ title column on table taking up too much room, date linebreaks
 card view titles not center aligned virtically
 scrolling still scuffed inside the add film popup
 accessability check
-sort array
 animations
-mark watched opens edit with watched selected
+
+
+Old theme:
+body {
+  --background-colour: gainsboro;
+  --background-accent: lightgray;
+  --highlight-colour: lightslategray;
+  --contrast-colour: black;
+  --font-colour: black;
+  --active-colour: olive;
+  --hover-colour: DarkSlateBlue;
+}
+
+/* Dark Theme */
+body.dark-theme {
+  --background-colour: #121212;
+  --background-accent: #1F1B24;
+  --highlight-colour: darkslategray;
+  --contrast-colour: white;
+  --font-colour: white;
+  --active-colour: olive;
+  --hover-colour: DarkSlateBlue;
+}

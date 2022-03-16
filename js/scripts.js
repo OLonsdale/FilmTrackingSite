@@ -17,7 +17,7 @@ function loadFilms() {
   data.forEach(film => {
     //add to table
     const removeButton = document.createElement('button');
-    removeButton.textContent = "❌";
+    removeButton.innerHTML = `<img class="emoji" src=images/cross.png>`;
     removeButton.title = "Remove"
     removeButton.ariaLabel = "Remove button";
     removeButton.addEventListener('click', ev => {
@@ -25,7 +25,7 @@ function loadFilms() {
     });
 
     const editButton = document.createElement('button');
-    editButton.textContent = "✏️";
+    editButton.innerHTML = `<img class="emoji" src=images/pencil.png>`;
     editButton.title = "Edit Film";
     editButton.ariaLabel = "Edit Film Button";
     editButton.addEventListener('click', ev => {
@@ -34,11 +34,11 @@ function loadFilms() {
     });
 
     const watchedButton = document.createElement('button');
-    watchedButton.textContent = "🔭";
+    watchedButton.innerHTML = `<img class="emoji" src=images/telescope.png>`;
     watchedButton.ariaLabel = "Mark film as watched";
     watchedButton.title = "Mark as Watched"
     watchedButton.addEventListener('click', ev => {
-      deleteFilm(film);
+      resetAddForm();
       markWatched(film);
     })
 
@@ -50,9 +50,9 @@ function loadFilms() {
 
     let fav;
     if (film.favourite == true) {
-      fav = "❤️";
+      fav = `<img class="emoji" src=images/heart-red.png>`;
     } else {
-      fav = "🖤";
+      fav = `<img class="emoji" src=images/heart-black.png>`;
     }
 
     //grid stuff
@@ -134,7 +134,6 @@ function loadFilms() {
         <div class="inline">Runtime: ${film.runtime} min<br></div>
         `;
 
-
       gridRemoveButton.addEventListener('click', ev => {
         deleteFilm(film);
       });
@@ -145,7 +144,7 @@ function loadFilms() {
       });
 
       gridWatchedButton.addEventListener('click', ev => {
-        deleteFilm(film);
+        resetAddForm();
         markWatched(film);
       })
 
@@ -180,16 +179,35 @@ function deleteFilm(toDelete) {
 //takes film object, mostly temporary, just fills missing data, changes planning to watched, and reloads the tables
 function markWatched(film) {
 
-  let array = JSON.parse(localStorage.getItem("films"));
-  film.status = "watched";
-  const d = new Date();
-  film.date = d.toISOString().split('T')[0]
-  film.score = 0;
-  film.favourite = false;
-  film.timesWatched = 1;
-  array.push(film);
-  localStorage.setItem("films", JSON.stringify(array));
+  localStorage.setItem("editing", JSON.stringify(film));
+
+  document.getElementById("title").value = film.title;
+  document.getElementById("year").value = film.year;
+  document.getElementById("runtime").value = film.runtime;
+  document.getElementById("watchedRadio").checked = true;
+  document.getElementById("favourite").checked = film.favourite;
+  setFav();
+  document.getElementById("score").value = film.score;
+  setScoreString();
+  if (film.date) {
+    document.getElementById("watchedDate").value = film.date;
+  }
+  if (film.timesWatched) {
+    document.getElementById("timesWatched").value = film.timesWatched;
+  }
+
+  //changing button and heading to say edit instead of save
+  submit.innerHTML = "Save Edit";
+  document.getElementById("addFilmHeading").innerHTML = "<h4>Edit Film</h4>"
+
+  if (document.getElementById("watchedRadio").checked == true) {
+    document.documentElement.style.setProperty('--hiddenTF', "default");
+  } else {
+    document.documentElement.style.setProperty('--hiddenTF', "none");
+  }
   loadFilms();
+  showAdd();
+
 }
 
 //takes film object, and loads the data into the "create film" form.
@@ -228,10 +246,6 @@ function editFilm(film) {
   } else {
     document.documentElement.style.setProperty('--hiddenTF', "none");
   }
-
-  
-
-
   loadFilms();
   showAdd();
 
@@ -289,9 +303,9 @@ favourite.addEventListener('click', ev => {
 //sets the heart to match the state of the invisible checkbox
 function setFav() {
   if (document.getElementById("favourite").checked) {
-    favText.innerHTML = "❤️";
+    favText.innerHTML = `<img class="emoji" src=images/heart-red.png>`;
   } else {
-    favText.innerHTML = "🖤";
+    favText.innerHTML = `<img class="emoji" src=images/heart-black.png>`;
   }
 }
 
@@ -409,25 +423,25 @@ function saveFilm() {
 //show the watched table and hide other elements
 function showWatched() {
   console.log("showing watched films");
-  watchedFilms.style.display = "block";
-  planningFilms.style.display = "none";
-  stats.style.display = "none";
+  watchedFilms.classList.remove("hidden");
+  planningFilms.classList.add("hidden");
+  stats.classList.add("hidden");
 }
 
 //show the watched table and hide other elements
 function showPlanning() {
   console.log("showing planning films");
-  watchedFilms.style.display = "none";
-  planningFilms.style.display = "block";
-  stats.style.display = "none";
+  planningFilms.classList.remove("hidden");
+  watchedFilms.classList.add("hidden");
+  stats.classList.add("hidden");
 }
 
 //show the stats screen and hide other elements
 function showStats() {
   console.log("showing stats");
-  stats.style.display = "block";
-  watchedFilms.style.display = "none";
-  planningFilms.style.display = "none";
+  stats.classList.remove("hidden");
+  watchedFilms.classList.add("hidden");
+  planningFilms.classList.add("hidden");
 }
 
 //shows the add popup on top of other elements
@@ -539,6 +553,71 @@ async function readClipboard() {
   localStorage.setItem("films", text);
   loadFilms();
 }
+
+//Sort buttons
+
+let lastSort = "title"
+
+//sort based on argument
+function sortFilms(arg) {
+  let array = JSON.parse(localStorage.getItem("films"));
+
+  array.sort(function (a, b) {
+    //
+    if (arg == "title") {
+      return a.title.localeCompare(b.title);
+    }
+    //
+    else if (arg == "year") {
+      a = parseInt(a.year)
+      b = parseInt(b.year)
+      return a-b;
+    }
+    //
+    else if (arg == "favourite") {
+      return String(b.favourite).localeCompare(String(a.favourite));
+    }
+    //
+    else if (arg == "date") {
+      return String(b.date).localeCompare(String(a.date));
+    }
+    //
+    else if (arg == "score") {
+      a = parseInt(a.score)
+      b = parseInt(b.score)
+      return b-a;
+    }
+  });
+
+  lastSort = arg;
+  localStorage.setItem("films", JSON.stringify(array));
+  loadFilms();
+}
+
+sortTitle.addEventListener('click', ev => {
+  console.log("sorting on title");
+  sortFilms("title");
+});
+
+sortFavourited.addEventListener('click', ev => {
+  console.log("sorting on favourite");
+  sortFilms("favourite");
+});
+
+sortYear.addEventListener('click', ev => {
+  console.log("sorting on year");
+  sortFilms("year");
+});
+
+sortDate.addEventListener('click', ev => {
+  console.log("sorting on date");
+  sortFilms("date");
+});
+
+sortScore.addEventListener('click', ev => {
+  console.log("sorting on score");
+  sortFilms("score");
+});
 
 
 //Theming
@@ -706,5 +785,6 @@ if (localStorage.getItem("films") === undefined || localStorage.getItem("films")
   console.log("Created films file");
 }
 
+showWatched();
 loadTheme();
 loadFilms();

@@ -1,208 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+    <title>Film Tracker</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-  <title>Film Tracker</title>
-</head>
+  <body>
+    <header>
+      <nav id="menu">
+        <!--Titles used for tooltips-->
+        <a id="showWatched" title="Watched Films">
+          <img class="emoji" alt="closed book icon" src=images/closed-book.png>
+          <span>
+            <br>
+            Watched
+          </span>
+        </a>
 
-<body>
+        <a id="showPlanning" title="Planned Films">
+          <img class="emoji" alt="open book icon" src=images/open-book.png>
+          <span>
+            <br>
+            Planning
+          </span>
+        </a>
 
-  <header>
-    <nav id="menu">
-      <!--Titles used for tooltips-->
-      <a id="showWatched" title="Watched Films">
-        📕
-        <span><br>Watched</span>
-      </a>
+        <a id="showAdd" title="Add Film">
+          <img class="emoji" alt="notepad and pencil icon" src=images/create.png>
+          <span>
+            <br>
+            Add
+          </span>
+        </a>
 
-      <a id="showPlanning" title="Planned Films">
-        📖
-        <span><br>Planning</span>
-      </a>
+        <a id="showStats" title="View Statistics">
+          <img class="emoji" alt="bar chart icon" src=images/stats.png>
+          <span>
+            <br>
+            Stats
+          </span>
+        </a>
+      </nav>
+    </header>
 
-      <a id="showAdd" title="Add Film">
-        📝
-        <span><br>Add</span>
-      </a>
-
-      <a id="showStats" title="View Statistics">
-        📊
-        <span><br>Stats</span>
-      </a>
-    </nav>
-  </header>
-
-  <main>
-    <div id="splash">
-      <div id="splashPopup" class="splashModal">
-        <div class="splashContent">
-          <span id="closeSplash" class="closeSplash" title="Close">❌</span>
-          <h3>Welcome</h3>
-          <p>Welcome to the film tracking service, which allows you to keep track of the films you have watched, and
-            plan to watch.</p>
-          <p>This message will only appear once, to view it again click the question-mark❓at the bottom of the
-            screen.</p>
-          <p>Also at the bottom is the button to toggle the dark theme🌗, buttons to allow you to save📤 and load📥
-            the
-            films from the clipboard, to clear all data🗑️, and to <b>load sample data for testing🔃</b>.</p>
-          <p>Along the top of the screen are the menu buttons to switch to the different screens. The Watched
-            List📕shows
-            the films you have actually watched, and the Planning List📖shows the films you plan on watching.</p>
-          <p>The Add button📝allows you to add a film to one of the lists, and the Stats button📊displays some info
-            about
-            the films you have on your list</p>
+    <!-- Help splash popup -->
+    <main>
+      <div id="splash">
+        <div id="splashPopup" class="splashModal">
+          <div class="splashContent">
+            <span id="closeSplash" class="closeSplash" title="Close"><img class="emoji" alt="red cross icon" src=images/cross.png> </span>
+            <h3>Welcome</h3>
+            <p>Welcome to the film tracking service, which allows you to keep track of the films you have watched, and plan to watch.</p>
+            <p>
+              This message will only appear once, to view it again click the question-mark
+              <img class="emoji" alt="red question mark icon" src=images/question-mark.png>at the bottom of the screen.
+            </p>
+            <p>
+              Also at the bottom is the button to toggle the dark theme
+              <img class="emoji" alt="half moon icon" src=images/dark-mode.png>
+              , buttons to allow you to save
+              <img class="emoji" alt="outbox icon" src=images/outbox.png>
+               and load
+               <img class="emoji" alt="inbox icon" src=images/inbox.png>
+                the
+              films from the clipboard, to clear all data
+              <img class="emoji" alt="waste paper bin icon" src=images/bin.png>
+              , and to <b>load sample data for testing
+                <img class="emoji" alt="reload symbol on blue square icon" src=images/reload.png> 
+              </b>.
+            </p>
+            <p>
+              Along the top of the screen are the menu buttons to switch to the different screens. The Watched List
+              <img class="emoji" alt="closed book icon" src=images/closed-book.png>
+              shows the films you have actually watched, and the Planning List<img
+              class="emoji" alt="open book icon" src=images/open-book.png>
+              shows the films you plan on watching.
+            </p>
+            <p>The Add button<img class="emoji" alt="notepad and pencil icon" src=images/create.png>
+              allows you to add a film to one of the lists, and the Stats button
+              <img class="emoji" alt="bar chart icon" src=images/stats.png>
+              displays some info about the films you have on your list</p>
+          </div>
         </div>
       </div>
-    </div>
+      <!-- Watched Films Section-->
+      <div id="watchedFilms">
+        <div></div>
+        <h1>Watched Films</h1>
+        <div id="sortFilms">
+          <button id="sortTitle" type="button" class="sortButton">Sort Title</button>
+          <button id="sortYear" type="button" class="sortButton">Sort Year</button>
+          <button id="sortFavourited" type="button" class="sortButton">Sort Favourited</button>
+          <button id="sortDate" type="button" class="sortButton">Sort Date</button>
+          <button id="sortScore" type="button" class="sortButton">Sort Score</button>
+        </div>
+        <table id="watched">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Release Year</th>
+              <th>Date Watched</th>
+              <th>Score</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="cards" id="watchedCards"></div>
+      </div>
 
-    <!-- Watched Films Table-->
-    <div id="watchedFilms">
-      <div></div>
-      <h1>Watched Films</h1>
-      <table id="watched">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Release Year</th>
-            <th>Date Watched</th>
-            <th>Score</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-      <div class="cards" id="watchedCards"> </div>
-    </div>
+      <!-- Planned Films Table -->
+      <div id="planningFilms">
+        <h1>Planning Films</h1>
+        <table id="planning">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Release Year</th>
+              <th id="planning-buttons"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="cards" id="planningCards"></div>
+      </div>
 
-    <!-- Planned Films Table -->
-    <div id="planningFilms">
-      <h1>Planning Films</h1>
-      <table id="planning">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Release Year</th>
-            <th id="planning-buttons"></th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-      <div class="cards" id="planningCards"> </div>
-    </div>
+      <!-- Add Film Form -->
+      <div id="addPopup" class="modal">
+        <div class="modal-content">
+          <span class="close" title="Cancel"><img class="emoji" alt="red cross icon" src=images/cross.png></span>
+          <div class="form-container">
+            <div id="addFilmHeading"><h4>Add Film</h4></div>
+            <form id="addFilm">
+              <div id="form-grid">
+                <div class="unwatched-section">
+                  <h2>Title</h2>
+                  <input id="title" type="text" aria-label="Film title" placeholder="The Golden Compass" required />
+                  <button tabindex="-1" title="search" id="search" type="button" aria-label="Search for film">
+                    <img class="emoji" alt="magnifying glass icon" src=images/magnifying-glass.png></button>
+                </div>
 
-    <!-- Add Film Form -->
-    <div id="addPopup" class="modal">
-      <div class="modal-content">
-        <span class="close" title="Cancel">❌</span>
-        <div class="form-container">
+                <!-- When using type="number", can't match regex statment?-->
+                <div class="unwatched-section">
+                  <h2>Year of Release</h2>
+                  <input id="year" aria-label="Year of release" placeholder="2007" required pattern="^(18|19|20)\d{2}" />
+                </div>
 
-          <div id="addFilmHeading">
-            <h4>Add Film</h4>
-          </div>
-          <form id="addFilm">
-            <div id=form-grid>
-              <div class="unwatched-section">
-                <h2>Title</h2>
-                <input id="title" type="text" aria-label="Film title" placeholder="The Golden Compass" required>
-                <button tabindex="-1" title="search" id="search" type="button" aria-label="Search for film">🔎</button>
-              </div>
+                <div class="unwatched-section">
+                  <h2>Runtime (mins)</h2>
+                  <input id="runtime" type="number" aria-label="Runtime in mins" required min="1" placeholder="190" />
+                </div>
 
-              <!-- When using type="number", can't match regex statment?-->
-              <div class="unwatched-section">
-                <h2>Year of Release</h2>
-                <input id="year" aria-label="Year of release" placeholder="2007" required pattern="^(18|19|20)\d{2}">
-              </div>
+                <div class="unwatched-section">
+                  <h2>Status</h2>
+                  <div class="radios">
+                    <input type="radio" id="watchedRadio" name="statusSelect" value="watched" checked />
+                    <label for="watchedRadio"><img class="emoji" alt="closed book icon" src=images/closed-book.png> Watched</label>
+                    <br>
+                    <input type="radio" id="planningRadio" name="statusSelect" value="planning" />
+                    <label for="planningRadio"><img class="emoji" alt="open book icon" src=images/open-book.png> Planning</label>
+                  </div>
+                </div>
 
-              <div class="unwatched-section">
-                <h2>Runtime (mins)</h2>
-                <input id="runtime" type="number" aria-label="Runtime in mins" required min=1 placeholder="190">
-              </div>
+                <div class="watched-section">
+                  <h2>Favourite</h2>
+                  <label for="favourite" id="favText">
+                    <img class="emoji" alt="black heart icon" src=images/heart-black.png></label> <br>
+                  <input id="favourite" value="favourite" type="checkbox" aria-label="Favourite" />
+                </div>
 
-              <div class="unwatched-section">
-                <h2>Status</h2>
-                <div class="radios">
-                  <input type="radio" id="watchedRadio" name="statusSelect" value="watched" checked>
-                  <label for="watchedRadio">📕 Watched</label>
+                <div class="watched-section">
+                  <h2>Score</h2>
+                  <input id="score" type="range" min="0" max="5" value="5" aria-label="score" /> <br>
+                  <label for="score" id="scoreText">★★★★★</label>
+                </div>
+
+                <div class="watched-section">
+                  <h2>First watched</h2>
+                  <input id="watchedDate" type="date" aria-label="date watched" />
+                </div>
+
+                <div class="watched-section">
+                  <h2>Times Watched</h2>
+                  <input id="timesWatched" type="number" min="1" value="1" aria-label="number of times watched" />
+                </div>
+                <div id="saveButtonContainer">
+                  <button id="submit" aria-label="add film">Add Film</button> <br>
                   <br>
-                  <input type="radio" id="planningRadio" name="statusSelect" value="planning">
-                  <label for="planningRadio">📖 Planning</label>
                 </div>
               </div>
-
-              <div class="watched-section">
-                <h2>Favourite</h2>
-                <label for="favourite" id="favText">🖤</label> <br>
-                <input id="favourite" value="favourite" type="checkbox" aria-label="Favourite">
-              </div>
-
-              <div class="watched-section">
-                <h2>Score</h2>
-                <input id="score" type="range" min="0" max="5" value="5" aria-label="score"> <br>
-                <label for="score" id="scoreText">★★★★★</label>
-              </div>
-
-              <div class="watched-section">
-                <h2>First watched</h2>
-                <input id="watchedDate" type="date" aria-label="date watched">
-              </div>
-
-              <div class="watched-section">
-                <h2>Times Watched</h2>
-                <input id="timesWatched" type="number" min="1" value="1" aria-label="number of times watched">
-              </div>
-              <div id="saveButtonContainer">
-                <h2>Save</h2>
-                <button id="submit" aria-label="add film">Add Film</button> <br><br>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Stats screen -->
-    <div id="stats" class="stats">
-      <h1>Statistics</h1>
-      <h2>Total Hours Watched</h2>
-      <div class="statistic" id="hoursWatched"></div>
-      <h2>Number of Films on Planning</h2>
-      <div class="statistic" id="plannedFilmsCount"></div>
-      <h2>Total Watched Films</h2>
-      <div class="statistic" id="watchedFilmsCount"></div>
-      <h2>All Films</h2>
-      <div class="statistic" id="allFilms"></div>
-      <h2>Average rating</h2>
-      <div class="statistic" id="averageRating"></div>
-    </div>
-  </main>
+      <!-- Stats screen -->
+      <div id="stats">
+        <h1>Statistics</h1>
+        <h2>Total Hours Watched</h2>
+        <div class="statistic" id="hoursWatched"></div>
+        <h2>Number of Films on Planning</h2>
+        <div class="statistic" id="plannedFilmsCount"></div>
+        <h2>Total Watched Films</h2>
+        <div class="statistic" id="watchedFilmsCount"></div>
+        <h2>All Films</h2>
+        <div class="statistic" id="allFilms"></div>
+        <h2>Average rating</h2>
+        <div class="statistic" id="averageRating"></div>
+      </div>
+    </main>
 
-  <footer>
-    <span id="buttonBarSpan">
-      <button class="buttonBar" type="button" id="toggleThemeButton" title="toggle theme"
-        aria-label="toggle dark theme button">🌗</button>
-      <button class="buttonBar" type="button" id="showHelpButton" title="help" aria-label="open help popup">❓</button>
-      <button class="buttonBar" type="button" id="downloadButton" title="save json to clipboard"
-        aria-label="save json to clipboard">📤</button>
-      <button class="buttonBar" type="button" id="uploadButton" title="read json from clipboard"
-        aria-label="read json from clipboard">📥</button>
-      <button class="buttonBar" type="button" id="clearButton" title="clear localstorage"
-        aria-label="delete the local storage">🗑️</button>
-      <button class="buttonBar" type="button" id="resetButton" title="load test data"
-        aria-label="load test data">🔃</button>
-    </span>
-  </footer>
-
-  <!-- against advice, I tried to have this in the head element with the defer keyword in it. 
-    Didn't work properly, hard to debug. Annoying. Should have listened.-->
-  <script src="js/scripts.js"></script>
-</body>
-
+    <footer>
+      <span id="buttonBarSpan">
+        <button class="buttonBar" type="button" id="toggleThemeButton" title="toggle theme" aria-label="toggle dark theme button">
+          <img class="emoji" alt="half moon icon" src=images/dark-mode.png>
+        </button>
+        <button class="buttonBar" type="button" id="showHelpButton" title="help" aria-label="open help popup">
+          <img class="emoji" alt="red question mark icon" src=images/question-mark.png>
+        </button>
+        <button class="buttonBar" type="button" id="downloadButton" title="save json to clipboard" aria-label="save json to clipboard">
+          <img class="emoji" alt="outbox icon" src=images/outbox.png>
+        </button>
+        <button class="buttonBar" type="button" id="uploadButton" title="read json from clipboard" aria-label="read json from clipboard">
+          <img class="emoji" alt="inbox icon" src=images/inbox.png>
+        </button>
+        <button class="buttonBar" type="button" id="clearButton" title="clear localstorage" aria-label="delete the local storage">
+          <img class="emoji" alt="waste paper basket" src=images/bin.png>
+        </button>
+        <button class="buttonBar" type="button" id="resetButton" title="load test data" aria-label="load test data">
+          <img class="emoji" alt="reload icon on blue square background" src=images/reload.png>
+        </button> 
+      </span>
+    </footer>
+    <!-- against
+          advice, I tried to have this in the head element with the defer keyword in it. Didn't work properly, hard to
+          debug. Annoying. Should have listened.-->
+    <script src="js/scripts.js"></script>
+  </body>
 </html>

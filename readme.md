@@ -19,7 +19,7 @@ It is fully functional down to 320px width, and will have better styling.
 It will get metadata from an API.
 
 
-# MY FOUR (virtual) PAGES ARE:
+# MY FOUR PAGES/FUNCTIONS ARE:
 
 - Watched list
 
