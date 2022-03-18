@@ -1,4 +1,3 @@
-imdb/tmdb integration
 show when the fav button in the add menu is selected via tab and is able to be toggled with space.
 title column on table taking up too much room, date linebreaks
 card view titles not center aligned virtically
@@ -7,7 +6,7 @@ accessability check
 animations
 
 
-Old theme:
+Old themes:
 body {
   --background-colour: gainsboro;
   --background-accent: lightgray;
@@ -28,3 +27,13 @@ body.dark-theme {
   --active-colour: olive;
   --hover-colour: DarkSlateBlue;
 }
+
+API keys for tmdb
+
+v3 auth key: eb34ead3bd1e54241c558002d840b0ad
+
+Example: https://api.themoviedb.org/3/movie/550?api_key=eb34ead3bd1e54241c558002d840b0ad
+
+v4 auth read token:
+
+eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYjM0ZWFkM2JkMWU1NDI0MWM1NTgwMDJkODQwYjBhZCIsInN1YiI6IjYyMzI3Yjc0ZDE4YjI0MDA3Nzk1NGYzZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.biC3fmzVpoX4RTmQZ-fATrppES04MOlnIUj_-35fBtQ

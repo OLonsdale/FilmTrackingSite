@@ -309,11 +309,6 @@ function setFav() {
   }
 }
 
-//does nothing
-search.addEventListener('click', ev => {
-  alert("not yet implemented. will pull data from API")
-});
-
 //hide and show elements based on the status selected.
 watchedRadio.addEventListener('change', ev => {
   document.documentElement.style.setProperty('--hiddenTF', "default");
@@ -337,6 +332,7 @@ addFilm.addEventListener('submit', ev => {
 
 //resets the add form to default state
 function resetAddForm() {
+  watchedRadio.click();
   document.getElementById("addFilm").reset();
   setFav();
   setScoreString();
@@ -571,7 +567,7 @@ function sortFilms(arg) {
     else if (arg == "year") {
       a = parseInt(a.year)
       b = parseInt(b.year)
-      return a-b;
+      return a - b;
     }
     //
     else if (arg == "favourite") {
@@ -585,7 +581,7 @@ function sortFilms(arg) {
     else if (arg == "score") {
       a = parseInt(a.score)
       b = parseInt(b.score)
-      return b-a;
+      return b - a;
     }
   });
 
@@ -634,6 +630,39 @@ sortScore.addEventListener('click', ev => {
   sortFilms("score");
   loadFilms();
 });
+
+//Find Film
+//event handler for find button in form
+search.addEventListener('click', ev => {
+  findFilm();
+});
+
+async function findFilm() {
+  const title = document.getElementById("title");
+  const key = "eb34ead3bd1e54241c558002d840b0ad"
+  fetch(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${title.value}`)
+    .then(response => response.json())
+    .then(data => {
+      //search for title, check if it matches 
+      if (confirm(`Does this synopsis match? \n"${data.results[0].overview}"`)) {
+        let filmCode = data.results[0].id;
+        //search for film with code to get details
+        fetch(`https://api.themoviedb.org/3/movie/${filmCode}?api_key=${key}`)
+        .then(response => response.json())
+        //fill in the details
+        .then(data => {
+          title.value = data.title;
+          runtime.value = data.runtime;
+          year.value = data.release_date.substring(0, 4);
+          //if the film hasn't been released yet, default to planning list
+          if (year.value > new Date().getFullYear()) {
+            planningRadio.click();
+          }
+        });
+      }
+    })
+}
+
 
 
 //Theming

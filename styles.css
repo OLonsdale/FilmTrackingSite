@@ -12,7 +12,7 @@ body {
   --highlight-colour: lightslategray;
   --contrast-colour: black;
   --font-colour: black;
-  --active-colour: olive;
+  --active-colour: #29303b;
   --hover-colour: DarkSlateBlue;
 }
 
@@ -22,7 +22,7 @@ body.dark-theme {
   --background-accent: #262a32;
   --highlight-colour: #4d586e;
   --active-colour: #29303b;
-  --hover-colour: #4d586e;
+  --hover-colour: #5180a0;
   --contrast-colour: lightgray;
   --font-colour: lightgray;
 }
@@ -109,7 +109,6 @@ h4 {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 1em;
 }
 
 .buttonBar:hover {
@@ -122,11 +121,10 @@ h4 {
 
 .buttonBar {
   width: 2em;
-  height: 2em;
+  height: 1.8em;
   background-color: var(--highlight-colour);
   border: 0;
-  font-size: large;
-  padding-top: 0.3em;
+  font-size: x-large;
 }
 
 footer {
@@ -515,7 +513,7 @@ input[type="checkbox"] {
 .dropdown {
   position: relative;
   display: block;
-  width: 8em;
+  margin-bottom: 1em;
 }
 
 .dropdown-content {
@@ -553,26 +551,6 @@ input[type="checkbox"] {
 /* Adjusting for a screen over 550px width */
 
 @media screen and (min-width: 850px) {
-
-  nav a {
-    font-size: large;
-    height: 3em;
-  }
-
-  nav a>span {
-    font-size: large;
-  }
-
-  .modal-content {
-    background-color: var(--background-colour);
-    overflow: auto;
-  }
-
-  .splashContent {
-    background-color: var(--background-colour);
-    width: 50%;
-  }
-
   .cards {
     display: none;
   }
@@ -584,6 +562,23 @@ input[type="checkbox"] {
   #watchedFilms,
   #planningFilms {
     max-width: 70vw;
+  }
 
+  .splashContent {
+    background-color: var(--background-colour);
+    width: 50vw;
+  }
+
+}
+
+@media screen and (min-width: 450px) {
+
+  nav a {
+    font-size: large;
+    height: 3em;
+  }
+
+  nav a>span {
+    font-size: large;
   }
 }
