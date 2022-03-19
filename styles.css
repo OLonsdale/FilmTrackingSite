@@ -29,14 +29,13 @@ body.dark-theme {
 
 /* Hidden. Added to elements via JS */
 .hidden {
-  display: none !important;
-}
-
-html {
-  font-family: var(--font);
+  visibility: hidden;
+  position: absolute;
+  height: 0;
 }
 
 main {
+  font-family: var(--font);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -71,7 +70,7 @@ button {
 
 h1 {
   text-align: center;
-  padding-top: 1.5em;
+  padding-top: 1em;
 }
 
 h2 {
@@ -223,6 +222,8 @@ footer {
   display: inline-block;
 }
 
+
+
 /* Scroll Bar (more would be required if firefox was required)*/
 ::-webkit-scrollbar {
   width: 10px;
@@ -317,7 +318,7 @@ nav {
   position: fixed;
   top: 0;
   width: 100vw;
-  z-index: 0;
+  z-index: 1;
   transition: background-color 300ms;
 }
 
@@ -434,7 +435,7 @@ input[type="checkbox"] {
 
 /* Add form popup */
 .modal {
-  display: none;
+  display: block;
   position: fixed;
   z-index: 1;
   width: 100%;

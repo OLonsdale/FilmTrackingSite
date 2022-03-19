@@ -412,7 +412,7 @@ function saveFilm() {
     showPlanning();
   }
 
-  addPopup.style.display = "none";
+  hideAdd();
   sortFilms(lastSort);
 };
 
@@ -442,7 +442,11 @@ function showStats() {
 
 //shows the add popup on top of other elements
 function showAdd() {
-  addPopup.style.display = "block";
+  addPopup.classList.remove("hidden");
+}
+
+function hideAdd(){
+  addPopup.classList.add("hidden");
 }
 
 const watchedMenuIcon = document.getElementById("showWatched");
@@ -481,13 +485,13 @@ const addPopupClose = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <addPopupClose> (x), close the addPopup
 addPopupClose.addEventListener('click', ev => {
-  addPopup.style.display = "none";
+  hideAdd();
 });
 
 // When the user clicks anywhere outside of the addPopup, close it
 window.addEventListener('click', ev => {
   if (ev.target == addPopup) {
-    addPopup.style.display = "none";
+    hideAdd();
   }
 });
 
