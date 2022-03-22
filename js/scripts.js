@@ -497,32 +497,14 @@ window.addEventListener('click', ev => {
 
 //Splash screen
 
-// Get the modal
-const splash = document.getElementById("splashPopup");
-// Get the <span> element that closes the modal
-const splashSpan = document.getElementById("closeSplash");
-
-// When the user clicks on <span> (x), close the modal
-closeSplash.addEventListener('click', ev => {
-  splash.style.display = "none";
-});
-
-// When the user clicks anywhere outside of the modal, close it
-window.addEventListener('click', ev => {
-  if (ev.target == splashPopup) {
-    splash.style.display = "none";
-  }
-});
-
 //Show the help splash when question mark button is clicked
 showHelpButton.addEventListener('click', ev => {
-  showSplash();
+  splash.showModal();
 });
 
-//show the help popup
-function showSplash() {
-  splash.style.display = "block";
-}
+splash.addEventListener('click',ev=>{
+  splash.close();
+})
 
 //Button Bar event handlers
 clearButton.addEventListener('click', ev => {
@@ -665,7 +647,7 @@ async function findFilm() {
 
   //if there are results, check that the first result matches
   if (!confirm(`Does this synopsis match?: \n"${searchResults.results[0].overview}"`)) return
-  
+
   //get the details from the first result, and convert to json
   const filmCode = searchResults.results[0].id;
   let film = await fetch(`https://api.themoviedb.org/3/movie/${filmCode}?api_key=${key}`)
@@ -740,7 +722,110 @@ if (!JSON.parse(localStorage.getItem("splashRead"))) {
 }
 
 resetButton.addEventListener('click', ev => {
-  localStorage.setItem("films", JSON.stringify([{"title":"Batman Begins","year":"2005","runtime":"118","status":"planned"},{"title":"Die Hard 2","year":"1992","runtime":"132","status":"watched","favourite":true,"score":"3","date":"2012-03-02","timesWatched":"1"},{"title":"Dirty Harry","year":"1971","runtime":"102","status":"watched","favourite":false,"score":"4","date":"2022-03-02","timesWatched":"1"},{"title":"Harry Potter and the Goblet of Fire","year":"2005","runtime":"210","status":"watched","favourite":true,"score":"4","date":"2022-03-02","timesWatched":"1"},{"title":"James Bond: No Time to Die","year":"2021","runtime":"163","status":"watched","favourite":false,"score":"4","date":"2022-03-02","timesWatched":"1"},{"title":"John Wick","year":"2014","runtime":"111","status":"watched","favourite":true,"score":"4","date":"2022-03-02","timesWatched":"1"},{"title":"Kill Bill Vol 1","year":"2003","runtime":"201","status":"watched","favourite":false,"score":"2","date":"2021-12-08","timesWatched":"1"},{"title":"Mad Max","year":"1979","runtime":"201","status":"planned"},{"title":"Pirates of the Caribbean At World's End ","year":"2007","runtime":"110","status":"planned"},{"title":"Star Trek - The Motion Picture","year":"1979","runtime":"221","status":"planned"},{"title":"The Dark Knight","year":"2008","runtime":"101","status":"planned"},{"title":"The Dark Knight Rises","year":"2012","runtime":"201","status":"planned"},{"title":"The Hobbit: The Desolation of Smaug","year":"2013","runtime":"161","status":"planning"},{"title":"The Lord of the Rings: The Fellowship of the Ring","year":"2001","runtime":"222","status":"watched","favourite":false,"score":"5","date":"2020-02-03","timesWatched":"2"},{"title":"The Terminator","year":"1984","runtime":"201","status":"planned"}]));
+  localStorage.setItem("films", JSON.stringify([{
+    "title": "Batman Begins",
+    "year": "2005",
+    "runtime": "118",
+    "status": "planned"
+  }, {
+    "title": "Die Hard 2",
+    "year": "1992",
+    "runtime": "132",
+    "status": "watched",
+    "favourite": true,
+    "score": "3",
+    "date": "2012-03-02",
+    "timesWatched": "1"
+  }, {
+    "title": "Dirty Harry",
+    "year": "1971",
+    "runtime": "102",
+    "status": "watched",
+    "favourite": false,
+    "score": "4",
+    "date": "2022-03-02",
+    "timesWatched": "1"
+  }, {
+    "title": "Harry Potter and the Goblet of Fire",
+    "year": "2005",
+    "runtime": "210",
+    "status": "watched",
+    "favourite": true,
+    "score": "4",
+    "date": "2022-03-02",
+    "timesWatched": "1"
+  }, {
+    "title": "James Bond: No Time to Die",
+    "year": "2021",
+    "runtime": "163",
+    "status": "watched",
+    "favourite": false,
+    "score": "4",
+    "date": "2022-03-02",
+    "timesWatched": "1"
+  }, {
+    "title": "John Wick",
+    "year": "2014",
+    "runtime": "111",
+    "status": "watched",
+    "favourite": true,
+    "score": "4",
+    "date": "2022-03-02",
+    "timesWatched": "1"
+  }, {
+    "title": "Kill Bill Vol 1",
+    "year": "2003",
+    "runtime": "201",
+    "status": "watched",
+    "favourite": false,
+    "score": "2",
+    "date": "2021-12-08",
+    "timesWatched": "1"
+  }, {
+    "title": "Mad Max",
+    "year": "1979",
+    "runtime": "201",
+    "status": "planned"
+  }, {
+    "title": "Pirates of the Caribbean At World's End ",
+    "year": "2007",
+    "runtime": "110",
+    "status": "planned"
+  }, {
+    "title": "Star Trek - The Motion Picture",
+    "year": "1979",
+    "runtime": "221",
+    "status": "planned"
+  }, {
+    "title": "The Dark Knight",
+    "year": "2008",
+    "runtime": "101",
+    "status": "planned"
+  }, {
+    "title": "The Dark Knight Rises",
+    "year": "2012",
+    "runtime": "201",
+    "status": "planned"
+  }, {
+    "title": "The Hobbit: The Desolation of Smaug",
+    "year": "2013",
+    "runtime": "161",
+    "status": "planning"
+  }, {
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "year": "2001",
+    "runtime": "222",
+    "status": "watched",
+    "favourite": false,
+    "score": "5",
+    "date": "2020-02-03",
+    "timesWatched": "2"
+  }, {
+    "title": "The Terminator",
+    "year": "1984",
+    "runtime": "201",
+    "status": "planned"
+  }]));
   loadFilms();
 });
 
