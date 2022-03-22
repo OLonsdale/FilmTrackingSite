@@ -4,7 +4,7 @@ card view titles not center aligned virtically
 scrolling still scuffed inside the add film popup
 accessability check
 animations
-
+double scrollbar add popup
 
 Old themes:
 body {

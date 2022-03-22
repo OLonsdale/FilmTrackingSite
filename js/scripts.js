@@ -445,7 +445,7 @@ function showAdd() {
   addPopup.classList.remove("hidden");
 }
 
-function hideAdd(){
+function hideAdd() {
   addPopup.classList.add("hidden");
 }
 
@@ -638,33 +638,47 @@ sortScore.addEventListener('click', ev => {
 //Find Film
 //event handler for find button in form
 search.addEventListener('click', ev => {
-  findFilm();
+  if (title.value) {
+    findFilm();
+  }
 });
 
 async function findFilm() {
+
+  //title box in the form
   const title = document.getElementById("title");
+  //api key for TMDB api
   const key = "eb34ead3bd1e54241c558002d840b0ad"
-  fetch(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${title.value}`)
-    .then(response => response.json())
-    .then(data => {
-      //search for title, check if it matches 
-      if (confirm(`Does this synopsis match? \n"${data.results[0].overview}"`)) {
-        let filmCode = data.results[0].id;
-        //search for film with code to get details
-        fetch(`https://api.themoviedb.org/3/movie/${filmCode}?api_key=${key}`)
-        .then(response => response.json())
-        //fill in the details
-        .then(data => {
-          title.value = data.title;
-          runtime.value = data.runtime;
-          year.value = data.release_date.substring(0, 4);
-          //if the film hasn't been released yet, default to planning list
-          if (year.value > new Date().getFullYear()) {
-            planningRadio.click();
-          }
-        });
-      }
-    })
+
+  // stops searching for invalid text
+  if (!title.value) return;
+
+  //searches for the title and convers to json
+  let searchResults = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${title.value}`);
+  searchResults = await searchResults.json();
+
+  //if there are no results, alert the user and stop
+  if (!searchResults.results[0]) {
+    alert("Film not found, please enter details manually");
+    return;
+  }
+
+  //if there are results, check that the first result matches
+  if (!confirm(`Does this synopsis match?: \n"${searchResults.results[0].overview}"`)) return
+  
+  //get the details from the first result, and convert to json
+  const filmCode = searchResults.results[0].id;
+  let film = await fetch(`https://api.themoviedb.org/3/movie/${filmCode}?api_key=${key}`)
+  film = await film.json();
+
+  //fill the form with the data from the details
+  title.value = film.title;
+  runtime.value = film.runtime;
+  year.value = film.release_date.substring(0, 4);
+  //if the film hasn't been released yet, default to planning list
+  if (film.value > new Date().getFullYear()) {
+    planningRadio.click();
+  }
 }
 
 
@@ -726,105 +740,7 @@ if (!JSON.parse(localStorage.getItem("splashRead"))) {
 }
 
 resetButton.addEventListener('click', ev => {
-  localStorage.setItem("films", JSON.stringify([{
-    "title": "The Lord of the Rings: The Fellowship of the Ring",
-    "year": "2001",
-    "runtime": "222",
-    "status": "watched",
-    "favourite": false,
-    "score": "5",
-    "date": "2020-02-03",
-    "timesWatched": "2"
-  }, {
-    "title": "Die Hard",
-    "year": "1988",
-    "runtime": "132",
-    "status": "watched",
-    "favourite": true,
-    "score": "3",
-    "date": "2012-03-02",
-    "timesWatched": "1"
-  }, {
-    "title": "Dirty Harry",
-    "year": "1971",
-    "runtime": "102",
-    "status": "watched",
-    "favourite": false,
-    "score": "4",
-    "date": "2022-03-02",
-    "timesWatched": "1"
-  }, {
-    "title": "John Wick",
-    "year": "2014",
-    "runtime": "111",
-    "status": "watched",
-    "favourite": false,
-    "score": "4",
-    "date": "2022-03-02",
-    "timesWatched": "1"
-  }, {
-    "title": "Mad Max",
-    "year": "1979",
-    "runtime": "201",
-    "status": "planned"
-  }, {
-    "title": "Pirates of the Caribbean At World's End ",
-    "year": "2007",
-    "runtime": "110",
-    "status": "planned"
-  }, {
-    "title": "Star Trek - The Motion Picture",
-    "year": "1979",
-    "runtime": "221",
-    "status": "planned"
-  }, {
-    "title": "The Terminator",
-    "year": "1984",
-    "runtime": "201",
-    "status": "planned"
-  }, {
-    "title": "Batman Begins",
-    "year": "2005",
-    "runtime": "118",
-    "status": "planned"
-  }, {
-    "title": "The Dark Knight",
-    "year": "2008",
-    "runtime": "101",
-    "status": "planned"
-  }, {
-    "title": "The Dark Knight Rises",
-    "year": "2012",
-    "runtime": "201",
-    "status": "planned"
-  }, {
-    "title": "Kill Bill Vol 1",
-    "year": "2003",
-    "runtime": "201",
-    "status": "watched",
-    "favourite": false,
-    "score": "2",
-    "date": "2021-12-08",
-    "timesWatched": "1"
-  }, {
-    "title": "James Bond: No Time to Die",
-    "year": "2021",
-    "runtime": "163",
-    "status": "watched",
-    "favourite": false,
-    "score": "4",
-    "date": "2022-03-02",
-    "timesWatched": "1"
-  }, {
-    "title": "Harry Potter and the Goblet of Fire",
-    "year": "2005",
-    "runtime": "210",
-    "status": "watched",
-    "favourite": false,
-    "score": "4",
-    "date": "2022-03-02",
-    "timesWatched": "1"
-  }]));
+  localStorage.setItem("films", JSON.stringify([{"title":"Batman Begins","year":"2005","runtime":"118","status":"planned"},{"title":"Die Hard 2","year":"1992","runtime":"132","status":"watched","favourite":true,"score":"3","date":"2012-03-02","timesWatched":"1"},{"title":"Dirty Harry","year":"1971","runtime":"102","status":"watched","favourite":false,"score":"4","date":"2022-03-02","timesWatched":"1"},{"title":"Harry Potter and the Goblet of Fire","year":"2005","runtime":"210","status":"watched","favourite":true,"score":"4","date":"2022-03-02","timesWatched":"1"},{"title":"James Bond: No Time to Die","year":"2021","runtime":"163","status":"watched","favourite":false,"score":"4","date":"2022-03-02","timesWatched":"1"},{"title":"John Wick","year":"2014","runtime":"111","status":"watched","favourite":true,"score":"4","date":"2022-03-02","timesWatched":"1"},{"title":"Kill Bill Vol 1","year":"2003","runtime":"201","status":"watched","favourite":false,"score":"2","date":"2021-12-08","timesWatched":"1"},{"title":"Mad Max","year":"1979","runtime":"201","status":"planned"},{"title":"Pirates of the Caribbean At World's End ","year":"2007","runtime":"110","status":"planned"},{"title":"Star Trek - The Motion Picture","year":"1979","runtime":"221","status":"planned"},{"title":"The Dark Knight","year":"2008","runtime":"101","status":"planned"},{"title":"The Dark Knight Rises","year":"2012","runtime":"201","status":"planned"},{"title":"The Hobbit: The Desolation of Smaug","year":"2013","runtime":"161","status":"planning"},{"title":"The Lord of the Rings: The Fellowship of the Ring","year":"2001","runtime":"222","status":"watched","favourite":false,"score":"5","date":"2020-02-03","timesWatched":"2"},{"title":"The Terminator","year":"1984","runtime":"201","status":"planned"}]));
   loadFilms();
 });
 

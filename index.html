@@ -53,46 +53,55 @@
     <div id="splash">
       <div id="splashPopup" class="splashModal">
         <div class="splashContent">
-          <span id="closeSplash" class="closeSplash" title="Close"><img class="emoji" alt="red cross icon"
-              src=images/cross.png>
-          </span>
-          <h3>Welcome</h3>
+          <span id="closeSplash" class="closeSplash" title="Close"><img class="emoji" alt="red cross icon" src=images/cross.png> </span>
+          <h1 class="center">Welcome</h1>
           <p>
-            Welcome to the film tracking service, which allows you to keep track of the films you have watched, and
-            plan to watch.
+            This site allows you to track the films you have watched and plan to watch.
           </p>
           <p>
-            This message will only appear once, to view it again click the question-mark
-            <img class="emoji" alt="red question mark icon" src=images/question-mark.png>at the bottom of the screen.
+            <img class="emoji" alt="closed book icon" src=images/closed-book.png>
+            : Show the films you have watched
           </p>
           <p>
-            Also at the bottom is the button to toggle the dark theme
-            <img class="emoji" alt="half moon icon" src=images/dark-mode.png> , buttons to allow you to save <img
-              class="emoji" alt="outbox icon" src=images/outbox.png> and load <img class="emoji" alt="inbox icon"
-              src=images/inbox.png> the films from the clipboard, to clear all data <img class="emoji"
-              alt="waste paper bin icon" src=images/bin.png>, and to <b>load sample data for testing.</b>
-              <img class="emoji" alt="reload symbol on blue square icon" src=images/reload.png> 
+            <img class="emoji" alt="open book icon" src=images/open-book.png>
+            : Show the films you plan to watch
           </p>
           <p>
-            Along the top of the screen are the menu buttons to switch to the different screens. The Watched List
-            <img class="emoji" alt="closed book icon" src=images/closed-book.png> shows the films you have actually
-            watched, and the Planning List<img class="emoji" alt="open book icon" src=images/open-book.png> shows
-            the films you plan on watching.
+            <img class="emoji" alt="notepad and pencil icon" src=images/create.png>
+            : Add a film to either list
           </p>
           <p>
-            The Add button<img class="emoji" alt="notepad and pencil icon" src=images/create.png> allows you to add a
-            film to one of the lists, and the Stats button <img class="emoji" alt="bar chart icon" src=images/stats.png>
-            displays some info about the films you have on
-            your list
+            <img class="emoji" alt="bar chart icon" src=images/stats.png>
+            : View statistics about the films on your lists.
+          </p>
+          <p>
+            <img class="emoji" alt="red question mark icon" src=images/question-mark.png>
+            : Open this help screen again
+          </p>
+          <p>
+            <img class="emoji" alt="half moon icon" src=images/dark-mode.png>
+            : Toggle dark theme
+          </p>
+          <p>
+            <img class="emoji" alt="outbox icon" src=images/outbox.png><img class="emoji" alt="inbox icon"src=images/inbox.png>
+            : Save / Load films from clipboard.
+          </p>
+          <p>
+            <img class="emoji" alt="waste paper bin icon" src=images/bin.png>
+            : Clear films
+          </p>
+          <p>
+            <img class="emoji" alt="reload symbol on blue square icon" src=images/reload.png>
+            : Load example films
           </p>
         </div>
       </div>
-    </div> 
+    </div>
 
     <!-- Watched Films Section -->
     <div id="watchedFilms">
       <div></div>
-      <h1>Watched Films</h1>
+      <h1 class="heading">Watched Films</h1>
       <div class="dropdown">
         <button type="button" class="openDropdownButton"> Sort </button>
         <div class="dropdown-content">
@@ -121,7 +130,7 @@
 
     <!-- Planned Films Section -->
     <div id="planningFilms">
-      <h1>Planning Films</h1>
+      <h1 class="heading">Planning Films</h1>
       <div class="dropdown">
         <button type="button" class="openDropdownButton"> Sort </button>
         <div class="dropdown-content">
@@ -149,7 +158,7 @@
         </span>
         <div class="form-container">
           <div id="addFilmHeading">
-            <h4>Add Film</h4>
+            <h1>Add Film</h1>
           </div>
           <form id="addFilm">
             <div id="form-grid">
@@ -221,7 +230,7 @@
 
     <!-- Stats screen -->
     <div id="stats">
-      <h1>Statistics</h1>
+      <h1 class="heading">Statistics</h1>
       <h2>Total Hours Watched</h2>
       <div class="statistic" id="hoursWatched"></div>
       <h2>Number of Films on Planning</h2>

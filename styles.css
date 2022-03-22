@@ -68,9 +68,13 @@ button {
   width: 2em;
 }
 
-h1 {
+.heading {
   text-align: center;
   padding-top: 1em;
+}
+
+.center{
+  text-align: center;
 }
 
 h2 {
@@ -221,8 +225,6 @@ footer {
   padding: 0;
   display: inline-block;
 }
-
-
 
 /* Scroll Bar (more would be required if firefox was required)*/
 ::-webkit-scrollbar {
@@ -473,16 +475,16 @@ input[type="checkbox"] {
   height: 100%;
   left: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.4);
   padding: 0;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .splashContent {
   background-color: var(--background-colour);
-  margin: 15% auto;
-  /* 15% from the top and centered */
-  padding: 1em;
   border: 1px solid var(--contrast-colour);
+  margin-top: 25%; /* 15% from the top and centered */
+  padding: 20px;
+  max-width: fit-content;
 }
 
 /* The Close Button */
@@ -567,7 +569,7 @@ input[type="checkbox"] {
 
   .splashContent {
     background-color: var(--background-colour);
-    width: 50vw;
+    max-width: fit-content;
   }
 
 }
