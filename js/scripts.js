@@ -545,29 +545,23 @@ function sortFilms(arg) {
   let array = JSON.parse(localStorage.getItem("films"));
 
   array.sort(function (a, b) {
-    //
-    if (arg == "title") {
-      return a.title.localeCompare(b.title);
-    }
-    //
-    else if (arg == "year") {
-      a = parseInt(a.year)
-      b = parseInt(b.year)
-      return a - b;
-    }
-    //
-    else if (arg == "favourite") {
-      return String(b.favourite).localeCompare(String(a.favourite));
-    }
-    //
-    else if (arg == "date") {
-      return String(b.date).localeCompare(String(a.date));
-    }
-    //
-    else if (arg == "score") {
-      a = parseInt(a.score)
-      b = parseInt(b.score)
-      return b - a;
+    switch (arg) {
+      case "title":
+        return a.title.localeCompare(b.title);    
+      case "year":
+        a = parseInt(a.year)
+        b = parseInt(b.year)
+        return a - b;
+      case "favourite": 
+        return String(b.favourite).localeCompare(String(a.favourite));
+      case "date":
+        return String(b.date).localeCompare(String(a.date));
+      case "score":
+        a = parseInt(a.score)
+        b = parseInt(b.score)
+        return b - a;
+      default:
+        return 0;
     }
   });
 

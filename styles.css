@@ -260,8 +260,10 @@ input:valid {
 table,
 th,
 td {
-  padding: 1em;
-  width: 100%;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
   border-collapse: collapse;
 }
 
@@ -288,7 +290,9 @@ table {
   max-width: 63em;
   margin: auto;
   padding-bottom: 3em;
+
 }
+
 
 #watched tr>*:nth-child(1) {
   width: 1em;
@@ -296,15 +300,8 @@ table {
   padding: 0;
 }
 
-
-/* can't change width past 5em / 73px here?*/
-#watched tr>*:nth-child(4) {
-  column-width: 10em;
-  text-align: center;
-}
-
-#watched thead>*:nth-child(2) {
-  column-width: 30em;
+#watched tr>*:nth-child(2) {
+  word-break: break-word;
 }
 
 /* Nav bar properties */
@@ -445,7 +442,6 @@ input[type="checkbox"] {
 .modal-content {
   background-color: var(--background-colour);
   margin: 5% auto;
-  /* 15% from the top and centered */
   padding: 1em;
   border: 1px solid var(--contrast-colour);
   overflow: auto;

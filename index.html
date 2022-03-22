@@ -3,7 +3,6 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
@@ -153,9 +152,7 @@
         <span class="close" title="Cancel"><img class="emoji" alt="red cross icon" src=images/cross.png>
         </span>
         <div class="form-container">
-          <div id="addFilmHeading">
-            <h1>Add Film</h1>
-          </div>
+          <div id="addFilmHeading"> <h1>Add Film</h1> </div>
           <form id="addFilm">
             <div id="form-grid">
               <div class="unwatched-section">
@@ -168,7 +165,7 @@
               <!-- When using type="number" , can't match regex statment?-->
               <div class="unwatched-section">
                 <h2>Year of Release</h2>
-                <input id="year" aria-label="Year of release" placeholder="2007" required pattern="^(18|19|20)\d{2}" />
+                <input id="year" type="number" aria-label="Year of release" placeholder="2007" required min="1900" max="2050" />
               </div>
 
               <div class="unwatched-section">
@@ -190,6 +187,7 @@
                   </label>
                 </div>
               </div>
+
               <div class="watched-section">
                 <h2>Favourite</h2>
                 <label for="favourite" id="favText">
@@ -214,10 +212,12 @@
                 <h2>Times Watched</h2>
                 <input id="timesWatched" type="number" min="1" value="1" aria-label="number of times watched" />
               </div>
+
               <div id="saveButtonContainer">
                 <button id="submit" aria-label="add film">Add Film</button> <br>
                 <br>
               </div>
+
             </div>
           </form>
         </div>
