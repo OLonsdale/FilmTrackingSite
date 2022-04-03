@@ -1,6 +1,6 @@
 # CTEC3905 ASSIGNMENT
 
-# MY FILM TRACKING SERVICE
+## MY FILM TRACKING SERVICE
 
 This Single Page web application allows you to create a list of films you have watched, and a list of films you are planning to watch.
 
@@ -20,8 +20,7 @@ Clicking the search button in the add form will fetch data from an API. If the r
 
 Lists can be sorted, and that sorting order will be maintained after adding a new film.
 
-
-# MY FOUR PAGES/FUNCTIONS ARE:
+## MY FOUR FUNCTIONS
 
 - Watched list
 
@@ -31,9 +30,9 @@ Lists can be sorted, and that sorting order will be maintained after adding a ne
 
 - Statistics
 
-# SITES USED FOR INFORMATION
+## SOURCES
 
-css-tricks.com/ - specifically on dark modes and table styling
+[css-tricks.com](css-tricks.com) - specifically on dark modes and table styling
 
 w3 schools
 
@@ -43,7 +42,7 @@ Example work from the GitHub repo.
 
 Some tutorials from "Web Dev Simplified" on YouTube
 
-API: https://www.themoviedb.org/documentation/api
+[My API Docs](https://www.themoviedb.org/documentation/api)
 
 StackOverflow, naturally
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 :root {
   --font: "Montserrat";
@@ -73,7 +73,7 @@ button {
   padding-top: 2em;
 }
 
-.center{
+.center {
   text-align: center;
 }
 
@@ -188,7 +188,7 @@ footer {
 }
 
 .card-head {
-  margin: 0em;
+  margin: 0;
   display: flex;
   border-bottom: 1px solid var(--contrast-colour);
   font-weight: bold;
@@ -206,7 +206,7 @@ footer {
 }
 
 .card-body {
-  margin: 0em;
+  margin: 0;
   flex-grow: 2;
 }
 
@@ -240,7 +240,7 @@ footer {
 }
 
 /* should show when the heart in the add menu has been selected via tab, and can be toggled via space */
-input[type="checkbox"]:focus+label {
+input[type="checkbox"]:focus + label {
   background-color: rgba(121, 185, 102, 0.418);
 }
 
@@ -276,7 +276,7 @@ th {
   text-align: left;
 }
 
-tbody>tr:nth-child(odd) {
+tbody > tr:nth-child(odd) {
   transition: background-color 300ms;
   background: var(--background-accent);
 }
@@ -290,17 +290,15 @@ table {
   max-width: 63em;
   margin: auto;
   padding-bottom: 3em;
-
 }
 
-
-#watched tr>*:nth-child(1) {
+#watched tr > *:nth-child(1) {
   width: 1em;
   font-size: x-large;
   padding: 0;
 }
 
-#watched tr>*:nth-child(2) {
+#watched tr > *:nth-child(2) {
   word-break: break-word;
 }
 
@@ -330,11 +328,11 @@ nav a {
   transition: background-color 300ms;
 }
 
-nav a>.emoji {
+nav a > .emoji {
   padding-top: 0.25em;
 }
 
-nav a>span {
+nav a > span {
   font-size: 0;
 }
 
@@ -390,7 +388,7 @@ nav a:active {
   display: var(--hiddenTF);
 }
 
-.watched-section>label {
+.watched-section > label {
   font-size: xx-large;
   text-align: center;
   user-select: none;
@@ -403,13 +401,13 @@ input[type="radio"] {
   opacity: 0;
 }
 
-.radios input[type="radio"]:checked+label {
+.radios input[type="radio"]:checked + label {
   border: 0.15em solid green;
   user-select: none;
   font-weight: bold;
 }
 
-input[type="radio"]:focus+label {
+input[type="radio"]:focus + label {
   background-color: rgba(121, 185, 102, 0.418);
 }
 
@@ -470,7 +468,6 @@ dialog::backdrop {
   background: rgba(0, 0, 0, 0.5);
 }
 
-
 /* Sort Buttons / Dropdown */
 .openDropdownButton {
   margin: 0;
@@ -524,7 +521,6 @@ dialog::backdrop {
   background-color: var(--active-colour);
 }
 
-
 /* Adjusting for a screen over 550px width */
 
 @media screen and (min-width: 850px) {
@@ -545,17 +541,15 @@ dialog::backdrop {
     background-color: var(--background-colour);
     max-width: fit-content;
   }
-
 }
 
 @media screen and (min-width: 450px) {
-
   nav a {
     font-size: large;
     height: 3em;
   }
 
-  nav a>span {
+  nav a > span {
     font-size: large;
   }
 }
